@@ -1,4 +1,4 @@
-package ru.progwards.java2.lessons.recurtion.goodsWithLambda;
+package ru.progwards.java2.lessons.recursion;
 
 import java.time.Instant;
 

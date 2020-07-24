@@ -1,4 +1,4 @@
-package ru.progwards.java2.lessons.recurtion.hanoyTower;
+package ru.progwards.java2.lessons.recursion;
 
 import java.util.Objects;
 

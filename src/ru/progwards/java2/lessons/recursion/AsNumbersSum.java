@@ -1,4 +1,4 @@
-package ru.progwards.java2.lessons.recurtion.asNumbersSum;
+package ru.progwards.java2.lessons.recursion;
 
 import java.util.ArrayList;
 import java.util.List;
