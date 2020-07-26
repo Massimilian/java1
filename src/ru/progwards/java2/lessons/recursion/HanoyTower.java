@@ -18,9 +18,12 @@ public class HanoyTower {
         return information;
     }
 
-    public HanoyTower(int size, int pos, boolean needTrace) {
+    public HanoyTower(int size, int pos, boolean needTrace) throws ImpossibleTowerException {
         this.size = size;
         this.start = pos;
+        if (pos >= size) {
+            throw new ImpossibleTowerException("This is impossible tower asks. Position must be lower.");
+        }
         this.needTrace = needTrace;
         this.indStart = start;
         tower = new LinkedList[size];
@@ -101,5 +104,9 @@ public class HanoyTower {
             thirdStep = (tower[indStart].getLast().getValue() != 1);
             find(pos);
         }
+    }
+
+    public void print() {
+        System.out.println(information);
     }
 }
