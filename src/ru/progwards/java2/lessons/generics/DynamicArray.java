@@ -8,10 +8,10 @@ public class DynamicArray<T> {
         return count;
     }
 
-    private void test() {
-        if (count == ts.length) {
-            T[] temp = (T[]) new Object[count * 2];
-            for (int i = 0; i < count; i++) {
+    private void test(int value) {
+        while (value >= ts.length) {
+            T[] temp = (T[]) new Object[ts.length * 2];
+            for (int i = 0; i < ts.length; i++) {
                 temp[i] = ts[i];
             }
             ts = temp;
@@ -19,15 +19,16 @@ public class DynamicArray<T> {
     }
 
     public void add(T t) {
-        this.test();
+        while (ts[count] != null) {
+            count++;
+            this.test(count + 1);
+        }
+        this.test(count + 1);
         ts[count++] = t;
     }
 
-    public void insert(T t, int pos) {
-        this.test();
-        for (int i = count; i > pos; i--) {
-            ts[i] = ts[i - 1];
-        }
+    public void insert(int pos, T t) {
+        this.test(pos);
         ts[pos] = t;
     }
 

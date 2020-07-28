@@ -11,7 +11,11 @@ public class FruitBox {
             list.addAll(news);
             added = true;
         } else {
-            String[] temp = list.get(0).getClass().toString().split("\\Q.\\E");
+            int x = 0;
+            while (list.get(x) == null) {
+                x++;
+            }
+            String[] temp = list.get(x).getClass().toString().split("\\Q.\\E");
             String test = temp[temp.length - 1];
             if (news.get(0).getClass().toString().matches(".*(" + test + ")")) {
                 list.addAll(news);
@@ -22,6 +26,26 @@ public class FruitBox {
         }
         return added;
     }
+
+    public boolean add(Fruit fruit) {
+        boolean added = false;
+        if (list.isEmpty()) {
+            added = true;
+        } else {
+            int x = 0;
+            while (list.get(x) == null) {
+                x++;
+            }
+            if (list.get(x).getClass().isInstance(fruit.getClass())) {
+                added = true;
+            }
+        }
+        if (added) {
+            list.add(fruit);
+        }
+        return added;
+    }
+
 
     public float getWeight() {
         return list.stream().map(o -> o.getWeight()).reduce(0f, (o1, o2) -> o1 + o2);
