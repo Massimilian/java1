@@ -13,7 +13,6 @@ public class AsNumbersSum {
         String result = null;
         if (number > 0) {
             list = new ArrayList<>();
-            //asNumbersSum(list); // old version
             asNumberSumTwo(list, number);
             list = (ArrayList<ArrayList<Integer>>) list.stream().distinct().collect(Collectors.toList());
             result = finalPrepare(list);
@@ -88,19 +87,22 @@ public class AsNumbersSum {
     }
 
     private static String finalPrepare(ArrayList<ArrayList<Integer>> list) {
-        list = (ArrayList<ArrayList<Integer>>) list.stream().sorted((o1, o2) -> comparator.compare(o1, o2)).collect(Collectors.toList());
-        StringBuilder result = new StringBuilder();
+        StringBuilder finalResult = new StringBuilder();
+        ArrayList<String> complex = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            ArrayList<Integer> temp = list.get(i);
-            temp.sort((o1, o2) -> o2 - o1);
-            result.append(temp.get(0));
-            for (int j = 1; j < temp.size(); j++) {
-                result.append(String.format("+%s", String.valueOf(temp.get(j))));
+            StringBuilder result = new StringBuilder();
+            result.append(list.get(i).get(0));
+            for (int j = 1; j < list.get(i).size(); j++) {
+                result.append(String.format("+%s", String.valueOf(list.get(i).get(j))));
             }
-            result.setLength(result.length() - 2);
-            result.append(" = ");
+            complex.add(result.toString());
         }
-        return result.substring(0, result.length() - 3);
+        complex = (ArrayList<String>) complex.stream().distinct().collect(Collectors.toList());
+        for (int i = 0; i < complex.size(); i++) {
+            finalResult.append(complex.get(i));
+            finalResult.append(" = ");
+        }
+        return finalResult.substring(0, finalResult.length() - 3);
     }
 
     static Comparator<ArrayList<Integer>> comparator = new Comparator<>() {

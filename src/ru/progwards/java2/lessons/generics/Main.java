@@ -40,8 +40,6 @@ public class Main {
         System.out.println(da.getSize());
         da.remove(0);
         System.out.println(da.getSize());
-
-
         System.out.println();
 
     }

@@ -7,7 +7,7 @@ public class Calculator2 {
             expression = beforePrepare(expression);
         }
         expression = firstPrepare(expression);
-        return Integer.valueOf(plusAndMinus(expression));
+        return Integer.parseInt(plusAndMinus(expression));
     }
 
     private static String firstPrepare(String expr) {
