@@ -86,23 +86,42 @@ public class AsNumbersSum {
         return list;
     }
 
+//    private static String finalPrepare(ArrayList<ArrayList<Integer>> list) {
+//        StringBuilder finalResult = new StringBuilder();
+//        ArrayList<String> complex = new ArrayList<>();
+//        for (int i = 0; i < list.size(); i++) {
+//            StringBuilder result = new StringBuilder();
+//            result.append(list.get(i).get(0));
+//            for (int j = 1; j < list.get(i).size(); j++) {
+//                result.append(String.format("+%s", String.valueOf(list.get(i).get(j))));
+//            }
+//            complex.add(result.toString());
+//        }
+//        complex = (ArrayList<String>) complex.stream().distinct().collect(Collectors.toList());
+//        for (int i = 0; i < complex.size(); i++) {
+//            finalResult.append(complex.get(i));
+//            finalResult.append(" = ");
+//        }
+//        return finalResult.substring(0, finalResult.length() - 3);
+//    }
+
     private static String finalPrepare(ArrayList<ArrayList<Integer>> list) {
-        StringBuilder finalResult = new StringBuilder();
-        ArrayList<String> complex = new ArrayList<>();
+        list = (ArrayList<ArrayList<Integer>>) list.stream().sorted((o1, o2) -> comparator.compare(o1, o2)).collect(Collectors.toList());
+        ArrayList<String> semiResult = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             StringBuilder result = new StringBuilder();
-            result.append(list.get(i).get(0));
-            for (int j = 1; j < list.get(i).size(); j++) {
-                result.append(String.format("+%s", String.valueOf(list.get(i).get(j))));
+            ArrayList<Integer> temp = list.get(i);
+            temp.sort((o1, o2) -> o2 - o1);
+            result.append(temp.get(0));
+            for (int j = 1; j < temp.size(); j++) {
+                result.append(String.format("+%s", String.valueOf(temp.get(j))));
             }
-            complex.add(result.toString());
+            result.setLength(result.length() - 2);
+            result.append(" = ");
+            semiResult.add(result.toString());
         }
-        complex = (ArrayList<String>) complex.stream().distinct().collect(Collectors.toList());
-        for (int i = 0; i < complex.size(); i++) {
-            finalResult.append(complex.get(i));
-            finalResult.append(" = ");
-        }
-        return finalResult.substring(0, finalResult.length() - 3);
+        String result = semiResult.stream().distinct().reduce("", (s, y) -> String.format("%s%s", s, y));
+        return  result.substring(0, result.length() - 3);
     }
 
     static Comparator<ArrayList<Integer>> comparator = new Comparator<>() {

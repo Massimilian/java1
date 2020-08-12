@@ -6,7 +6,7 @@ public class HanoyTower {
     private LinkedList<Ring>[] tower;
     private final String separator = System.lineSeparator();
     private String information = " ";
-    private final int size;
+    private int size = 3;
     private final int start;
     private int indStart;
     private final boolean needTrace;
@@ -20,6 +20,17 @@ public class HanoyTower {
 
     public HanoyTower(int size, int pos, boolean needTrace) throws ImpossibleTowerException {
         this.size = size;
+        this.start = pos;
+        if (pos >= size) {
+            throw new ImpossibleTowerException("This is impossible tower asks. Position must be lower.");
+        }
+        this.needTrace = needTrace;
+        this.indStart = start;
+        tower = new LinkedList[size];
+        this.fill(pos);
+    }
+
+    public HanoyTower(int pos, boolean needTrace) throws ImpossibleTowerException {
         this.start = pos;
         if (pos >= size) {
             throw new ImpossibleTowerException("This is impossible tower asks. Position must be lower.");
