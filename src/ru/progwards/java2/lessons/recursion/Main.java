@@ -10,8 +10,8 @@ public class Main {
 //        ht.start();
 //        -------
 //        System.out.println(AsNumbersSum.asNumbersSum(5));
-        System.out.println(AsNumbersSum.asNumbersSum(5));
+//        System.out.println(AsNumbersSum.asNumbersSum(5));
 //        System.out.println(AsNumbersSum.asNumbersSum(10));
-        //-------
+//        -------
     }
 }
