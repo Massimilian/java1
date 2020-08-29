@@ -1,6 +1,13 @@
 package ru.progwards.java2.lessons.calculator;
 
 // время выполнения - 2 часа 55 минут
+
+/**
+ * @version 0.0
+ * @see Calculator2
+ * Первая (неудачная) реализация калькулятора.
+ * @deprecated тут есnь ошибки (в том числе синтаксические), но есть более удачная реализация
+ */
 public class Calculator {
     private static String[] actions = {"*", "/", "+", "-"};
 

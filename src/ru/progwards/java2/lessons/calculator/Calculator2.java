@@ -1,7 +1,20 @@
 package ru.progwards.java2.lessons.calculator;
 
 // время выполнения - 40 минут
+
+/**
+ * @version 1.0
+ * @see Calculator
+ * Специальный класс, который принимает строку в качестве арифметического примера и решает его.
+ * Работа возможна только с целыми числами. Возможные операции - умножение, деление, сложение и вычитание. Использование скобок допускается.
+ */
 public class Calculator2 {
+    /**
+     * Основной рабочий метод. Принимает строку (expression), возвращает результат вычисления
+     *
+     * @param expression
+     * @return результат вычисления
+     */
     public static int calculate(String expression) {
         while (expression.contains("(")) {
             expression = beforePrepare(expression);
@@ -10,6 +23,12 @@ public class Calculator2 {
         return Integer.parseInt(plusAndMinus(expression));
     }
 
+    /**
+     * проверка на наличие первого отрицательного числа и редактирование строчки (в начале прибавляется ноль)
+     *
+     * @param expr
+     * @return подготовленная строка
+     */
     private static String firstPrepare(String expr) {
         if (expr.charAt(0) == '-') {
             expr = "0" + expr;
@@ -17,6 +36,12 @@ public class Calculator2 {
         return expr;
     }
 
+    /**
+     * Решение тех математических вычислений, которые находятся внутри скобок ("раскрытие скобок")
+     *
+     * @param expr
+     * @return строка без скобок
+     */
     private static String beforePrepare(String expr) {
         int from = 0;
         int to = 0;
@@ -35,6 +60,12 @@ public class Calculator2 {
         return expr;
     }
 
+    /**
+     * вычисление подготовленной (без скобок) строки. Сначала - вычисление умножений и делений, затем сложений и вычитаний
+     *
+     * @param expr
+     * @return результат математического вычисления
+     */
     private static String plusAndMinus(String expr) {
         String[] nums = expr.split("[-+]");
         String[] symb = expr.split("[0-9*/]");
@@ -56,6 +87,12 @@ public class Calculator2 {
         return String.valueOf(result);
     }
 
+    /**
+     * Выполнение умножения и деления.
+     *
+     * @param args
+     * @return сокращённая строка
+     */
     private static String[] multiAndDiv(String[] args) {
         for (int i = 0; i < args.length; i++) {
             if (args[i].contains("*")) {
@@ -68,6 +105,13 @@ public class Calculator2 {
         return args;
     }
 
+    /**
+     * Подготовка результатов деления (если multi = false) и умножения (если multi = true)
+     *
+     * @param value
+     * @param multi
+     * @return результат вычисления
+     */
     private static String result(String value, boolean multi) {
         String result;
         if (multi) {
