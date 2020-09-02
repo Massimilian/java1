@@ -4,29 +4,39 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
+/**
+ * Класс для имитации работы Garbage Collector
+ */
 public class Heap {
-    private boolean hasHole = false;
-    private boolean checked = true;
-    private byte[] bytes;
-    private int position = 0;
-    private final byte point = 1; // continue of a Block
-    private final byte startBlock = 10; // start of a Block
-    private ArrayList<Block> blocks = new ArrayList<>(); // list of added Blocks
+    private boolean hasHole = false; // проверка на наличик "дып" в памяти
+    private boolean checked = true; // проверка на упорядоченность всей памяти
+    private byte[] bytes; // собственно память
+    private int position = 0; // текущая позиция заполнения памяти
+    private final byte point = 1; // Обозначение занятого блока памяти
+    private final byte startBlock = 10; // Обозначение начала занятого блока памяти
+    private ArrayList<Block> blocks = new ArrayList<>(); // список блоков, которые находятся внутри памяти
     private final String separator = System.lineSeparator();
 
+    /**
+     * Конструктор со входным параметром "размер"
+     *
+     * @param size (размер памяти)
+     */
     public Heap(int size) {
         this.bytes = new byte[size];
     }
 
-    /*
-    Information about status of memory (keap)
-    */
+    /**
+     * Информация о состоянии памяти (в текстовом формате)
+     *
+     * @return (статус)
+     */
     public String status() {
         return String.format("Occupired memory: %d;%sfree memory:%d;%schecked: %b.%s-----", this.position, this.separator, this.bytes.length - this.position, this.separator, this.checked, this.separator);
     }
 
-    /*
-    Adding a new Block to the Heap if it possible, and compacting the heap, if not.
+    /**
+     * Добавление нового объекта в память, если это возможно, и очистка, если нет.
      */
     public int malloc(int size) throws OutOfMemoryException {
         if (this.position + size > bytes.length) { // if out of memory - compact
@@ -46,14 +56,16 @@ public class Heap {
         return result;
     }
 
-    /*
-    Deleting the block from the Heap
+    /**
+     * Удаление занятого блока из памяти
+     * @param ptr (текущая стартовая позиция)
+     * @throws InvalidPointerException (если позиция не корректна)
      */
     public void free(int ptr) throws InvalidPointerException {
-        if (bytes[ptr] != startBlock) { // is position (ptr) valid
+        if (bytes[ptr] != startBlock) { // проверка на валидность позиции
             throw new InvalidPointerException();
         } else {
-            blocks.remove(new Block(ptr)); // remove the Block from the Block list
+            blocks.remove(new Block(ptr)); // Удаление занятого блока из памяти
             do {
                 bytes[ptr++] = 0;
                 if (bytes[ptr] == 0) {
@@ -65,13 +77,15 @@ public class Heap {
         this.hasHole = isHasHole(ptr); // check the hoke
     }
 
-    /*
-    Looking for the holes after the position
+    /**
+     * Проверка на наличие свободных пространств внутри памяти
+     * @param ptr (номер блока для проверки)
+     * @return (информация о свободе блока)
      */
     private boolean isHasHole(int ptr) {
         boolean result = false;
         for (int i = ptr; i < bytes.length; i++) {
-            if(bytes[i] != 0) {
+            if (bytes[i] != 0) {
                 result = true;
                 break;
             }
@@ -79,8 +93,9 @@ public class Heap {
         return result;
     }
 
-    /*
-    Method for merge blocks, if they are neighbours.
+    /**
+     * @deprecated
+     * Объединение двух блоков, если они соседи
      */
     public void defrag() {
         for (int i = 1; i < bytes.length; i++) {
@@ -90,10 +105,11 @@ public class Heap {
         }
     }
 
-    /*
-    Most easy way for compacting
+    /**
+     * @deprecated
+     * Наиболее простой способ компактизации блоков путём полной перезаписи памяти (трудоёмкий)
      */
-    public void compactEasy() { // most easy compacting by all Blocks one-by-one (but very laborious)
+    public void compactEasy() {
         byte[] newBytes = new byte[bytes.length];
         int count = 0;
         for (Block block : blocks) {
@@ -108,8 +124,8 @@ public class Heap {
         this.changeDates();
     }
 
-    /*
-    Main compact of the Heap
+    /**
+     * более быстрая компактизация памяти через перезаписывание ячеек памяти в пустые слоты, подходящие по размеру
      */
     public void compact() {
         if (!checked) {
@@ -117,7 +133,7 @@ public class Heap {
         }
         boolean checked = false;
         int check = 0;
-        int currentPos = -1; // for start position
+        int currentPos = -1; // размер для стартвой позиции
         for (int i = 0; i < bytes.length; i++) {
             if (bytes[i] == 0) {
                 currentPos = !checked ? i : currentPos;
@@ -139,30 +155,34 @@ public class Heap {
         this.changeDates();
     }
 
-    /*
-    Preparing the List of Blocks for using
+    /**
+    * упорядочивание списка блоков по размеру и изменения статуса "перемещён" у каждого блока
      */
     private void prepare() {
-        blocks = (ArrayList<Block>) blocks.stream().sorted().collect(Collectors.toList()); // sort blocks
-        blocks.forEach(x -> x.setMoved(false)); // changing parameter "moved"
-        Collections.reverse(blocks); // right sorting
+        blocks = (ArrayList<Block>) blocks.stream().sorted().collect(Collectors.toList()); // сортировка
+        blocks.forEach(x -> x.setMoved(false)); // изменение параметра "перемещён"
+        Collections.reverse(blocks); // сортировка "справа налево"
     }
 
-    /*
-    Compressing the Heap by puting Blocks into the holes
+    /**
+     * Сжатие памяти путём перезаписывания блока памяти в начало и удаления его из кона памяти
+     * @param thisPosition (конкретная позиция)
+     * @param size (размер блока)
      */
     private void compress(int thisPosition, int size) {
-        // check the block with the same size
+        // сохранение блока памяти с соответствующим размером (size)
         ArrayList<Block> changedBlocks = (ArrayList<Block>) blocks.stream().filter(x -> x.getSize() <= size && !x.isMoved() && x.getPosition() > thisPosition).limit(1).collect(Collectors.toList());
-        if (changedBlocks.size() != 0) { // if we have this block...
-            this.add(thisPosition, changedBlocks.get(0).getSize()); // add it into hole
-            this.delete(changedBlocks.get(0)); // delete the duplicate
-            changedBlocks.get(0).setMoved(true); // check it as moved Block
+        if (changedBlocks.size() != 0) { // если такой блок вообще есть
+            this.add(thisPosition, changedBlocks.get(0).getSize()); // заполняем им свободный промежуток памяти
+            this.delete(changedBlocks.get(0)); // удаляем дупликат из конца памяти
+            changedBlocks.get(0).setMoved(true); // помечаем блок статусом "смещён"
         }
     }
 
-    /*
-    Adding the Block into the hole
+    /**
+     * добавление блока в память по определённому адресу
+     * @param currentPos (конкретная позиция начала блока)
+     * @param size (размер блока)
      */
     private void add(int currentPos, int size) {
         bytes[currentPos] = startBlock;
@@ -171,8 +191,9 @@ public class Heap {
         }
     }
 
-    /*
-    Deleting the Block from the Heap
+    /**
+     * освобождение памяти от блока
+     * @param block (блок на удаление)
      */
     private void delete(Block block) {
         for (int i = block.getPosition(); i < block.getPosition() + block.getSize(); i++) {
@@ -180,8 +201,8 @@ public class Heap {
         }
     }
 
-    /*
-    puting the block into the most "right" position
+    /**
+     * помещение блока в наиболее правую позицию
      */
     private void putLast() {
         int lastStart = 0;
@@ -210,8 +231,8 @@ public class Heap {
         }
     }
 
-    /*
-    Changing dates of all the hole.
+    /**
+     * обновление состояния всей памяти (курсора свободной памяти, статусов "компактизировано" и "без дыр".
      */
     private void changeDates() {
         int pos = 0;
