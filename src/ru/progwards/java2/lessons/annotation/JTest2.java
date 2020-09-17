@@ -57,4 +57,5 @@ public class JTest2 {
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
         JTest2.method(JTest2.class);
     }
+
 }
