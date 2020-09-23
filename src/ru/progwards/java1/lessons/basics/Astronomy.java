@@ -26,16 +26,16 @@ public class Astronomy {
     }
 
     public static Double earthVsMercury() {
-        return sphereSquare(EARTH_RADIUS) - sphereSquare(MERCURY_RADIUS);
+        return sphereSquare(EARTH_RADIUS) / sphereSquare(MERCURY_RADIUS);
     }
 
     public static Double earthVsJupiter() {
-        return sphereSquare(JUPITER_RADIUS) - sphereSquare(EARTH_RADIUS);
+        return sphereSquare(JUPITER_RADIUS) / sphereSquare(EARTH_RADIUS);
     }
 
     public static void info() {
         String separator = System.lineSeparator();
-        System.out.println(String.format("Информация о планетах:%s1. площадь Земли: %f квадратных км.;%s2. площадь Меркурия: %f квадратных км.;%s3. площадь Юпитера %f квадратных км.;%s4. Земля больше Меркурия на %f км.;%s5. Земля меньше Юпитера на %f км; %s Программа окончила свою работу.",
+        System.out.println(String.format("Информация о планетах:%s1. площадь Земли: %f квадратных км.;%s2. площадь Меркурия: %f квадратных км.;%s3. площадь Юпитера %f квадратных км.;%s4. Земля больше Меркурия в %f раз;%s5. Земля меньше Юпитера в %f раз; %s Программа окончила свою работу.",
                 separator, earthSquare(), separator, mercurySquare(), separator, jupiterSquare(), separator, earthVsMercury(), separator, earthVsJupiter(), separator));
 
     }

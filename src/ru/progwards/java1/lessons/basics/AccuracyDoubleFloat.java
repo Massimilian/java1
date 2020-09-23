@@ -7,7 +7,7 @@ public class AccuracyDoubleFloat {
     private static final double EARTH_RADIUS = 6_371.2;
 
     public static double volumeBallDouble(double radius) {
-        return 4/3*PI*Math.pow(radius, 3);
+        return 4.0/3.0*PI*Math.pow(radius, 3.0);
     }
 
     public static float volumeBallFloat(float radius) {
@@ -15,7 +15,7 @@ public class AccuracyDoubleFloat {
     }
 
     public static double calculateAccuracy(double radius) {
-        return volumeBallDouble(radius) - volumeBallDouble((float)radius);
+        return volumeBallDouble(radius) - volumeBallFloat((float)radius);
     }
 
     public static void main(String[] args) {
