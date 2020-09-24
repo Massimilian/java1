@@ -28,6 +28,9 @@ public class CyclesGoldenFibo {
         return found;
     }
 
+    public static boolean containsDigit(int number, int digit) {
+        return Integer.toString(number).contains(Integer.toString(digit));
+    }
 
     public static int fiboNumber(int n) {
         if (numbers.size() <= n) {
@@ -48,6 +51,9 @@ public class CyclesGoldenFibo {
 
     public static void main(String[] args) {
         Assert.assertTrue(isGoldenTriangle(89, 55, 89));
+        Assert.assertFalse(containsDigit(123456789, 0));
+        Assert.assertFalse(containsDigit(123456, 54));
+        Assert.assertTrue(containsDigit(13579, 57));
         System.out.print("Перечисление первых 15 чисел Фибоначи:");
         for (int i = 0; i < 15; i++) {
             System.out.print(" " + fiboNumber(i));
