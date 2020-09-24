@@ -30,7 +30,7 @@ public class Astronomy {
     }
 
     public static Double earthVsJupiter() {
-        return sphereSquare(JUPITER_RADIUS) / sphereSquare(EARTH_RADIUS);
+        return sphereSquare(EARTH_RADIUS) / sphereSquare(JUPITER_RADIUS);
     }
 
     public static void info() {
