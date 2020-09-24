@@ -13,8 +13,13 @@ public class CyclesGoldenFibo {
     private static final double min = 1.61703;
 
     private static boolean checkSide(int a, int b, int c) {
-        double checker = a > b ? (double) a / (double) b : (double) b / (double) a;
-        return checker <= max && checker >= min && a == c;
+        double checker = 0d;
+        if (a > b && a == c) {
+           checker = (double) a / (double) b;
+        } else if (b > a && b == c) {
+            checker = (double) b / (double) a;
+        }
+        return checker <= max && checker >= min;
     }
 
     private static boolean buildTriangolo(int i) {
@@ -38,7 +43,7 @@ public class CyclesGoldenFibo {
                 numbers.add(numbers.get(i - 2) + numbers.get(i - 1));
             }
         }
-        return numbers.get(n-1);
+        return numbers.get(n - 1);
     }
 
     public static boolean isGoldenTriangle(int a, int b, int c) {
@@ -50,6 +55,7 @@ public class CyclesGoldenFibo {
     }
 
     public static void main(String[] args) {
+        Assert.assertFalse(isGoldenTriangle(34, 34, 55));
         Assert.assertTrue(isGoldenTriangle(34, 55, 55));
         Assert.assertTrue(isGoldenTriangle(89, 55, 89));
         Assert.assertFalse(containsDigit(123456789, 0));
@@ -57,7 +63,7 @@ public class CyclesGoldenFibo {
         Assert.assertTrue(containsDigit(13579, 57));
         System.out.print("Перечисление первых 15 чисел Фибоначи:");
         for (int i = 0; i < 15; i++) {
-            System.out.print(" " + fiboNumber(i+1));
+            System.out.print(" " + fiboNumber(i + 1));
         }
         System.out.print(String.format(".%s", System.lineSeparator()));
         int count = 0;
