@@ -33,12 +33,12 @@ public class CyclesGoldenFibo {
     }
 
     public static int fiboNumber(int n) {
-        if (numbers.size() <= n) {
+        if (numbers.size() < n) {
             for (int i = numbers.size(); i <= n; i++) {
                 numbers.add(numbers.get(i - 2) + numbers.get(i - 1));
             }
         }
-        return numbers.get(n);
+        return numbers.get(n-1);
     }
 
     public static boolean isGoldenTriangle(int a, int b, int c) {
@@ -57,7 +57,7 @@ public class CyclesGoldenFibo {
         Assert.assertTrue(containsDigit(13579, 57));
         System.out.print("Перечисление первых 15 чисел Фибоначи:");
         for (int i = 0; i < 15; i++) {
-            System.out.print(" " + fiboNumber(i));
+            System.out.print(" " + fiboNumber(i+1));
         }
         System.out.print(String.format(".%s", System.lineSeparator()));
         int count = 0;
