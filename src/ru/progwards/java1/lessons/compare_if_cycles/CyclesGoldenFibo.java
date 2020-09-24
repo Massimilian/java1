@@ -13,14 +13,14 @@ public class CyclesGoldenFibo {
     private static final double min = 1.61703;
 
     private static boolean checkSide(int a, int b, int c) {
-        double checker = (double) a / (double) b;
-        return checker < max && checker > min && a == c;
+        double checker = a > b ? (double) a / (double) b : (double) b / (double) a;
+        return checker <= max && checker >= min && a == c;
     }
 
     private static boolean buildTriangolo(int i) {
         boolean found = false;
         for (int j = 0; j < 100; j++) {
-            if ((double) j / (double) i >= min && (double) j / (double) i <= max) {
+            if (j > i && checkSide(j, i, j)) {
                 found = true;
                 System.out.println(String.format("Найден подходящий треугольник с длиной ребра %d и основанием %d.", j, i));
             }
@@ -44,12 +44,13 @@ public class CyclesGoldenFibo {
     public static boolean isGoldenTriangle(int a, int b, int c) {
         boolean result = false;
         if (TriangleInfo.isIsoscelesTriangle(a, b, c)) {
-            result = checkSide(a, b, c) || checkSide(b, c, a) || checkSide(a, c, b);
+            result = checkSide(a, b, c) || checkSide(b, c, a) || checkSide(c, a, b);
         }
         return result;
     }
 
     public static void main(String[] args) {
+        Assert.assertTrue(isGoldenTriangle(34, 55, 55));
         Assert.assertTrue(isGoldenTriangle(89, 55, 89));
         Assert.assertFalse(containsDigit(123456789, 0));
         Assert.assertFalse(containsDigit(123456, 54));
