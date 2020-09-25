@@ -8,7 +8,7 @@ public class TriangleInfo {
     }
 
     private static boolean pifagorus(int a, int b, int c) {
-        return Math.pow(a, 2) == Math.pow(b, 2) + Math.pow(c, 2);
+        return a * a == b * b + c * c;
     }
 
     public static boolean isTriangle(int a, int b, int c) {
@@ -28,9 +28,9 @@ public class TriangleInfo {
         Assert.assertTrue(isTriangle(4, 6, 4));
         Assert.assertTrue(isTriangle(6, 4, 4));
         Assert.assertFalse(isTriangle(1, 0, 1));
-        Assert.assertTrue(isRightTriangle(3,4, 5));
-        Assert.assertTrue(isRightTriangle(4,5, 3));
-        Assert.assertTrue(isRightTriangle(5,3, 4));
+        Assert.assertTrue(isRightTriangle(3, 4, 5));
+        Assert.assertTrue(isRightTriangle(4, 5, 3));
+        Assert.assertTrue(isRightTriangle(5, 3, 4));
         Assert.assertFalse(isRightTriangle(3, 4, 6));
         Assert.assertTrue(isIsoscelesTriangle(5, 5, 1));
         Assert.assertTrue(isIsoscelesTriangle(5, 1, 5));

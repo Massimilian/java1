@@ -2,20 +2,21 @@ package ru.progwards.java1.lessons.compare_if_cycles;
 
 import org.junit.Assert;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CyclesGoldenFibo {
-    private static ArrayList<Integer> numbers = (ArrayList<Integer>) Stream.of(1, 1).collect(Collectors.toList());
+
+    private static @Deprecated
+    ArrayList<Integer> numbers = (ArrayList<Integer>) Stream.of(1, 1).collect(Collectors.toList());
     private static final double max = 1.61903;
     private static final double min = 1.61703;
 
     private static boolean checkSide(int a, int b, int c) {
         double checker = 0d;
         if (a > b && a == c) {
-           checker = (double) a / (double) b;
+            checker = (double) a / (double) b;
         } else if (b > a && b == c) {
             checker = (double) b / (double) a;
         }
@@ -37,13 +38,28 @@ public class CyclesGoldenFibo {
         return Integer.toString(number).contains(Integer.toString(digit));
     }
 
-    public static int fiboNumber(int n) {
+    @Deprecated
+    public static int fiboNumberWithArray(int n) {
         if (numbers.size() < n) {
             for (int i = numbers.size(); i <= n; i++) {
                 numbers.add(numbers.get(i - 2) + numbers.get(i - 1));
             }
         }
         return numbers.get(n - 1);
+    }
+
+    public static int fiboNumber(int n) {
+        int result = 1;
+        if (n > 2) {
+            int prev = 1;
+            int post = 1;
+            for (int i = 2; i < n; i++) {
+                result = prev + post;
+                prev = post;
+                post = result;
+            }
+        }
+        return result;
     }
 
     public static boolean isGoldenTriangle(int a, int b, int c) {
