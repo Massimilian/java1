@@ -24,6 +24,7 @@ public class ReverseDigits {
         return result;
     }
 
+
     public static void main(String[] args) {
         Assert.assertTrue(reverseDigits(234) == 432);
         Assert.assertTrue(reverseDigits(23) == 32);
