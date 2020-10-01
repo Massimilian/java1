@@ -29,7 +29,7 @@ public class DIntArray {
         if (isRightPosition(pos)) {
             int[] newArr = new int[this.array.length + 1];
             System.arraycopy(this.array, 0, newArr, 0, pos);
-            System.arraycopy(this.array, pos, newArr, pos + 1, this.array.length - 1);
+            System.arraycopy(this.array, pos, newArr, pos + 1, this.array.length - pos - 1);
             newArr[pos] = num;
             this.array = newArr;
         }
@@ -47,7 +47,7 @@ public class DIntArray {
                 System.arraycopy(this.array, 0, newArr, 0, newArr.length);
             } else {
                 System.arraycopy(this.array, 0, newArr, 0, pos);
-                System.arraycopy(this.array, pos + 1, newArr, pos, this.array.length - 1);
+                System.arraycopy(this.array, pos + 1, newArr, pos, this.array.length - pos - 1);
             }
             this.array = newArr;
         }

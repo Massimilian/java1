@@ -18,7 +18,7 @@ public class Eratosthenes {
      * Filling by correct values true/false
      */
     private void sift() {
-        for (int i = 2; i < sieve.length / 2; i++) {
+        for (int i = 2; i * i <= sieve.length; i++) {
             if (sieve[i]) {
                 int j = 2;
                 while (j * i < sieve.length) {
