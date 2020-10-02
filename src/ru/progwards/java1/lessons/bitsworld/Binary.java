@@ -21,5 +21,6 @@ public class Binary {
     public static void main(String[] args) {
         Assert.assertEquals(new Binary(0b00001101).toString(), "00001101");
         Assert.assertEquals(new Binary(0b01010101).toString(), "01010101");
+        Assert.assertEquals(new Binary(128).toString(), "10000000");
     }
 }

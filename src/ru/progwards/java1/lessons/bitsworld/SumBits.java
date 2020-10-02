@@ -13,7 +13,7 @@ public class SumBits {
 //            result += value & 1;
 //            value >>>= 1;
 //        }
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 8; i++) {
             result += value & 1;
             value >>>= 1;
         }
@@ -24,7 +24,7 @@ public class SumBits {
         byte a = 0b1110110;
         byte b = 0b1101011;
         byte c = -1;
-        Assert.assertEquals(sumBits(c), 32);
+        Assert.assertEquals(sumBits(c), 8);
         Assert.assertEquals(sumBits(a), sumBits(b));
         Assert.assertThat(sumBits(a) == 5, is(true));
     }
