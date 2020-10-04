@@ -12,7 +12,7 @@ public class Binary {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-            sb.append(num % 2);
+            sb.append(num&1);
             num >>= 1;
         }
         return sb.reverse().toString();
