@@ -1,6 +1,8 @@
 package ru.progwards.java1.lessons.arrays;
 
 import org.junit.Assert;
+import ru.progwards.java1.lessons.interfaces.CompareWeight;
+
 import java.util.Arrays;
 
 public class ArraySort {
