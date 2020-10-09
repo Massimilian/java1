@@ -12,8 +12,8 @@ public class Binary {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
-            sb.append(num&1);
-            num >>= 1;
+            sb.append(this.num & 1);
+            this.num >>= 1;
         }
         return sb.reverse().toString();
     }
