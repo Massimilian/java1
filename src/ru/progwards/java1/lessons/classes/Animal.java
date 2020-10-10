@@ -64,7 +64,6 @@ public class Animal implements FoodCompare, CompareWeight {
         int result = 0;
         switch (this.fk) {
             case HAY:
-                System.out.println("test");
                 result = 20;
                 break;
             case CORN:

@@ -1,5 +1,7 @@
 package ru.progwards.java1.lessons.interfaces;
 
+import java.util.GregorianCalendar;
+
 import static ru.progwards.java1.lessons.interfaces.CompareWeight.CompareResult.*;
 
 public class Food implements CompareWeight{
@@ -15,14 +17,29 @@ public class Food implements CompareWeight{
 
     @Override
     public CompareResult compareWeight(CompareWeight smthHasWeight) {
+//        if (smthHasWeight instanceof Food) {
+//            return switch (Integer.compare(this.getWeight(), ((Food) smthHasWeight).getWeight())) {
+//                case -1 -> LESS;
+//                case 0 -> EQUAL;
+//                default -> GREATER;
+//            };
+//        } else {
+//            return null;
+//        }
+        CompareResult result = null;
         if (smthHasWeight instanceof Food) {
-            return switch (Integer.compare(this.getWeight(), ((Food) smthHasWeight).getWeight())) {
-                case -1 -> LESS;
-                case 0 -> EQUAL;
-                default -> GREATER;
-            };
-        } else {
-            return null;
+            switch (Integer.compare(this.getWeight(), ((Food) smthHasWeight).getWeight())) {
+                case -1:
+                    result = LESS;
+                    break;
+                case 0:
+                    result = EQUAL;
+                    break;
+                case 1:
+                    result = GREATER;
+                    break;
+            }
         }
+        return result;
     }
 }
