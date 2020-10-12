@@ -1,13 +1,12 @@
 package ru.progwards.java1.lessons.classes;
 
 import ru.progwards.java1.lessons.interfaces.CompareWeight;
-import ru.progwards.java1.lessons.interfaces.FoodCompare;
 
 import java.util.Objects;
 
 import static ru.progwards.java1.lessons.interfaces.CompareWeight.CompareResult.*;
 
-public class Animal implements FoodCompare, CompareWeight {
+public class Animal implements CompareWeight {
     private final double weight;
     protected double foodCoeff;
     protected AnimalKind ak;
@@ -80,11 +79,6 @@ public class Animal implements FoodCompare, CompareWeight {
     }
 
     @Override
-    public int compareFoodPrice(Animal animal) {
-        return Double.compare(this.getFoodPrice(), animal.getFoodPrice());
-    }
-
-    @Override
     public CompareResult compareWeight(CompareWeight smthHasWeight) {
         if (smthHasWeight instanceof Animal) {
             return switch (Double.compare(this.getWeight(), ((Animal) smthHasWeight).getWeight())) {
@@ -96,4 +90,5 @@ public class Animal implements FoodCompare, CompareWeight {
             return null;
         }
     }
+
 }
