@@ -1,7 +1,5 @@
 package ru.progwards.java1.lessons.interfaces;
 
-import ru.progwards.java1.lessons.compare_if_cycles.CyclesGoldenFibo;
-
 public class CalculateFibonacci {
 
     public static class CacheInfo {

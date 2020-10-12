@@ -1,7 +1,5 @@
 package ru.progwards.java1.lessons.interfaces;
 
-import java.util.GregorianCalendar;
-
 import static ru.progwards.java1.lessons.interfaces.CompareWeight.CompareResult.*;
 
 public class Food implements CompareWeight{
