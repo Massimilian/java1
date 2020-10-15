@@ -1,9 +1,7 @@
 package ru.progwards.java1.lessons.classes;
 
 import ru.progwards.java1.lessons.interfaces.CompareWeight;
-
 import java.util.Objects;
-
 import static ru.progwards.java1.lessons.interfaces.CompareWeight.CompareResult.*;
 
 public class Animal implements CompareWeight {

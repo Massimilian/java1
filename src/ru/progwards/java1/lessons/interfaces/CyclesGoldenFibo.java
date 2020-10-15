@@ -1,8 +1,6 @@
 package ru.progwards.java1.lessons.interfaces;
 
 import org.junit.Assert;
-import ru.progwards.java1.lessons.compare_if_cycles.TriangleInfo;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

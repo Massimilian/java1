@@ -1,10 +1,6 @@
 package ru.progwards.java1.lessons.interfaces;
 
 import org.junit.Assert;
-import ru.progwards.java1.lessons.classes.Animal;
-import ru.progwards.java1.lessons.classes.Cow;
-import ru.progwards.java1.lessons.classes.Duck;
-import ru.progwards.java1.lessons.classes.Hamster;
 
 public class Test {
     public static void main(String[] args) {
