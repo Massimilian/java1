@@ -59,7 +59,7 @@ public class Animal implements FoodCompare, CompareWeight {
 
     public int getFood1kgPrice() {
         int result = 0;
-        switch (this.fk) {
+        switch (this.getFoodKind()) {
             case HAY:
                 result = 20;
                 break;
