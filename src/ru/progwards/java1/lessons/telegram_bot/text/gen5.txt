@@ -1,0 +1,58 @@
+...
+Подведём итоги ограничений:
+public class Generic {
+    public void test(List<? extends Second> list) {// класс принимает все типы, которые наследуют Second или сами являются Second
+
+    }
+
+    public static void main(String[] args) {
+        List<First> firsts = new ArrayList<>();
+        List<Second> seconds = new ArrayList<>();
+        List<Third> thirds = new ArrayList<>();
+        Generic generic = new Generic();
+        generic.test(firsts); // ошибка на этапе компиляции!
+        generic.test(seconds); // отработает
+        generic.test(thirds); // отработает
+    }
+}
+
+class First {}
+
+class Second extends First{}
+
+class Third extends Second{}
+
+Но ограничения могут быть не только в сторону уменьшения типа, но и в сторону увеличения («старения»):
+
+public class Generic {
+    public void test(List<? super Second> list) { // класс принимает все типы, которые являются родителями Second или сами являются Second
+
+    }
+
+    public static void main(String[] args) {
+        List<First> firsts = new ArrayList<>();
+        List<Second> seconds = new ArrayList<>();
+        List<Third> thirds = new ArrayList<>();
+        Generic generic = new Generic();
+        generic.test(firsts); // отработает
+        generic.test(seconds); // отработает
+        generic.test(thirds); // ошибка на этапе компиляции
+    }
+}
+
+class First {}
+
+class Second extends First{}
+
+class Third extends Second{}
+
+Задача: принять массив данных и поменять местами позиции a и b.
+public class Generic {
+    public<T> T[] reverse(T[] o, int a, int b) {
+        T temp = o[a];
+        o[a] = o[b];
+        o[b] = temp;
+        return o;
+    }
+}
+Материалы любезно предоставлены http://progwards.ru/

@@ -1,0 +1,25 @@
+Класс в целом – это основная ячейка работы Java-программы, шаблон для создания объекта. Помимо классических классов встречаются вложенные классы – вкладываются внутрь стандартного класса, существует внутри него.
+Вложенный статический класс - это статическая реализация класса внутри внешнего класса. Экземпляр этого класса можно создать.
+public class Test {
+    public String info = "Info";
+    public Inner in = new Inner();
+
+    public static class Inner {
+        String innerInfo = "Inner info";
+
+        public void setInnerInfo(String innerInfo) {
+            this.innerInfo = innerInfo;
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Test.Inner i = new Test.Inner(); // теперь можно создать экземпляр статического класса, но только через внешний класс
+        i.setInnerInfo("Static info"); // присвоим туда новое значение
+        Test t = new Test(); // во втором экземпляре будет храниться другая информация
+        System.out.println(i.innerInfo); // выведет "Static info"
+        System.out.println(t.in.innerInfo); // выведет "Inner info"
+    }
+}
+Материалы любезно предоставлены http://progwards.ru/

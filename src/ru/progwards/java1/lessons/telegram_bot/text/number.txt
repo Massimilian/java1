@@ -1,0 +1,8 @@
+Number - это класс, от которого наследуются целочисленные и вещественные классы-обёртки, BigDecimal и BigInteger. Соответственно, класс Number и его наследники реализуют общие методы:
+public int intValue() – возвращает Number в виде int;
+public long longValue() – возвращает Number в виде long;
+public float floatValue() – возвращает Number в виде float;
+public double doubleValue() – возвращает Number в виде double;
+public byte byteValue() – возвращает Number в виде byte;
+public short shortValue() – возвращает Number в виде short.
+Материалы любезно предоставлены http://progwards.ru/
