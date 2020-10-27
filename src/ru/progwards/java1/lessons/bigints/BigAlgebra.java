@@ -9,7 +9,7 @@ import java.math.RoundingMode;
 import static org.hamcrest.CoreMatchers.is;
 
 public class BigAlgebra {
-    BigDecimal fastPow(BigDecimal num, int pow) {
+    static BigDecimal fastPow(BigDecimal num, int pow) {
         BigDecimal result;
         if (pow >= 0) {
             String bin = Integer.toBinaryString(pow);
@@ -21,12 +21,12 @@ public class BigAlgebra {
                 }
             }
         } else {
-            result = BigDecimal.ONE.divide(this.fastPow(num, -1 * pow), 5, RoundingMode.HALF_UP);
+            result = BigDecimal.ONE.divide(fastPow(num, -1 * pow), 5, RoundingMode.HALF_UP);
         }
         return result;
     }
 
-    BigInteger fibonacci(int n) {
+    static BigInteger fibonacci(int n) {
         BigInteger result;
         if (n < 1) {
             throw new ArithmeticException("Value cannot be under 1.");
@@ -58,15 +58,14 @@ public class BigAlgebra {
     }
 
     public static void main(String[] args) {
-        BigAlgebra ba = new BigAlgebra();
-
-        BigDecimal res1 = ba.fastPow(new BigDecimal("-2"), 10);
-        BigDecimal res2 = ba.fastPow(BigDecimal.TEN, 9);
-        BigDecimal res3 = ba.fastPow(BigDecimal.ZERO, 100);
-        BigDecimal res4 = ba.fastPow(new BigDecimal("-2"), -3);
-        BigDecimal res5 = ba.fastPow(new BigDecimal("100"), 1);
-        BigDecimal res6 = ba.fastPow(BigDecimal.TEN, 0);
-        BigDecimal res7 = ba.fastPow(new BigDecimal("1.1"), 10);
+//        BigAlgebra ba = new BigAlgebra();
+        BigDecimal res1 = fastPow(new BigDecimal("-2"), 10);
+        BigDecimal res2 = fastPow(BigDecimal.TEN, 9);
+        BigDecimal res3 = fastPow(BigDecimal.ZERO, 100);
+        BigDecimal res4 = fastPow(new BigDecimal("-2"), -3);
+        BigDecimal res5 = fastPow(new BigDecimal("100"), 1);
+        BigDecimal res6 = fastPow(BigDecimal.TEN, 0);
+        BigDecimal res7 = fastPow(new BigDecimal("1.1"), 10);
         Assert.assertEquals(res1.intValue(), 1024);
         Assert.assertEquals(res2.intValue(), 1000000000);
         Assert.assertEquals(res3.intValue(), 0);
@@ -74,10 +73,10 @@ public class BigAlgebra {
         Assert.assertEquals(100, res5.intValue());
         Assert.assertEquals(1, res6.intValue());
         Assert.assertThat(res7.doubleValue(), is(2.5937424601));
-        Assert.assertEquals(ba.fibonacci(100), new BigInteger("354224848179261915075"));
-        Assert.assertEquals(ba.fibonacci(90), new BigInteger("2880067194370816120"));
-        Assert.assertEquals(ba.fibonacci(1), BigInteger.ONE);
-        Assert.assertEquals(ba.fibonacci(10), new BigInteger("55"));
+        Assert.assertEquals(fibonacci(100), new BigInteger("354224848179261915075"));
+        Assert.assertEquals(fibonacci(90), new BigInteger("2880067194370816120"));
+        Assert.assertEquals(fibonacci(1), BigInteger.ONE);
+        Assert.assertEquals(fibonacci(10), new BigInteger("55"));
 
     }
 }
