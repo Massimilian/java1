@@ -1,30 +1,27 @@
 package ru.progwards.java1.lessons;
 
-import org.apache.logging.log4j.core.util.JsonUtils;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
-import java.math.RoundingMode;
-import java.util.Random;
+import java.io.*;
+import java.util.Scanner;
 
 public class Test {
-    static class Rectangle {
-        Rectangle(BigDecimal a, BigDecimal b) {
-            this.a = a;
-            this.b = b;
-        }
-        public BigDecimal a;
-        public BigDecimal b;
 
-        boolean rectCompare(Rectangle r1, Rectangle r2) {
-            return r1.a.multiply(r1.b).compareTo(r2.a.multiply(r2.b)) == 0;
+    private int lineCount(String filename) throws IOException {
+        int result = 0;
+        try {
+            FileReader fr = new FileReader(filename);
+            Scanner scanner = new Scanner(fr);
+            while(scanner.hasNextLine()) {
+                result++;
+                scanner.nextLine();
+            }
+        } catch (Exception e) {
+            throw new IOException("файл не найден");
         }
+        return result;
     }
 
-    public static void main(String[] args) {
-        BigInteger big = new BigInteger("5");
-        BigInteger other = BigInteger.valueOf(10);
-
+    public static void main(String[] args) throws IOException {
+        Test t = new Test();
+        System.out.println(t.lineCount("text.txt"));
     }
 }
