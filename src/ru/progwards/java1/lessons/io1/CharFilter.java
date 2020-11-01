@@ -46,6 +46,7 @@ public class CharFilter {
                     sb.append(scanner.nextLine());
                     sb.append(System.lineSeparator());
                 }
+                sb.setLength(sb.length() - 1);
             } finally {
                 try {
                     fr.close();
@@ -81,7 +82,6 @@ public class CharFilter {
      */
     private void edit(String edit) {
         this.file = this.file.replaceAll(String.format("[%s]", edit), "");
-        System.out.println();
     }
 
     private void clean(String file) {
@@ -105,7 +105,7 @@ public class CharFilter {
             e.printStackTrace();
         }
         filterFile("text.txt", "text.txt", " \\-,.()");
-        Assert.assertEquals(chf.read("text.txt"), "JavaстроготипизированныйобъектноориентированныйязыкпрограммированияразработанныйкомпаниейSunMicrosystemsвпоследующемприобретённойкомпаниейOracle" + System.lineSeparator());
+        Assert.assertTrue(chf.read("text.txt").contains("JavaстроготипизированныйобъектноориентированныйязыкпрограммированияразработанныйкомпаниейSunMicrosystemsвпоследующемприобретённойкомпаниейOracle"));
         chf.clean("text.txt");
     }
 }
