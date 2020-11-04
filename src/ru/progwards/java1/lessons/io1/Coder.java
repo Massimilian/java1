@@ -75,7 +75,7 @@ public class Coder {
                 fw.close();
             }
         } catch (IOException e) {
-            this.write(e.getMessage(), log);
+            this.write(log, e.getMessage());
         }
     }
 
@@ -110,7 +110,7 @@ public class Coder {
             }
             fr.close();
         } catch (IOException e) {
-            this.write(e.getMessage(), log);
+            this.write(log, e.getMessage());
         }
         return result.toString();
     }
