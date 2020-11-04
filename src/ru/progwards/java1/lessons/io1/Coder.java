@@ -104,10 +104,9 @@ public class Coder {
     private String read(String file, String log) {
         StringBuilder result = new StringBuilder();
         try {
-            FileReader fr = new FileReader(file);
-            Scanner scanner = new Scanner(fr);
-            while (scanner.hasNextLine()) {
-                result.append(scanner.nextLine()).append(System.lineSeparator());
+            FileReader fr = new FileReader(file); // создаём FileReader
+            for (int ch; (ch = fr.read()) >= 0;) { // Подготавливаем посимвольный проход (read сдвигает каретку на один, как только каретка доходит до конца - даёт -1)
+                result.append(Character.toString(ch)); // записываем получившийся номер символа (char) как строку
             }
             fr.close();
         } catch (IOException e) {
@@ -144,6 +143,7 @@ public class Coder {
             recode[i] = (char) (i - 1);
         }
 
+        System.out.println(coder.read("text.txt", "logName.txt"));
         coder.clean("text.txt");
         coder.write("text.txt", "this is a test text");
         codeFile("text.txt", "text.txt", code, "logName.txt");
