@@ -28,7 +28,7 @@ public class Coder {
      * @param logName     is an exception log
      */
     private void codeFilePriv(String inFileName, String outFileName, char[] code, String logName) {
-        this.write(outFileName, this.recode(this.readToChars(inFileName, logName), code), logName);
+        this.write(outFileName, this.recode(this.readToChars(inFileName, logName), code, logName), logName);
     }
 
     /**
@@ -50,10 +50,14 @@ public class Coder {
      * @param code  is a way to recode
      * @return recoded byte[]
      */
-    private char[] recode(char[] chars, char[] code) {
+    private char[] recode(char[] chars, char[] code, String log) {
         char[] result = new char[chars.length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = code[(int) chars[i]];
+        try {
+            for (int i = 0; i < result.length; i++) {
+                result[i] = code[(int) chars[i]];
+            }
+        } catch(Exception e) {
+            this.write(log, e.getMessage());
         }
         return result;
     }
@@ -105,7 +109,7 @@ public class Coder {
         StringBuilder result = new StringBuilder();
         try {
             FileReader fr = new FileReader(file); // создаём FileReader
-            for (int ch; (ch = fr.read()) >= 0;) { // Подготавливаем посимвольный проход (read сдвигает каретку на один, как только каретка доходит до конца - даёт -1)
+            for (int ch; (ch = fr.read()) >= 0; ) { // Подготавливаем посимвольный проход (read сдвигает каретку на один, как только каретка доходит до конца - даёт -1)
                 result.append(Character.toString(ch)); // записываем получившийся номер символа (char) как строку
             }
             fr.close();
