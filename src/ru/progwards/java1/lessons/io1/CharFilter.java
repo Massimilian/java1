@@ -81,7 +81,10 @@ public class CharFilter {
      * @param edit is for check us what kind of symbols we want to delete
      */
     private void edit(String edit) {
-        this.file = this.file.replaceAll(String.format("[%s]", edit), "");
+//        this.file = this.file.replaceAll(String.format("[%s]", edit), "");
+        for (int i = 0; i < edit.length(); i++) {
+            this.file = this.file.replace(String.valueOf(edit.charAt(i)), "");
+        }
     }
 
     private void clean(String file) {
