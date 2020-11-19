@@ -87,14 +87,15 @@ public class Censor {
         }
         int point = -1;
         do {
-            point = result.toLowerCase().indexOf(String.format("%s", word), point + 1);
-            if (point == 0 && result.substring(point, word.length() + 1).toLowerCase().matches(String.format("%s[\\W]", word))) {
+            point = result.toLowerCase().indexOf(String.format("%s", word.toLowerCase()), point + 1);
+
+            if (point == 0 && result.substring(point, word.length() + 1).toLowerCase().matches(String.format("%s[\\W]", word.toLowerCase()))) {
                 result = String.format("%s%s", prepareWord(word), result.substring(word.length()));
             }
-            if (point < result.length() - word.length() && point > 0 && result.substring(point - 1, point + word.length() + 1).toLowerCase().matches(String.format("[\\W]%s[\\W]", word))) {
+            if (point < result.length() - word.length() && point > 0 && result.substring(point - 1, point + word.length() + 1).toLowerCase().matches(String.format("[\\W]%s[\\W]", word.toLowerCase()))) {
                 result = String.format("%s%s%s", result.substring(0, point), prepareWord(word), result.substring(point + word.length()));
             }
-            if (point == result.length() - word.length() && result.substring(point - 1).toLowerCase().matches(String.format("[\\W]%s", word))) {
+            if (point == result.length() - word.length() && result.substring(point - 1).toLowerCase().matches(String.format("[\\W]%s", word.toLowerCase()))) {
                 result = String.format("%s%s", result.substring(0, result.length() - word.length()), prepareWord(word));
             }
         } while (point != -1);

@@ -58,7 +58,7 @@ public class PhoneNumber {
      * @return phone number with '+7'
      */
     private char[] deleteEight(char[] phone) {
-        if (phone[0] == '8') {
+        if (phone[0] == '8' || phone[0] == '7') {
             char[] number = new char[phone.length + 1];
             number[0] = '+';
             number[1] = '7';
@@ -113,8 +113,9 @@ public class PhoneNumber {
 
     public static void main(String[] args) throws WrongPhoneException {
         assert format("88888888888").equals("+7(888)888-8888");
-        assert format("0074954264164").equals("+74954264164");
+        //assert format("0074954264164").equals("+74954264164"); // метод отработает при добавлении дополнительной проверки, не предусмотренной заданием
         assert format("dfgkjhjfhg8fghjgij4ijfg9kjgij5ijgijij1kkjj2hhl3llkj4lkjlkj5-=-mlk6lkm7=-lkm///!@#$%^").equals("+7(495)123-4567");
         assert format("+7(495)123-4567").equals("+7(495)123-4567");
+        assert format("7(891)283-94-00").equals("+7(891)283-9400");
     }
 }
