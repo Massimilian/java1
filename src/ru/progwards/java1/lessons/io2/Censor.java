@@ -34,7 +34,7 @@ public class Censor {
         try {
             writeFile(inoutFileName, cens(writeFromFile(inoutFileName), obscene, inoutFileName));
         } catch (Exception e) {
-            throw new CensorException(String.format("%s: %s", inoutFileName, e.getMessage()));
+            throw new CensorException(String.format("%s:%s", inoutFileName, e.getMessage()));
         }
     }
 
