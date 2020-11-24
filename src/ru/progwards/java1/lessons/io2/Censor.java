@@ -33,7 +33,7 @@ public class Censor {
     private void censor(String inoutFileName, String[] obscene) throws CensorException {
         try {
             writeFile(inoutFileName, cens(writeFromFile(inoutFileName), obscene, inoutFileName));
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new CensorException(String.format("%s: %s", inoutFileName, e.getMessage()));
         }
     }
