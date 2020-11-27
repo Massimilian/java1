@@ -45,7 +45,7 @@ public class Creator {
      */
     public static Collection<Integer> fill3(int n) {
         Collection<Integer> result = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n * 3; i += 3) {
             result.add(i);
             result.add(i * i);
             result.add(i * i * i);
@@ -62,6 +62,6 @@ public class Creator {
         assert ((List<Integer>) Creator.fillOdd(5)).get(3) == 3;
         assert Creator.fill3(10).size() == 10 * 3;
         assert Creator.fill3(0).isEmpty();
-        assert ((List<Integer>) Creator.fill3(2)).get(4) == 1;
+        assert ((List<Integer>) Creator.fill3(2)).get(4) == 9;
     }
 }

@@ -40,18 +40,15 @@ public class Finder {
      */
     public static Collection<Integer> findLocalMax(Collection<Integer> numbers) {
         List<Integer> res = new ArrayList<>(numbers);
+        List<Integer> result = new ArrayList<>();
         if (numbers.size() > 2) {
             for (int i = 1; i < res.size() - 1; i++) {
-                if (res.get(i - 1) >= res.get(i) || res.get(i + 1) >= res.get(i)) {
-                    res.remove(i--);
+                if (res.get(i - 1) < res.get(i) && res.get(i + 1) < res.get(i)) {
+                    result.add(res.get(i));
                 }
             }
-            res.remove(0);
-            res.remove(res.size() - 1);
-        } else {
-            res.clear();
         }
-        return res;
+        return result;
     }
 
     /**
@@ -61,10 +58,10 @@ public class Finder {
      * @return are the numbers there?
      */
     public static boolean findSequence(Collection<Integer> numbers) {
-        boolean res = false;
+        boolean res = true;
         for (int i = 1; i < numbers.size(); i++) {
-            if (numbers.contains(i)) {
-                res = true;
+            if (!numbers.contains(i)) {
+                res = false;
                 break;
             }
         }
@@ -86,6 +83,7 @@ public class Finder {
             finCount = 0;
         } else {
             List<String> list = new ArrayList<>(names);
+            finName = list.get(0);
             for (int i = 0; i < list.size() - 1; i++) {
                 if (list.get(i).equals(list.get(i + 1))) {
                     count++;
@@ -112,8 +110,8 @@ public class Finder {
         assert ((List<Integer>) Finder.findLocalMax(tester)).get(0) == 5;
         assert ((List<Integer>) Finder.findLocalMax(tester)).get(1) == 7;
         assert ((List<Integer>) Finder.findLocalMax(tester)).get(2) == 8;
-        assert Finder.findSequence(tester);
-        assert !Finder.findSequence(new ArrayList<>());
+        assert !Finder.findSequence(tester);
+        assert Finder.findSequence(new ArrayList<>());
         assert Finder.findSimilar(strTester).equals("a:3");
         assert Finder.findSimilar(strTesterTwo).equals("C:4");
     }
