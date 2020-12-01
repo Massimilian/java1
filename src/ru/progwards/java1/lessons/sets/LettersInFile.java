@@ -11,7 +11,7 @@ import java.util.TreeSet;
  * Class for find all letters in file.
  */
 public class LettersInFile {
-    private final String regex = "[A-Za-zА-Яа-я]";
+    private final String regex = "[A-Za-zА-Яа-яЁё]";
 
     /**
      * Main static method for collect all letters (Latin and Cyrillic)
@@ -107,7 +107,6 @@ public class LettersInFile {
 
     public static void main(String[] args) throws IOException {
         prepareForTest("This is a test text. Это тестовый текст.");
-        System.out.println(process("text.txt"));
         assert process("text.txt").equals("TaehistxЭвейкосты");
         endTest();
         prepareForTest("АБВГДЕЖЗИЙабвгдежзий)(*?:%;№\"12345");
