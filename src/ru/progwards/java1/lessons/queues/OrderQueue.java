@@ -27,24 +27,33 @@ public class OrderQueue {
     }
 
     public static void main(String[] args) {
-        Order ordBigOne = new Order(100000);
-        Order ordSmallOne = new Order(1000);
-        Order ordSmallTwo = new Order(2000);
-        Order ordMediumOne = new Order(10000);
-        Order ordMediumTwo = new Order(25000);
-        Order ordMediumThree = new Order(20000);
         OrderQueue oq = new OrderQueue();
-        oq.add(ordMediumThree);
-        oq.add(ordSmallOne);
-        oq.add(ordMediumOne);
-        oq.add(ordBigOne);
-        oq.add(ordSmallTwo);
-        oq.add(ordMediumTwo);
-        assert oq.get().equals(ordBigOne);
-        assert oq.get().equals(ordMediumOne);
-        assert oq.get().equals(ordMediumTwo);
-        assert oq.get().equals(ordMediumThree);
-        assert oq.get().equals(ordSmallOne);
-        assert oq.get().equals(ordSmallTwo);
+        oq.add(new Order(26790));
+        oq.add(new Order(13399));
+        oq.add(new Order(17294));
+        oq.add(new Order(29922));
+        oq.add(new Order(1121));
+        oq.add(new Order(8362));
+        oq.add(new Order(19821));
+        oq.add(new Order(2861));
+        oq.add(new Order(24605));
+        oq.add(new Order(928));
+        oq.add(new Order(26959));
+        oq.add(new Order(29001));
+        oq.add(new Order(19558));
+        oq.add(new Order(28162));
+        oq.add(new Order(418));
+        oq.add(new Order(28143));
+        oq.add(new Order(14675));
+        oq.add(new Order(15905));
+        oq.add(new Order(25803));
+        oq.add(new Order(5445));
+        oq.add(new Order(12131));
+        oq.add(new Order(17927));
+        oq.add(new Order(6889));
+        oq.add(new Order(16118));
+        for (int i = 0; i < 24; i++) {
+            System.out.println(oq.get());
+        }
     }
 }

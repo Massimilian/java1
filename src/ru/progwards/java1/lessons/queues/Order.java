@@ -28,7 +28,7 @@ public class Order implements Comparable<Order> {
      * @param sum for check priority
      */
     public void setPriority(double sum) {
-        if (sum >= 30000.0) {
+        if (sum >= 20000.0) {
             this.priority = 3;
         } else if (sum < 10000.0) {
             this.priority = 1;
