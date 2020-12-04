@@ -86,11 +86,20 @@ public class Calculate {
         draft.push(first);
         draft.push(second);
         switch (action) {
-            case "add" -> draft.add();
-            case "sub" -> draft.sub();
-            case "mul" -> draft.mul();
-            case "div" -> draft.div();
-            default -> throw new StackException("Unknown operation");
+            case "add":
+                draft.add();
+                break;
+            case "sub":
+                draft.sub();
+                break;
+            case "mul":
+                draft.mul();
+                break;
+            case "div":
+                draft.div();
+                break;
+            default:
+                throw new StackException("Unknown operation");
         }
         workPlace.push(draft.pop());
     }

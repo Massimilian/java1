@@ -88,23 +88,25 @@ public class CollectionsSort {
         }
         Instant start;
         Instant end;
+
         switch (testedMethod) {
-            case "mySort" -> {
+            case "mySort":
                 start = Instant.now();
                 mySort(arr);
                 end = Instant.now();
-            }
-            case "minSort" -> {
+                break;
+            case "minSort":
                 start = Instant.now();
                 minSort(arr);
                 end = Instant.now();
-            }
-            case "collSort" -> {
+                break;
+            case "collSort":
                 start = Instant.now();
                 collSort(arr);
                 end = Instant.now();
-            }
-            default -> throw new IllegalStateException("Unexpected value: " + testedMethod);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + testedMethod);
         }
         return Duration.between(start, end).getNano();
     }
