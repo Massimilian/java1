@@ -22,7 +22,7 @@ public class OrderQueue {
      *
      * @param order
      */
-    public void set(Order order) {
+    public void add(Order order) {
         orders.offer(order);
     }
 
@@ -34,12 +34,12 @@ public class OrderQueue {
         Order ordMediumTwo = new Order(25000);
         Order ordMediumThree = new Order(20000);
         OrderQueue oq = new OrderQueue();
-        oq.set(ordMediumThree);
-        oq.set(ordSmallOne);
-        oq.set(ordMediumOne);
-        oq.set(ordBigOne);
-        oq.set(ordSmallTwo);
-        oq.set(ordMediumTwo);
+        oq.add(ordMediumThree);
+        oq.add(ordSmallOne);
+        oq.add(ordMediumOne);
+        oq.add(ordBigOne);
+        oq.add(ordSmallTwo);
+        oq.add(ordMediumTwo);
         assert oq.get().equals(ordBigOne);
         assert oq.get().equals(ordMediumOne);
         assert oq.get().equals(ordMediumTwo);
