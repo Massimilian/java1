@@ -1,5 +1,6 @@
 package ru.progwards.java1.lessons.queues;
 
+import java.math.BigDecimal;
 import java.util.Stack;
 
 /**
@@ -58,8 +59,21 @@ public class StackCalc {
      */
     public void div() {
         if (stack.size() > 1) {
-            stack.push(1 / stack.pop() * stack.pop());
+            stack.push(correct(stack.pop(), stack.pop()));
         }
+    }
+
+    /**
+     * Method for correct divide different values
+     * @param one is a divider
+     * @param two is a divident
+     * @return result of divide
+     */
+    private double correct(double one, double two) {
+        BigDecimal on = new BigDecimal(one);
+        BigDecimal tw = new BigDecimal(two);
+        BigDecimal result = tw.divide(on);
+        return result.doubleValue();
     }
 
 
@@ -74,6 +88,7 @@ public class StackCalc {
         sc.sub();
         sc.div();
         sc.mul();
-        assert sc.pop() == 156d;
+        System.out.println(sc.pop());
+        //assert sc.pop() == 156d;
     }
 }
