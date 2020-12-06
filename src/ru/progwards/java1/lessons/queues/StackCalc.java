@@ -11,7 +11,7 @@ public class StackCalc {
     /**
      * Method for put new value
      *
-     * @param value
+     * @param value to put into stack
      */
     public void push(double value) {
         stack.push(value);
@@ -20,7 +20,7 @@ public class StackCalc {
     /**
      * Method for take out the top value
      *
-     * @return value
+     * @return value of the top of stack
      */
     public double pop() {
         return stack.pop();
@@ -28,58 +28,42 @@ public class StackCalc {
 
     /**
      * Method to add top values and put the result in the stack
-     *
-     * @throws StackException
      */
-    public void add() throws StackException {
-        if (stack.size() < 2) {
-            throw new StackException("Exception in add method.");
-        } else {
+    public void add() {
+        if (stack.size() > 1) {
             stack.push(stack.pop() + stack.pop());
         }
     }
 
     /**
      * Method to subtrack top values and put the result in the stack
-     *
-     * @throws StackException
      */
-    public void sub() throws StackException {
-        if (stack.size() < 2) {
-            throw new StackException("Exception in sub method.");
-        } else {
+    public void sub() {
+        if (stack.size() > 1) {
             stack.push(stack.pop() * -1 + stack.pop());
         }
     }
 
     /**
      * Method to multiply top values and put the result in the stack
-     *
-     * @throws StackException
      */
-    public void mul() throws StackException {
-        if (stack.size() < 2) {
-            throw new StackException("Exception in mul method.");
-        } else {
+    public void mul() {
+        if (stack.size() > 1) {
             stack.push(stack.pop() * stack.pop());
         }
     }
 
     /**
      * Method to divide top values and put the result in the stack
-     *
-     * @throws StackException
      */
-    public void div() throws StackException {
-        if (stack.size() < 2) {
-            throw new StackException("Exception in div method.");
-        } else {
+    public void div() {
+        if (stack.size() > 1) {
             stack.push(1 / stack.pop() * stack.pop());
         }
     }
 
 
-    public static void main(String[] args) throws StackException {
+    public static void main(String[] args) {
         StackCalc sc = new StackCalc();
         sc.push(10d);
         sc.push(-15.6d);
