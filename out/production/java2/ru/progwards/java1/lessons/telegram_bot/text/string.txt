@@ -1,0 +1,66 @@
+Класс String в Java предназначен для работы со строками в Java. Все строковые литералы, определенные в Java программе (например, "abc") — это экземпляры класса String. Класс String в Java — это final класс, который не может иметь потомков. Класс String — immutable класс, то есть его объекты не могут быть изменены после создания. Любые операции над объектом String, результатом которых должен быть объект класса String, приведут к созданию нового объекта. Благодаря своей неизменности, объекты класса String являются потокобезопасными и могут быть использованы в многопоточной среде. Каждый объект в Java может быть преобразован в строку через метод toString, унаследованный всеми Java-классами от класса Object.
+ 
+Сложить две строки в Java довольно просто, воспользовавшись оператором +. Java позволяет складывать друг с другом и переменные, и строковые литералы: 
+
+String day = "День";
+String and = "и";
+String night = "Ночь";
+String dayAndNight = day + " " + and + " " + night; // значение строчки будет “День и ночь”
+
+Складывая объекты класса String с объектами других классов, мы приводим последние к строковому виду. Преобразование объектов других классов к строковому представлению выполняется через неявный вызов метода toString у объекта.
+
+Для сравнения строк можно воспользоваться методом equals(): 
+String x = "Test String";
+System.out.println("Test String".equals(x)); // true
+
+Когда при сравнении строк нам не важен регистр, нужно использовать метод equalsIgnoreCase(): 
+String x = "Test String";
+System.out.println("test string".equalsIgnoreCase(x)); // true
+
+Для перевода экземпляра любого Java-класса или любого примитивного типа данных к строковому представлению, можно использовать метод String.valueOf(): 
+String a = String.valueOf(1); // перевод int
+String b = String.valueOf(12.0D); // перевод double
+String c = String.valueOf(123.4F); // перевод float
+String d = String.valueOf(123456L); // перевод long
+Часто бывает нужно перевести строку в число. У классов оберток примитивных типов есть методы, которые служат как раз для этой цели. Все эти методы начинаются со слова parse. Рассмотрим ниже перевод строки в целочисленное (Integer) и дробное (Double) числа: 
+Integer i = Integer.parseInt("12");
+Double d = Double.parseDouble("12.65D");
+System.out.println(i); // 12
+System.out.println(d); // 12.65
+
+В языке Java String предоставляет набор методов для определения позиции символа/подстроки в строке: 
+1. indexOf(int ch)
+2. indexOf(int ch, int fromIndex)
+3. indexOf(String str)
+4. indexOf(String str, int fromIndex)
+5. lastIndexOf(int ch)
+6. lastIndexOf(int ch, int fromIndex)
+7. lastIndexOf(String str)
+8. lastIndexOf(String str, int fromIndex)
+Где: 
+1. ch — искомый символ (char)
+2. str — искомая строка
+3. fromIndex — позиция с которой нужно искать элемент
+4. методы indexOf — возвращают позицию первого найденного элемента
+5. методы lastIndexOf — возвращают позицию последнего найденного элемента
+Если искомый элемент не найден, методы вернут в строке -1.  Индексация символов в строке в Java начинается с нуля: 
+    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    System.out.println(alphabet.indexOf('A')); // 0
+    System.out.println(alphabet.indexOf('K')); // 10
+    System.out.println(alphabet.indexOf('Z')); // 25
+    System.out.println(alphabet.indexOf('Я')); // -1
+
+Для извлечения подстроки из строки класс String в Java предоставляет методы: 
+	substring(int beginIndex)
+	substring(int beginIndex, int endIndex)
+Класс String предоставляет методы для перевода строки в верхний и нижний регистры: 
+	toLowerCase()
+	toUpperCase()
+Рассмотрим работу данных методов на примере: 
+    String fry = "Philip J. Fry";
+    String lowerCaseFry = fry.toLowerCase();
+    String upperCaseFry = fry.toUpperCase();
+    System.out.println(lowerCaseFry); // philip j. fry
+    System.out.println(upperCaseFry); // PHILIP J. FRY
+
+Материалы любезно предоставлены сайтом http://javarush.ru/

@@ -1,0 +1,23 @@
+Встроенные числовые данные не могут работать с очень большими объёмами данных. Для работы с большими числами существуют BigInteger (для целочисленных значений) и BigDecimal (для чисел с плавающей точкой).
+
+Основные методы:
+BigInteger add(BigInteger other) – возвращает сумму основного BigInteger и other.
+BigInteger subtract(BigInteger other) – возвращает разность основного BigInteger и other.
+BigInteger multiply(BigInteger other) – возвращает произведение основного BigInteger и other.
+BigInteger divide(BigInteger other) – возвращает частное основного BigInteger и other.
+BigInteger sqrt() – возвращает корень запрашиваемого числа.
+int compareTo(BigInteger other) – сравнивает основное число с other – если оказывается больше, то возвращает 1; 0 – если равны; -1 – если меньше, чем other.
+static BigInteger valueOf(long x) – создаёт BigInteger со значением, равным x. Кроме того, можно создать обыкновенный конструктор, который примет в качестве числа объект String (который в себе обязательно должен содержать число).
+intValue() / byteValue() / shortValue() / longValue() – преобразует BigInteger в соответствующий объект int / byte / short / long.
+
+Примеры работы с кодом:
+BigInteger big = new BigInteger("5");
+BigInteger other = BigInteger.valueOf(10);
+System.out.println(big.add(other)); // 5 + 10
+System.out.println(big.subtract(other)); // 5 - 10
+System.out.println(big.multiply(other)); // 5 * 10
+System.out.println(big.divide(other)); // 5 : 10 (выведет 0, т.е. "обрубит" всё после точки)
+System.out.println(big.sqrt()); // корень из 5 (выведет 2, т.е. "обрубит" всё после точки)
+System.out.println(big.compareTo(other)); // сравнивает два числа, первое меньше => -1
+int i = big.intValue(); // сохранить значение в int (также возможно в byte, short и long)
+Материалы любезно предоставлены http://progwards.ru/

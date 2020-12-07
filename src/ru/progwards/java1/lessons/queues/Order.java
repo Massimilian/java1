@@ -48,8 +48,7 @@ public class Order implements Comparable<Order> {
 
     @Override
     public String toString() {
-        return String.format("Order №%d:%s sum: %f;%s number: %d;%s priority: %d.%s",
-                this.num, System.lineSeparator(), this.sum, System.lineSeparator(), this.num, System.lineSeparator(),
-                this.priority, System.lineSeparator());
+        return String.format("Order №%d:%s sum: %f;%s priority: %d.%s",
+                this.num, System.lineSeparator(), this.sum, System.lineSeparator(), this.priority, System.lineSeparator());
     }
 }

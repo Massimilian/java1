@@ -1,25 +1,34 @@
 package ru.progwards.java1.lessons;
 
-import org.apache.logging.log4j.core.util.JsonUtils;
+public class Test implements ITest{
+    public static void main(String[] args) {
+        Test test = new Test();
+    }
 
-import java.io.*;
+    public enum DayOfWeek {
+        SUNDAY ("Воскресенье"),
+        MONDAY ("Понедельник"),
+        TUESDAY ("Вторник"),
+        WEDNESDAY ("Среда"),
+        THURSDAY ("Четверг"),
+        FRIDAY ("Пятница"),
+        SATURDAY ("Суббота");
 
-public class Test {
+        private String title;
 
-    public static void main(String[] args) throws IOException {
-        int i = 6;
-        String s = "Wor";
-        s = switch (i) {
-            case 0, 2, 4 -> {
-                s = s + "d";
-                yield s;
-            }
-            case 1, 3, 5 -> {
-                s = s + "ld";
-                yield s;
-            }
-            default -> "Nothing";
-        };
-        System.out.println(s); // выведет "Word"/"World"/"Nothing" в зависимости от значения i.
+        DayOfWeek(String title) {
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        @Override
+        public String toString() {
+            return "DayOfWeek{" +
+                    "title='" + title + '\'' +
+                    '}';
+        }
     }
 }

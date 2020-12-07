@@ -1,0 +1,49 @@
+Оглавление:
+* Историческая справка (Java);
+* Java Development Kid (JDK);
+* Just In Time Compilation (JIT);
+* Java Runtime Environment (JRE);
+* Java Virtual Machine (JVM);
+* Тип Байт (Byte);
+* Тип Short (Short);
+* Тип Integer (IntVar);
+* Тип Long (long);
+* Тип Float (Float);
+* Тип Double (Double);
+* Тип Boolean (Boolean);
+* Тип Char (Char);
+* Тип String (String);
+* Классы-обёртки (Wrapper);
+* Перечисления (Enum);
+* Приведение типов (Assignment);
+* Класс Number (Number)
+* BigDecimal (BigDecimal);
+* BigInteger (BigInteger);
+* Побитовые операции (Bits);
+* Система счисления (Count);
+* Приоритет (Priority);
+* Интерфейс (Interface);
+* Загрузчик классов (ClassLoader);
+* Локальные внутренние классы (Local Inner Class);
+* Вложенный внутренний класс (Nested Inner Class);
+* Вложенный статический класс (Nested class);
+* Анонимный класс (Anonimous Class);
+* Рекурсия (Recurtion);
+* Сравнение (Comparison);
+* Компилятор (Compilator);
+* Лямбда-выражения (Lambda, Composition, Functional I, Optional, Quadropoint, Stream, Switch);
+* Память (Memory);
+* Генерики (Generic);
+* Модификатор static (Static);
+* Класс Process (Process);
+* Класс Runtime (Runtime);
+* Класс System (System);
+* Массивы (Array);
+* Динамические массивы(DynArr);
+* Блочные динамические массивы (DynArrBlocked);
+* Страничные массивы (PageArr);
+* Сборщики мусора (Garbage, Serial, Parallel, CMS, G1, Shenandoah); 
+
+Для перехода на конкретную главу просьба набрать её название латинскими буквами (как показано в скобках).
+
+Это пока всё. Но будет и пополнение...

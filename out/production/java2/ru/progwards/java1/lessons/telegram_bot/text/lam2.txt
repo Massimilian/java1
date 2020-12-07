@@ -1,0 +1,57 @@
+...
+Пример работы с лямбдой. Дано – есть некий класс с несколькими полями. Необходимо научить его сортироваться по разным полям. Класс:
+public class Book {
+    String name;
+    String author;
+    double price;
+
+    public Book(String name, String author, double price) {
+        this.name = name;
+        this.author = author;
+        this.price = price;
+    }
+
+    public String toString() {
+        return String.format("Book %s, author %s, price %d.", this.name, this.author, this.price);
+    }
+}
+
+Создадим список (list) книг и отсортируем их по разным параметрам.
+
+public class TestArea {
+    public static void main(String[] args) {
+        List<Book> list = new ArrayList<>(List.of(
+                new Book("Капитанская дочь", "Пушкин", 243),
+                new Book("Мастер и Маргарита", "Булгаков", 534),
+                new Book("Евангелие от Петра", "Апостол Пётр", 435),
+                new Book("Кулинарные рецепты", "Повар", 132)
+        ));
+        list.sort((a, b) -> Double.compare(a.price, b.price)); // сортировка по параметру price
+        list.forEach(element -> System.out.println(element));
+        list.sort((a, b) -> a.author.compareTo(b.author)); // сортировака по параметру author
+        list.forEach(element -> System.out.println(element));
+        list.sort(Comparator.comparing(a -> a.name)); // сортировка по параметру name
+        list.forEach(element -> System.out.println(element));
+
+    }
+}
+
+В первый раз (price) мы сортируем при помощи стандартного метода для сравнения Double.compare(double1, double2).
+Второй раз – сравниваем строчки при помощи метода класса String compareTo(String).
+В третий раз – используем специфический синтаксис JDK 8 и статический метод Comparator.comparing(), который принимает лямбда-выражение и работает таким образом – принимает объект, возвращает тот параметр, по которому сравниваем объекты.
+В лямбда-выражениях можно использовать:
+Константы;
+Статические переменные;
+Локальные final-переменные;
+«Эффективно финальные» локальные переменные (не объявленные, как final, но не меняющиеся).
+В лямбда-выражениях нельзя использовать:
+Локальные переменные, значения которых менялось.
+Например, такой код – возможен:
+String b = "* ";
+list.forEach(element -> System.out.println(b + element));
+
+Здесь использовалась «эффективно финальная» локальная переменная. А такой – приведёт к ошибке:
+String b = "* ";
+b += " ";
+list.forEach(element -> System.out.println(b + element));
+Материалы любезно предоставлены http://progwards.ru/
