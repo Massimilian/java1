@@ -1,0 +1,10 @@
+Тип Optional – это обёртка вокруг любого другого объекта, которая предназначена во избежание падения программы при NullPointerException. В самом объекте Optional лежит либо null, либо другой объект. Основные методы:
+Optional.of(Object) – обернуть объект Object в Optional.
+.isPresent() – есть ли в данном Optional реальный объект.
+.isPresent(function) – выполнить функцию, если есть реальный объект.
+.get() – получить сам объект из Optional.
+.orElse(value) – возвращает объект, если он там есть, либо значение value, если внутри лежит null.
+Пример использования Optional (поиск максимально дорогой книги):
+Optional<Book> op = list.stream().max(Comparator.comparingDouble(x -> x.price));
+System.out.println(op.toString());
+Материалы любезно предоставлены http://progwards.ru/

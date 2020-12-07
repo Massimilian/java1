@@ -1,0 +1,9 @@
+Класс System содержит в себе большое количество полезных статических полей и методов. Класс System не может быть получен или создан. Помогает с:
+Выводом информации в консоль (System.out.println(info)).
+Возвратом экземпляра SecurityManager (System.getSecurityManager()) и его установкой (System.setSecurityManager(SecurityManager)).
+Получением текущего времени в виде long (System.currentTimeMillis()).
+Получить знак «пробел» (сдвиг каретки), корректный для данной операционной системы (в разных ОС они бывают разные) – System.lineSeparator().
+Экстренно закончить работу приложения – System.exit(code). сode – это вводимый код завершения процесса. 
+Вызвать сборщик мусора – System.gc().
+Вывести данные в консоль - System.out.println и System.out.print.
+Материалы любезно предоставлены https://intuit.ru/

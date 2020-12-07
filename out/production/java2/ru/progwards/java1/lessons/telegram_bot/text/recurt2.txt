@@ -1,0 +1,81 @@
+...
+Ещё один пример – алгоритм быстрого возведения в степень.
+
+public class TestArea {
+    public static double power(double val, int pow) {
+        switch (pow) { // В начале вводим систему выхода из рекурсии - код степень равна нолю или 1
+            case 0:
+                return 1;
+            case 1:
+                return val;
+            default:
+            double val_halfpower = power(val, pow / 2); // делим степень на 2 и вычисляем в начале это значение
+            if (pow % 2 == 1) {
+                return val * val_halfpower * val_halfpower; // если значение степени нечётное (Например, 3)- тогда перемножаем получившиеся в результате значения (оба в половинчатой степени) и усножаем на val в остаточной степени (которая будет равна 1)
+            } else {
+                return val_halfpower * val_halfpower; // если деление прошло успешно - просто возвращаем
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(power(2, 5)); // 1024
+    }
+}
+
+Попробуем его разобрать.
+Пришедшее значение 2 и степень 5. В момент вызова рекурсии мы делим степень на 2 и получаем 2 (остаток отбрасывается). Вторая фаза рекурсии возвращает степень 1, и поэтому на этапе “return val;” мы возвращаем значение 2, и начинается обратный ход – со второй фазы мы возвращаем 2 в степени 2 (4), а в первой фазе мы возвращаем 2(val) * 4(val_halfpower) * 4(val_halfpower), а так как в первую фазу мы получили нечётное значение pow. Результат – 32 (25).
+Ещё пример. Нахождение наибольшего общего делителя методом Эвклида.
+Суть алгоритма:  
+Получая два числа (n и m), мы имеем одну из трёх ситуаций:
+•	n = m. Тогда НОД = n = m.
+•	n > m. Тогда для нахождения НОД надо из n вычесть m. И повторить операцию.
+•	m > n. Тогда для нахождения НОД надо из m вычесть n. И повторить операцию.
+В виде кода это выглядит так:
+public class TestArea {
+    public static int EvklidNOD(int val, int value) {
+        if (val == value) {
+            return val;
+        } else {
+            return val > value? EvklidNOD(val - value, value) : EvklidNOD(value - val, val);
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(EvklidNOD(210, 78)); // 6
+        System.out.println(EvklidNOD(123, 322)); // 1
+        System.out.println(EvklidNOD(1214232, 32320)); // 8
+        
+    }
+}
+
+Но! В случае больших чисел выскочит ошибка в переполнении стэка.
+Задача: дан отсортированный список чисел, необходимо в нём найти число и вернуть номер его ячейки.
+	Алгоритм выполнения: разваливаем этот список на две половины. Если список состоял из чётного количества элементов – тогда смотрим на самое большое значение левого и самое малое значение правого списков, сравнивая их с искомым числом (если количество элементов нечётное – то дополнительно проверяем среднее значение). Берём ту половину, в которой может быть искомое значение и повторяем операцию. Если вдруг искомого числа не находим – возвращаем null (поэтому у нас тип возвращаемого значения – нет int, а Integer).
+В виде кода:
+public class TestArea {
+    public static Integer searchInSortedList(List<Integer> list, int min, int max, int value) {
+        if (max >= min) {
+            int half = min + (max - min) / 2;
+            if (list.get(half) == value) {
+                return half;
+            }
+            if (list.get(half) > value) {
+                return searchInSortedList(list, min, half - 1, value);
+            }
+            if (list.get(half) < value) {
+                return searchInSortedList(list, half + 1, max, value);
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        System.out.println(searchInSortedList(list, 0, list.size() - 1, 5)); // 4
+        System.out.println(searchInSortedList(list, 0, list.size() - 1, 10)); // 9
+        System.out.println(searchInSortedList(list, 0, list.size() - 1, 0)); // null
+    }
+}
+
+Материалы любезно предоставлены http://progwards.ru/

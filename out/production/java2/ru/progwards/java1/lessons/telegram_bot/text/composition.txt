@@ -1,0 +1,15 @@
+Это объединение возможностей нескольких функциональных интерфейсов в один интерфейс.
+ Композиция Predicate осуществляет при помощи and() и or() – соответственно, «и» и «или»; композиция Function – при помощи compose() и andThen() (разница – andThen() – исполняет сначала первое действие, а потом второе; compose() – исполняет сначала второе действие, а потом первое).
+Пример использования:
+Predicate<Book> greater500 = b -> b.price > 500; // создание Predicate c сортировкой по цене больше 500
+Predicate<Book> below600 = b -> b.price < 600; // создание Predicate c сортировкой по цене меньше 600
+Predicate<Book> compose = greater500.and(below600); // создание композиционного интерфейса
+System.out.println(list.stream().filter(compose).collect(Collectors.toList()));
+
+Ещё один пример использования – при помощи Function:
+Function<Double, Double> square = x -> x * x; // функциональный интерфейс создаёт квадрат числа
+Function<Double, Double> root = x -> Math.sqrt(x); // функциональный интерфейс создаёт корень из числа
+Function<Double, Double> compose = square.andThen(root); // функциональный интерфейс, который выполняет сначала первый, а потом второй интерфейс
+
+System.out.println(compose.apply(-5.0)); // compose.apply возводит число в квадрат, а потом вытаскивает корень из него
+Материалы любезно предоставлены http://progwards.ru/

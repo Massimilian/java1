@@ -1,0 +1,18 @@
+Вложенный внутренний класс - это нестатическая реализация класса внутри внешнего класса. Существует только внутри внешнего класса, отдельного экземпляра быть не может. Имеет полный доступ ко всем приватным полям внешнего класса.
+public class Test {
+    public String info = "Info";
+    public Inner in = new Inner();
+
+    public class Inner {
+        String innerInfo = "Inner info";
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Test t = new Test();
+        System.out.println(t.info); // обращение к основному классу; вывод – «Info»
+        System.out.println(t.in.innerInfo); // обращение к внутреннему классу; при этом создать отдельный экземпляр этого класса не получится; вывод – «Inner info»
+    }
+}
+Материалы любезно предоставлены http://progwards.ru/

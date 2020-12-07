@@ -1,0 +1,60 @@
+Обобщения (Generics) позволяют писать более безопасный и наглядный код, не прибегая к использованию Object и приведению типов. Появились в версии JDK 1.5. 
+Пример небезопасного класса без использования Generic:
+public class NotSafetyClass {
+    // создаём простейшее количество данных типа Object
+    private Object[] items = new Object[10]; 
+    private int count = 0;
+
+    // добавление нового объекта
+    public void add(Object o) {
+        items[count] = o;
+        count++;
+    }
+    // взятие объекта по индексу
+    public Object get(int count) {
+        return items[count];
+    }
+}
+
+Продемонстрируем возможную ошибку при работе с этим классом, когда мы попытаемся вытащить оттуда положенные значения. Добавим туда два значения – Integer и String. Теперь смоделируем ситуацию, когда мы достаём значение String (ячейка №1) и пытаемся с ним работать как с Integer – вылетит ошибка java.lang.ClassCastException.
+Местное решение проблемы – воспользоваться instanceof. Но это сильно загромождает код и накладывает ограничения.
+if (nsc.get(1) instanceof String) {
+    String result = (String) nsc.get(1);
+} else if (nsc.get(1) instanceof Integer) {
+    int result = (Integer) nsc.get(1);
+} else {
+    Object result = new Object;
+}
+
+Решение для конкретного класса – введение Generic (указателя), который поможет указать, с каким конкретно классом будет работать это хранилище. Существуют определённые правила именования Generic – об этом ниже – пока назовём его “T”.
+
+
+public class NotSafetyClass<T> {
+    // создаём простейшее количество данных типа T
+    private T[] items = (T[]) new Object[10];
+    private int count = 0;
+
+    // добавление нового типизированного объекта
+    public void add(T t) {
+        items[count] = t;
+        count++;
+    }
+    // взятие типизированного объекта по индексу
+    public T get(int count) {
+        return items[count];
+    }
+}
+ 
+Теперь мы будем получать ошибку не в RunTime, а ещё на этапе компиляции и сможем отследить её:
+public class Main {
+    public static void main(String[] args) {
+        NotSafetyClass<Integer> nsc = new NotSafetyClass();
+        nsc.add(new String("String")); // ошибка!
+        nsc.add(5);
+        String result = (String) nsc.get(1); // ошибка!
+    }
+}
+
+...
+Для продолжения наберите "generi2"
+Материалы любезно предоставлены http://progwards.ru/
