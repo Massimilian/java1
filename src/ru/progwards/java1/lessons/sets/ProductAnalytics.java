@@ -9,9 +9,9 @@ public class ProductAnalytics {
     private final List<Shop> shops;
     private final List<Product> products;
 
-    public ProductAnalytics(List<Shop> shops, List<Product> products) {
-        this.shops = shops;
+    public ProductAnalytics(List<Product> products, List<Shop> shops) {
         this.products = products;
+        this.shops = shops;
     }
 
     /**
@@ -84,7 +84,7 @@ public class ProductAnalytics {
         Shop sOne = new Shop(lOne);
         Shop sTwo = new Shop(lTwo);
         Shop sThree = new Shop(lThree);
-        ProductAnalytics pa = new ProductAnalytics(new ArrayList<>(Arrays.asList(sOne, sTwo, sThree)), new ArrayList<>(Arrays.asList(pZero, pOne, pTwo, pThree, pFour, pFive)));
+        ProductAnalytics pa = new ProductAnalytics(new ArrayList<>(Arrays.asList(pZero, pOne, pTwo, pThree, pFour, pFive)), new ArrayList<>(Arrays.asList(sOne, sTwo, sThree)));
         assert pa.existInAll().equals(new HashSet<>(List.of(pZero)));
         assert pa.existAtListInOne().equals(new HashSet<>(List.of(pZero, pOne, pTwo, pFour, pFive)));
         assert pa.existOnlyInOne().equals(new HashSet<>(List.of(pOne, pFour, pFive)));
