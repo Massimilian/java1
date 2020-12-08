@@ -59,7 +59,9 @@ public class StackCalc {
      */
     public void div() {
         if (stack.size() > 1) {
-            stack.push(1 / stack.pop() * stack.pop());
+            double two = stack.pop();
+            double one = stack.pop();
+            stack.push(one / two);
         }
     }
 

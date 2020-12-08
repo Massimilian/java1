@@ -38,8 +38,9 @@ public class CollectionsSort {
         List<Integer> list = new ArrayList<>();
         int ceil = data.size();
         for (int i = 0; i < ceil; i++) {
-            list.add(Collections.min(data));
-            data.remove(Collections.min(data));
+            int temp = Collections.min(data);
+            list.add(temp);
+            data.remove(temp);
         }
         data.clear();
         data.addAll(list);
