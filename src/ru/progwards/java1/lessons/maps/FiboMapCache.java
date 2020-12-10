@@ -1,16 +1,13 @@
 package ru.progwards.java1.lessons.maps;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class FiboMapCache {
-    private Map<Integer, BigInteger> fiboCache = new HashMap<>();
+    private Map<Integer, BigDecimal> fiboCache = new HashMap<>();
     private boolean cahceOn;
 
     public FiboMapCache(boolean cacheOn) {
@@ -21,8 +18,8 @@ public class FiboMapCache {
         return cahceOn;
     }
 
-    public BigInteger fiboNumber(int n) {
-        BigInteger result = null;
+    public BigDecimal fiboNumber(int n) {
+        BigDecimal result = null;
         if (this.cahceOn) {
             if (!fiboCache.containsKey(n)) {
                 result = fiboCache.put(n, calculateFibo(n));
@@ -33,7 +30,7 @@ public class FiboMapCache {
         return result;
     }
 
-    public void clearCache() {
+    public void clearCahe() {
         fiboCache.clear();
     }
 
@@ -52,12 +49,12 @@ public class FiboMapCache {
         return String.format("fiboNumber cacheOn=%b время выполнения %d", fmc.isCahceOn(), duration.getNano()/1000000);
     }
 
-    private BigInteger calculateFibo(int n) {
-        BigInteger result;
+    private BigDecimal calculateFibo(int n) {
+        BigDecimal result;
         if (n < 1) {
             throw new ArithmeticException("Value cannot be under 1.");
         } else {
-            result = new BigInteger("1");
+            result = new BigDecimal("1");
             if (n > 2 && n < 46) { // складывание значение типа int происходит быстрее, чем BigInteger
                 int helperOne = 1;
                 int helperTwo = 1;
@@ -67,15 +64,15 @@ public class FiboMapCache {
                     helperOne = helperTwo;
                     helperTwo = semiresult;
                 }
-                result = new BigInteger(String.valueOf(semiresult));
+                result = new BigDecimal(String.valueOf(semiresult));
             } else if (n >= 46) {
-                BigInteger helperOne = new BigInteger("1134903170"); // число Фибоначчи №44
-                BigInteger helperTwo = new BigInteger("1836311903"); // число Фибоначчи №45
-                BigInteger semiresult = new BigInteger("1836311903");
+                BigDecimal helperOne = new BigDecimal("1134903170"); // число Фибоначчи №44
+                BigDecimal helperTwo = new BigDecimal("1836311903"); // число Фибоначчи №45
+                BigDecimal semiresult = new BigDecimal("1836311903");
                 for (int i = 46; i < n; i++) {
                     semiresult = helperOne.add(helperTwo);
-                    helperOne = new BigInteger(helperTwo.toString());
-                    helperTwo = new BigInteger(semiresult.toString());
+                    helperOne = new BigDecimal(helperTwo.toString());
+                    helperTwo = new BigDecimal(semiresult.toString());
                 }
                 result = semiresult;
             }
