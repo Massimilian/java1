@@ -1,5 +1,6 @@
 package ru.progwards.java1.lessons.maps;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,21 +12,26 @@ import java.util.*;
 public class SalesInfo {
     HashSet<Good> goods = new HashSet<>();
 
-    public int loadOrders(String fileName) throws IOException {
-        FileReader fr = new FileReader(fileName);
-        Scanner scanner = new Scanner(fr);
+    public int loadOrders(String fileName) {
+        FileReader fr = null;
         int count = 0;
-        while (scanner.hasNextLine()) {
-            String[] good = scanner.nextLine().split(", ");
-            if (good.length == 4) {
-                try {
-                    goods.add(new Good(good[0], good[1], Integer.parseInt(good[2]), Double.parseDouble(good[3])));
-                    count++;
-                } catch (NumberFormatException ignored) {
+        try {
+            fr = new FileReader(fileName);
+            Scanner scanner = new Scanner(fr);
+            while (scanner.hasNextLine()) {
+                String[] good = scanner.nextLine().split(", ");
+                if (good.length == 4) {
+                    try {
+                        goods.add(new Good(good[0], good[1], Integer.parseInt(good[2]), Double.parseDouble(good[3])));
+                        count++;
+                    } catch (NumberFormatException ignored) {
+                    }
                 }
             }
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        fr.close();
         return count;
     }
 

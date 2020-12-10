@@ -1,5 +1,6 @@
 package ru.progwards.java1.lessons.maps;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,15 +14,20 @@ import java.util.Scanner;
 public class UsageFrequency {
     private String text;
 
-    public void processFile(String fileName) throws IOException {
-        FileReader fr = new FileReader(fileName);
-        Scanner scanner = new Scanner(fr);
-        StringBuilder sb = new StringBuilder();
-        while (scanner.hasNextLine()) {
-            sb.append(scanner.nextLine());
+    public void processFile(String fileName) {
+        FileReader fr;
+        try {
+            fr = new FileReader(fileName);
+            Scanner scanner = new Scanner(fr);
+            StringBuilder sb = new StringBuilder();
+            while (scanner.hasNextLine()) {
+                sb.append(scanner.nextLine());
+            }
+            this.text = sb.toString();
+            fr.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        this.text = sb.toString();
-        fr.close();
     }
 
     public Map<Character, Integer> getLetters() {
@@ -74,7 +80,7 @@ public class UsageFrequency {
         uf.putSomeTestInfo(test, "abC Abc defghi jklmn jklmno o pqrstuvwxyz o O; \nпроверка*?:русских;№букв+=-букв");
         uf.processFile(test);
         wikiTrainUf.processFile(wikiTrainTest);
-        wikiTestUf.processFile(wikiTrainTest);
+        wikiTestUf.processFile(wikiTestTest);
         Map<Character, Integer> map = uf.getLetters();
         Map<String, Integer> words = uf.getWords();
         Map<Character, Integer> wikiMap = wikiTrainUf.getLetters();
