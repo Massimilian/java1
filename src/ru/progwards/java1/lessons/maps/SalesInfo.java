@@ -118,5 +118,6 @@ public class SalesInfo {
         }
         assert ownersMap.get("Василий Пупкин").getValue() == 1;
         Files.deleteIfExists(path);
+        Files.deleteIfExists(pathTwo);
     }
 }
