@@ -74,10 +74,15 @@ public class SalesInfo {
 
     public static void main(String[] args) throws IOException {
         SalesInfo si = new SalesInfo();
+        SalesInfo siTwo = new SalesInfo();
         String test = "test.txt";
-        Path path = Paths.get(test);
+        String testTwo = "test2.txt";
+        Path path = Paths.get(testTwo);
+        Path pathTwo = Paths.get(test);
         Files.deleteIfExists(path);
         Files.createFile(path);
+        Files.deleteIfExists(pathTwo);
+        Files.createFile(pathTwo);
         si.putSomeTestInfo(test, "Иванов Сергей, iPhone 10X, 2, 150000\n" +
                 "Петрова Анна, наушники JBL, 2, 7000 \n" +
                 "Иванов Сергей, чехол для iPhone, 1, 1000\n" +
@@ -90,9 +95,18 @@ public class SalesInfo {
                 "Василий Пупкин, спички, 10, 10\n" +
                 "Неправильная строка, Прямо, совсем, неправильная\n" +
                 "Ещё одна, почти, 10, 10, правильная");
+        si.putSomeTestInfo(testTwo, "Петрова Анна, наушники JBL, 2, 7000\n" +
+                "Василий Пупкин, 10, 10, спички\n" +
+                "Василий Пупкин, спички, 10, 10, 100\n" +
+                "10, Василий Пупкин\n" +
+                "Михаил Цикло, iPhone 10X, 1, 75000\n" +
+                "Василий Пупкин, спички, 10, 10, 100");
+        assert siTwo.loadOrders(testTwo) == 2;
         assert si.loadOrders(test) == 10;
         Map<String, Double> map = si.getGoods();
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> ownersMap = si.getCustomers();
+        Map<String, AbstractMap.SimpleEntry<Double, Integer>> ownersMapTwo = siTwo.getCustomers();
+        assert ownersMapTwo.get("Петрова Анна").getValue() == 1;
         assert map.size() == 7;
         assert map.get("iPhone 10X") == 225000.0;
         assert map.get("наушники JBL") == 7000.0;
