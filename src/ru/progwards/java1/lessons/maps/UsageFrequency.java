@@ -49,10 +49,10 @@ public class UsageFrequency {
         String[] arrWord = text.split("[^A-Za-zА-Яа-я0-9]+");
         for (int i = 0; i < arrWord.length; i++) {
             if (!arrWord[i].equals("")) {
-                if (words.containsKey(arrWord[i].toLowerCase())) {
-                    words.replace(arrWord[i].toLowerCase(), words.get(arrWord[i].toLowerCase()) + 1);
+                if (words.containsKey(arrWord[i])) {
+                    words.replace(arrWord[i], words.get(arrWord[i] + 1));
                 } else {
-                    words.put(arrWord[i].toLowerCase(), 1);
+                    words.put(arrWord[i], 1);
                 }
             }
         }
