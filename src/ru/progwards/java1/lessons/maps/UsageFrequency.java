@@ -1,6 +1,5 @@
 package ru.progwards.java1.lessons.maps;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,7 +33,7 @@ public class UsageFrequency {
         Map<Character, Integer> letters = new HashMap<>();
         for (int i = 0; i < this.text.length(); i++) {
             char ch = text.charAt(i);
-            if (Character.isAlphabetic(ch)) {
+            if (Character.isAlphabetic(ch) || Character.isDigit(ch)) {
                 if (letters.containsKey(ch)) {
                     letters.replace(ch, letters.get(ch) + 1);
                 } else {
@@ -47,7 +46,7 @@ public class UsageFrequency {
 
     public Map<String, Integer> getWords() {
         Map<String, Integer> words = new HashMap<>();
-        String[] arrWord = text.split("[^A-Za-zА-Яа-я]+");
+        String[] arrWord = text.split("[^A-Za-zА-Яа-я0-9]+");
         for (int i = 0; i < arrWord.length; i++) {
             if (words.containsKey(arrWord[i].toLowerCase())) {
                 words.replace(arrWord[i].toLowerCase(), words.get(arrWord[i].toLowerCase()) + 1);
@@ -85,6 +84,7 @@ public class UsageFrequency {
         Map<String, Integer> words = uf.getWords();
         Map<Character, Integer> wikiMap = wikiTrainUf.getLetters();
         Map<String, Integer> wikiWords = wikiTestUf.getWords();
+        System.out.println(wikiMap);
         assert map.get('a') == 1;
         assert map.get('b') == 2;
         assert map.get('j') == 2;
