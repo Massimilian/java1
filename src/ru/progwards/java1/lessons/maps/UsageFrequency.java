@@ -48,10 +48,12 @@ public class UsageFrequency {
         Map<String, Integer> words = new HashMap<>();
         String[] arrWord = text.split("[^A-Za-zА-Яа-я0-9]+");
         for (int i = 0; i < arrWord.length; i++) {
-            if (words.containsKey(arrWord[i].toLowerCase())) {
-                words.replace(arrWord[i].toLowerCase(), words.get(arrWord[i].toLowerCase()) + 1);
-            } else {
-                words.put(arrWord[i].toLowerCase(), 1);
+            if (!arrWord[i].equals("")) {
+                if (words.containsKey(arrWord[i].toLowerCase())) {
+                    words.replace(arrWord[i].toLowerCase(), words.get(arrWord[i].toLowerCase()) + 1);
+                } else {
+                    words.put(arrWord[i].toLowerCase(), 1);
+                }
             }
         }
         return words;
@@ -76,23 +78,29 @@ public class UsageFrequency {
         String wikiTestTest = "src/ru/progwards/java1/lessons/maps/wiki.test.tokens";
         Files.deleteIfExists(path);
         Files.createFile(path);
-        uf.putSomeTestInfo(test, "abC Abc defghi jklmn jklmno o pqrstuvwxyz o O; \nпроверка*?:русских;№букв+=-букв");
+
+        uf.putSomeTestInfo(test, "   asd ");
         uf.processFile(test);
+        Map<String, Integer> mapTest = uf.getWords();
+        System.out.println(mapTest);
+
+//        uf.putSomeTestInfo(test, "abC Abc defghi jklmn jklmno o pqrstuvwxyz o O; \nпроверка*?:русских;№букв+=-букв");
+//        uf.processFile(test);
         wikiTrainUf.processFile(wikiTrainTest);
         wikiTestUf.processFile(wikiTestTest);
-        Map<Character, Integer> map = uf.getLetters();
-        Map<String, Integer> words = uf.getWords();
+//        Map<Character, Integer> map = uf.getLetters();
+//        Map<String, Integer> words = uf.getWords();
         Map<Character, Integer> wikiMap = wikiTrainUf.getLetters();
         Map<String, Integer> wikiWords = wikiTestUf.getWords();
         System.out.println(wikiMap);
-        assert map.get('a') == 1;
-        assert map.get('b') == 2;
-        assert map.get('j') == 2;
-        assert map.get('у') == 3;
-        assert words.get("abc") == 2;
-        assert words.get("jklmn") == 1;
-        assert words.get("o") == 3;
-        assert words.get("букв") == 2;
+//        assert map.get('a') == 1;
+//        assert map.get('b') == 2;
+//        assert map.get('j') == 2;
+//        assert map.get('у') == 3;
+//        assert words.get("abc") == 2;
+//        assert words.get("jklmn") == 1;
+//        assert words.get("o") == 3;
+//        assert words.get("букв") == 2;
         Files.deleteIfExists(path);
         System.out.println();
     }
