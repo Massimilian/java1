@@ -6,21 +6,35 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class to save Fibo numbers
+ */
 public class FiboMapCache {
-    private Map<Integer, BigDecimal> fiboCache = new HashMap<>();
-    private boolean cahceOn;
+    private final Map<Integer, BigDecimal> fiboCache = new HashMap<>();
+    private final boolean cacheOn;
 
     public FiboMapCache(boolean cacheOn) {
-        this.cahceOn = cacheOn;
+        this.cacheOn = cacheOn;
     }
 
-    public boolean isCahceOn() {
-        return cahceOn;
+    /**
+     * Cache switch
+     *
+     * @return true(on) / false(off)
+     */
+    public boolean isCacheOn() {
+        return cacheOn;
     }
 
+    /**
+     * Method to put a new Fibo value
+     *
+     * @param n is position of Fibo number
+     * @return Fibo number at position n
+     */
     public BigDecimal fiboNumber(int n) {
         BigDecimal result = null;
-        if (this.cahceOn) {
+        if (this.cacheOn) {
             if (!fiboCache.containsKey(n)) {
                 result = fiboCache.put(n, calculateFibo(n));
             } else {
@@ -30,15 +44,27 @@ public class FiboMapCache {
         return result;
     }
 
+    /**
+     * Method for delete all values from cache
+     */
     public void clearCahe() {
         fiboCache.clear();
     }
 
+    /**
+     * Method for showing test cache results with cache-on and cache-off
+     */
     public static void test() {
         System.out.println(test(new FiboMapCache(true)));
         System.out.println(test(new FiboMapCache(false)));
     }
 
+    /**
+     * Method to test cache
+     *
+     * @param fmc for test
+     * @return String with result
+     */
     public static String test(FiboMapCache fmc) {
         Instant inst = Instant.now();
         for (int i = 1; i < 1000; i++) {
@@ -46,9 +72,15 @@ public class FiboMapCache {
         }
         Instant instTwo = Instant.now();
         Duration duration = Duration.between(inst, instTwo);
-        return String.format("fiboNumber cacheOn=%b время выполнения %d", fmc.isCahceOn(), duration.getNano()/1000000);
+        return String.format("fiboNumber cacheOn=%b время выполнения %d", fmc.isCacheOn(), duration.getNano() / 1000000);
     }
 
+    /**
+     * Method to calculate Fibo number from position n
+     *
+     * @param n position of Fibo number
+     * @return Fibo number
+     */
     private BigDecimal calculateFibo(int n) {
         BigDecimal result;
         if (n < 1) {
@@ -66,8 +98,8 @@ public class FiboMapCache {
                 }
                 result = new BigDecimal(String.valueOf(semiresult));
             } else if (n >= 46) {
-                BigDecimal helperOne = new BigDecimal("1134903170"); // число Фибоначчи №44
-                BigDecimal helperTwo = new BigDecimal("1836311903"); // число Фибоначчи №45
+                BigDecimal helperOne = new BigDecimal("1134903170");
+                BigDecimal helperTwo = new BigDecimal("1836311903");
                 BigDecimal semiresult = new BigDecimal("1836311903");
                 for (int i = 46; i < n; i++) {
                     semiresult = helperOne.add(helperTwo);

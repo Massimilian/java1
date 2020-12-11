@@ -1,10 +1,13 @@
 package ru.progwards.java1.lessons.maps;
 
+/**
+ * Special class for save goods
+ */
 public class Good {
-    private String owner;
-    private String name;
-    private int count;
-    private double sum;
+    private final String owner;
+    private final String name;
+    private final int count;
+    private final double sum;
 
     public Good(String owner, String name, int count, double sum) {
         this.owner = owner;

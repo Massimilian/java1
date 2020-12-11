@@ -1,6 +1,5 @@
 package ru.progwards.java1.lessons.maps;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,11 +8,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Class to save info about sales
+ */
 public class SalesInfo {
     HashSet<Good> goods = new HashSet<>();
 
+    /**
+     * Method for load info from file with address fileName
+     *
+     * @param fileName address of file
+     * @return number of entered strings
+     */
     public int loadOrders(String fileName) {
-        FileReader fr = null;
+        FileReader fr;
         int count = 0;
         try {
             fr = new FileReader(fileName);
@@ -35,11 +43,14 @@ public class SalesInfo {
         return count;
     }
 
+    /**
+     * Method to prepare Map with name of good and sum
+     *
+     * @return Map with name and sums
+     */
     public Map<String, Double> getGoods() {
         Map<String, Double> map = new TreeMap<>();
-        Iterator<Good> iterator = goods.iterator();
-        while (iterator.hasNext()) {
-            Good temp = iterator.next();
+        for (Good temp : goods) {
             if (map.containsKey(temp.getName())) {
                 map.replace(temp.getName(), map.get(temp.getName()) + temp.getSum());
             } else {
@@ -49,11 +60,14 @@ public class SalesInfo {
         return map;
     }
 
+    /**
+     * Method to prepare info about owners, sums and number of purchases
+     *
+     * @return Map with owners and Entry<sums, number of purchases>
+     */
     public Map<String, AbstractMap.SimpleEntry<Double, Integer>> getCustomers() {
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> owners = new TreeMap<>();
-        Iterator<Good> iterator = goods.iterator();
-        while (iterator.hasNext()) {
-            Good temp = iterator.next();
+        for (Good temp : goods) {
             if (!owners.containsKey(temp.getOwner())) {
                 owners.put(temp.getOwner(), new AbstractMap.SimpleEntry(temp.getSum(), 1));
             } else {
@@ -64,6 +78,12 @@ public class SalesInfo {
         return owners;
     }
 
+    /**
+     * Special method for put some test info into class
+     *
+     * @param file for information
+     * @param text to put into file
+     */
     private void putSomeTestInfo(String file, String text) {
         try (FileWriter fw = new FileWriter(file, true)) {
             fw.write(text);

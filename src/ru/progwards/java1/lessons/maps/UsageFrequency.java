@@ -10,9 +10,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Class for prepare information about words and letters
+ */
 public class UsageFrequency {
     private String text;
 
+    /**
+     * Method for put text from file into String text
+     * @param fileName if file with
+     */
     public void processFile(String fileName) {
         FileReader fr;
         try {
@@ -29,6 +36,10 @@ public class UsageFrequency {
         }
     }
 
+    /**
+     * Method for get letters and its count
+     * @return Map<letter, count>
+     */
     public Map<Character, Integer> getLetters() {
         Map<Character, Integer> letters = new HashMap<>();
         for (int i = 0; i < this.text.length(); i++) {
@@ -44,22 +55,30 @@ public class UsageFrequency {
         return letters;
     }
 
+    /**
+     * Method for get words and its count
+     * @return Map<word, count>
+     */
     public Map<String, Integer> getWords() {
         Map<String, Integer> words = new HashMap<>();
         String[] arrWord = text.split("[^A-Za-zА-Яа-я0-9]+");
-        for (int i = 0; i < arrWord.length; i++) {
-            if (!arrWord[i].equals("")) {
-                if (words.containsKey(arrWord[i])) {
-                    words.replace(arrWord[i], words.get(arrWord[i]) + 1);
+        for (String s : arrWord) {
+            if (!s.equals("")) {
+                if (words.containsKey(s)) {
+                    words.replace(s, words.get(s) + 1);
                 } else {
-                    words.put(arrWord[i], 1);
+                    words.put(s, 1);
                 }
             }
         }
         return words;
     }
 
-
+    /**
+     * Method for put info in the file
+     * @param file is for text
+     * @param text is for file
+     */
     private void putSomeTestInfo(String file, String text) {
         try (FileWriter fw = new FileWriter(file, true)) {
             fw.write(text);
