@@ -69,10 +69,10 @@ public class SalesInfo {
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> owners = new TreeMap<>();
         for (Good temp : goods) {
             if (!owners.containsKey(temp.getOwner())) {
-                owners.put(temp.getOwner(), new AbstractMap.SimpleEntry(temp.getSum(), 1));
+                owners.put(temp.getOwner(), new AbstractMap.SimpleEntry(temp.getSum(), temp.getCount()));
             } else {
                 AbstractMap.SimpleEntry<Double, Integer> amse = owners.get(temp.getOwner());
-                owners.replace(temp.getOwner(), new AbstractMap.SimpleEntry(amse.getKey() + temp.getSum(), amse.getValue() + 1));
+                owners.replace(temp.getOwner(), new AbstractMap.SimpleEntry(amse.getKey() + temp.getSum(), amse.getValue() + temp.getCount()));
             }
         }
         return owners;
@@ -126,7 +126,7 @@ public class SalesInfo {
         Map<String, Double> map = si.getGoods();
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> ownersMap = si.getCustomers();
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> ownersMapTwo = siTwo.getCustomers();
-        assert ownersMapTwo.get("Петрова Анна").getValue() == 1;
+        assert ownersMapTwo.get("Петрова Анна").getValue() == 2;
         assert map.size() == 7;
         assert map.get("iPhone 10X") == 225000.0;
         assert map.get("наушники JBL") == 7000.0;
@@ -136,7 +136,7 @@ public class SalesInfo {
         for (var entry : ownersMap.entrySet()) {
             assert names[count++].equals(entry.getKey());
         }
-        assert ownersMap.get("Василий Пупкин").getValue() == 1;
+        assert ownersMap.get("Василий Пупкин").getValue() == 10;
         Files.deleteIfExists(path);
         Files.deleteIfExists(pathTwo);
     }

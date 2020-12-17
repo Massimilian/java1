@@ -40,6 +40,8 @@ public class FiboMapCache {
             } else {
                 result = fiboCache.get(n);
             }
+        } else {
+            result = calculateFibo(n);
         }
         return result;
     }
