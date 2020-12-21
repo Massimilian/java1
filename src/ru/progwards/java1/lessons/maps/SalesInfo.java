@@ -142,7 +142,7 @@ public class SalesInfo {
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> ownersMap = si.getCustomers();
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> ownersMapTwo = siTwo.getCustomers();
         Map<String, AbstractMap.SimpleEntry<Double, Integer>> ownersMapThree = siThree.getCustomers();
-        System.out.println("STOP");
+        assert ownersMapThree.size() == 5;
         assert ownersMapTwo.get("Петрова Анна").getValue() == 2;
         assert map.size() == 7;
         assert map.get("iPhone 10X") == 225000.0;
