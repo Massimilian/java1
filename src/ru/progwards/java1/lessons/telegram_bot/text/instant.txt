@@ -1,0 +1,27 @@
+Это специфический класс, представляющий дату с наносекундной точностью. Сам по себе класс хранит количество секунд и наносекунд (в long) с момента начала UNIX-эпохи. Instant now() возвращает объект Instant, зафиксировавший конкретный текущий момент. С его помощью возможно создание двух точек и последующее вычисление продолжительности между этими точками (при помощи класса Duration). Например:
+Instant inst = Instant.now();
+String s = "";
+for (int i = 0; i < 2000; i++) { // создаём трудоёмкую операцию
+    s = s + "s";
+}
+Instant instTwo = Instant.now();
+System.out.println(inst.getEpochSecond()); // выведет количество секунд с 01/01/1970 (UNIX TimeStamp)
+System.out.println(inst.toEpochMilli()); // выведет количество миллисекунд с 01/01/1970
+System.out.println(inst.getNano()); // выведет количество наносекунд без учёта секунд
+Duration dur = Duration.between(inst, instTwo);
+System.out.println(dur.getSeconds() + "." + dur.getNano() + " seconds."); // в данном случае мы запрашиваем время в секундах и наносекундах (1/1 000 000 000 секунды); стоит учесть, что количество единиц времени будет обнуляться по достижению целой более старшей единицы времени.
+
+Дополнительные методы Instant:
+•	int get(TemporalField field) – получить значение поля field;
+•	long getLong(TemporalField field) – получить long значение поля.
+•	boolean isAfter(Instant otherInstant) – проверяет, что текущий Instant наступит после otherInstant;
+•	boolean isBefore(Instant otherInstant) – проверяет, что текущий Instant наступит до otherInstant;
+•	Instant plus(long amountToAdd, TemporalUnit unit) – добавить amountToAdd как unit;
+•	Instant minus(long amountToSubtrack, TemporalUnit unit) – добавить amountToSubtrack как unit;
+•	static Instant parse(CharSequence text) – преобразование строки в Instant;
+•	String toString() – преобразование Instant в строку. 
+Instant ainst = Instant.now();
+Instant binst = ainst.minus(20, ChronoUnit.MINUTES); // отнимаем 20 минут
+Instant cinst = binst.plus(1, ChronoUnit.DAYS); // добавляем 1 день
+
+Материалы любезно предоставлены http://progwards.ru/

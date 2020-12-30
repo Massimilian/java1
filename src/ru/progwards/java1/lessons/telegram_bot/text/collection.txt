@@ -1,0 +1,30 @@
+Коллекция – это структура для хранения данных. Она хранит только объекты (или классы-обёртки). Во главе стоит интерфейс Collection, обладающий рядом методов:
+•	boolean add(E e) – добавить элемент;
+•	boolean addAll(Collection<?> c) – добавить коллекцию элементов
+•	boolean remove(E e) – удалить элемент (сравнение идёт через equals);
+•	boolean removeAll(Collection<?> c) – удалить коллекцию элементов;
+•	boolean retainAll(Collection<?> c) – оставить в коллекции только эти элементы;
+•	void clear() – полностью очистить коллекцию от элементов;
+•	int size() – возвращает количество ячеек в данной коллекции;
+•	boolean isEmpty() – возвращает информацию, пустая эта коллекция или нет;
+•	boolean contains(Object o) – возвращает информацию о наличии в коллекции объекта;
+•	Boolean containsAll(Collection<?> c) – проверяет, что внутри коллекции находятся все элементы коллекции c;
+•	Object[] toArray() – превращает коллекцию в массив;
+Collection имеет три потомка – List (список), Set (множество) и Queue (очередь).
+Collection обладает возможностью перебора всех элементов, находящихся в нём:
+HashMap<Integer, Integer> ints = new HashMap<>(); // создаём некий словарь
+ints.put(0, 0); // кладём туда значения
+ints.put(1, 1);
+Collection<Integer> coll = ints.values(); // перемещаем значения внутрь коллекции
+for (Integer i : coll) { // вывод при помощи foreach
+    System.out.println(i);
+}
+Iterator<Integer> iterator = coll.iterator();
+while(iterator.hasNext()) {
+    System.out.println(iterator.next()); // вывод при помощи итератора
+}
+
+Подробнее о работе итератора и работе словарей – в главе Iterator.
+Подробнее о работе класса Collections - в главе CollWorker.
+
+Материалы любезно предоставлены http://progwards.ru/

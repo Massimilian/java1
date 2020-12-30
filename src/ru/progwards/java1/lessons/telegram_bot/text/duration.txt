@@ -1,0 +1,15 @@
+Это класс, призванный найти расстояние между двумя временными точками (так называемую продолжительность). Состоит из двух составляющих – seconds и nanos. Основные методы:
+•	Duration between(Temporal startInclusive, Temporal endExclusive) – создаёт новый Duration с информацией о расстоянии между двумя Temporal (одним из наследников Temporal является Instant);
+•	Duration ofSeconds(long seconds, int nanoAdjustment) – создаёт новый Duration с указанными параметрами;
+•	long getSeconds() – возвращает секунды;
+•	int getNano() – возвращает наносекунды;
+•	Duration plusDays/plusHours/plusMinutes/plusSeconds/plusMillis/plusNanos(long value) – добавление соответствующего отрезка времени и возврат обновлённого Duration;
+•	Duration minusDays/minusHours/minusMinutes/minusSeconds/minusMillis/minusNanos(long value) – вычитание соответствующего отрезка времени и возврат обновлённого Duration;
+•	Duration plus(Duration duration) – складывание двух Duration;
+•	Duration plus(long secondsToAdd, long nanosToAdd) – прибавление отдельно секунд и наносекунд и возврат обновлённого Duration;
+•	Duration minus(Duration duration) – вычитание двух Duration;
+•	Duration abs() – обращение негативного значение в положительное;
+•	long toDays/toHours/toMinutes/toSeconds/toMillis/toNanos() – возвращение соответствующего количества величин времени.
+
+
+Материалы любезно предоставлены http://progwards.ru/

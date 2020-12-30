@@ -1,0 +1,26 @@
+SplittableRandom уже обладает набором методов, который позволяет получать значения внутри определяемого диапазона. Синтаксис очень похож на Random. Также есть возможность создавать поток int и присваивать его в массив. Особенность этого вида генератора псевдослучайных чисел – скорость – он работает практически в два раза быстрее, чем Random.
+
+public class Main {
+    public static void main(String[] args) {
+        SplittableRandom random = new SplittableRandom();
+        System.out.println(random.nextInt(-10, 10)); // запрос случайного числа в диапазоне
+        System.out.println(random.nextLong(-100L, 100L)); // эти же методы могут быть без диапазона
+        System.out.println(random.nextDouble(-1.9999999, 1.0000001)); // кстати, float таким образом не вызывается
+        System.out.println(random.nextBoolean());
+
+        int size = 5;
+        byte[] bytes = new byte[size];
+        random.nextBytes(bytes); // заполняем массив рандомными значениями
+        System.out.println(Arrays.toString(bytes));
+
+        // дополнительный метод по созданию потока эрандомных элементов int.
+        int min = -1;
+        int max = 2;
+        int[] ints = random.ints(size, min, max).toArray(); // помещаем поток в массив; size - размер массива; min - минимальное значение; max- максимальное значение.
+        System.out.println(Arrays.toString(ints)); // вывод на экран
+    }
+}
+
+В данном классе seed однозначно определяет последовательность псевдослучайных чисел. Но при этом метод .setSeed(long) отсутствует, поэтому если нам необходимо повторить последовательность, то придётс создать новый класс SplittableRandom и установить туда тот же seed.
+
+Материалы любезно предоставлены http://progwards.ru/

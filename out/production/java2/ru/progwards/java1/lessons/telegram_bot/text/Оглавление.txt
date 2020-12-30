@@ -42,8 +42,14 @@
 * Динамические массивы(DynArr);
 * Блочные динамические массивы (DynArrBlocked);
 * Страничные массивы (PageArr);
-* Сборщики мусора (Garbage, Serial, Parallel, CMS, G1, Shenandoah); 
+* Сборщики мусора (Garbage, Serial, Parallel, CMS, G1, Shenandoah);
+* Неизменяемые (финальные) объекты (Immutable);
+* Консоль (Console);
+* Модификатор final (Final);
+* Система хранения версий (Git)
+* Коллекции (Collection, CollWorker, List, Set, Maps, Uterator);
+* Работа со временем (Almanac, Util, JTime, Date, TimeZone, Calendar, SimpleDateFormat, Instant, Duration, ZoneId, LocalD, LocalT, LocalDT, ZonedDT, OffsetDateTime, Period, DateTimeFormatter);
+* Псевдослучайные числа (Rannum, Randoms, SplittableRandom, ThreadLocalRandom, SecureRandom).
 
 Для перехода на конкретную главу просьба набрать её название латинскими буквами (как показано в скобках).
-
 Это пока всё. Но будет и пополнение...

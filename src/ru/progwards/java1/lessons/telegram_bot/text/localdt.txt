@@ -1,0 +1,15 @@
+Это комбинация LocalDate и LocalTime, которое выводит не только дату, но и время. Не хранит информацию о зоне. Основные методы:
+•	LocalDateTime now() – возвращает объект LocalDateTime  с текущими датой и временем.
+LocalDateTime now = LocalDateTime.now();
+System.out.println(now); // получение текущих даты и времени в формате ГГГГ-ММ-ДД(T)ЧЧ:ММ:СС:МММММММММ, где (Т) - это буква "Т", отделяющая дату от времени.
+
+•	LocalDateTime of(int year, int month, int day, int hour, int minute, int second, int nano) – возвращает объект LocalDateTime с прописанными данными (год, месяц, день, час, минута, секунда и наносекунда). Последние два параметра не обязательные. Второй вариант – в конструктор засунуть два объекта LocalDate и LocalTime.
+Методы get…(), isAfter(LocalDateTime), isBefore(LocalDateTime) и equals(LocalDateTime) работают в точности так же, как в похожих двух классах LocalDate и LocalTime.
+Примеры использования:
+LocalDateTime now = LocalDateTime.now();
+System.out.println(now); // получение текущих даты и времени в формате ГГГГ-ММ-ДД(T)ЧЧ:ММ:СС:МММММММММ, где (Т) - это буква "Т", отделяющая дату от времени.
+LocalDate ld = LocalDate.of(2020, 06, 17);
+LocalTime lt = LocalTime.of(20,17,18);
+LocalDateTime ldt = LocalDateTime.of(ld, lt); // вариант создания при помощи LocalDate и LocalTime
+
+Материалы любезно предоставлены http://progwards.ru/

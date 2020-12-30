@@ -1,0 +1,55 @@
+...
+Capacity (размер table для Node) и loadFactor (соотношение количества Node и размера Table) можно задавать в конструкторе:
+•	HashMap() – capacity = 16, loadFactor = 0.75;
+•	HashMap(int initialCapacity) – capacity регулируется, loadFactor = 0.75;
+•	HashMap(int initialCapacity, float loadFactor) – оба параметра регулируются;
+•	HashMap(Map<? extends K, ? extends V>) – на основе другого словаря; capacity = размер Map, loadFactor = 0.75.
+
+В LinkedHashMap используется внутренний класс, наследованный от Node – LinkedHashMap.Entry (не путать с интерфейсом Entry!). В этом классе есть два дополнительных параметра, которые позволяют сохранить ссылку на предыдущий добавленный LinkedHashMap.Entry (before) и последующий (after). Таким образом, помимо системы корзин, здесь мы имеем дело ещё и с двусвязным списком. 
+Ключи надо делать inmutable объектами – чтобы не менялся hash-код, иначе мы рискуем потерять ключ и, соответственно, мы потеряем объект.
+Интерфейс SortedMap - Это интерфейс, расширяющий возможности Map. Заявленные методы:
+•	Comparator<? super K> comparator() – возвращает компаратор либо null;
+•	SortedMap<K, V> subMap(K fromKey, K toKey) – возвращает часть сортированного словаря от fromKey до toKey;
+•	SortedMap<K, V> headMap(K toKey) – возвращает голову словаря до toKey (исключительно), а если такого значения нет – то до ближайшего младшего значения;
+•	SortedMap<K, V> tailMap(K fromKey) – возвращает хвост словаря с fromKey (включительно), а если такого значения нет – то с ближайшего старшего значения;
+•	K firstKey() – возвращает первый ключ;
+•	K lastKey() – возвращает последний ключ.
+Примеры работы:
+SortedMap<Integer, String> map = new TreeMap<>(); // реализация SortedMap через TreeMap (сортирующий словарь)
+map.put(1, "One");
+map.put(0, "Zero");
+map.put(2, "Two");
+for(var entry : map.entrySet()) { // var предоставляет возможность компилятору самому подобрать нужный тип
+    System.out.println(entry.getKey() + " -> " + entry.getValue()); // данные будут выведены в отсортированном по ключу порядке
+}
+System.out.println();
+for(var entry: map.tailMap(1).entrySet()) { // подготавливается подмассив с ключа 1
+    System.out.println(entry.getKey() + " -> " + entry.getValue()); // выводятся упорядоченные данные
+}
+System.out.println();
+for(var entry: map.headMap(1).entrySet()) { // подготавливается подмассив с начала до ключа 1 (исключительно)
+    System.out.println(entry.getKey() + " -> " + entry.getValue()); // выводится упорядоченные данные 
+}
+
+NavigableMap - этот интерфейс позволяет осуществлять навигацию по словарю. Основные методы:
+•	Map.Entry<K, V> ceilingEntry(K key) – находит ближайший к key элемент из набора больше или равных key (если нет – вернёт null);
+•	Map.Entry<K, V> floorEntry(K key) – находит ближайший к key элемент из набора меньше или равных key (если нет – вернёт null);
+•	Map.Entry<K, V> highEntry(K key) - находит ближайший к key элемент строго больше key (если нет – вернёт null);
+•	Map.Entry<K, V> lowerEntry(K key) - находит ближайший к key элемент строго меньше key (если нет – вернёт null);
+•	NavigableMap<K, V> descendingMap() – возвращает словарь с обратной сортировкой (с обратным компаратором);
+•	Map.Entry<K, V> pollFirstEntry(K key) – возвращает первый элемент словаря и удаляет его из словаря;
+•	Map.Entry<K, V> pollLastEntry(K key) – возвращает последний элемент словаря и удаляет его из словаря.
+NavigableMap<Integer, String> map = new TreeMap<>(); // реализация SortedMap через TreeMap (сортирующий словарь)
+map.put(1, "One");
+map.put(0, "Zero");
+map.put(2, "Two");
+System.out.println(map.ceilingEntry(1).getValue()); // запрос Entry с ключом, ближайшим (или большим) к Key и вывод значения на экран
+System.out.println(map.firstEntry().getValue()); // запрос Entry с начальным ключом (0) и вывод значения на экран
+for (int i = 0; i < 2; i++) {
+    System.out.println(map.pollFirstEntry()); //вывод первых двух значений Entry по очереди
+}
+
+...
+Для продолжения наберите "m4"
+
+Материалы любезно предоставлены http://progwards.ru/

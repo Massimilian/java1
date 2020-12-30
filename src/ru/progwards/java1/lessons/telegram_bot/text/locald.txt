@@ -1,0 +1,32 @@
+Класс LocalDate предназначен для работы с датами. Является неизменяемым классом. Не хранит информацию о зоне. Основные методы для работы:
+•	static LocalDate now() – возвращает текущую дату. Если такой даты не существует (например, 32 декабря) – выкинет ошибку.
+LocalDate ld = LocalDate.now();
+System.out.println(ld); // выведет текущий год, месяц и день в формате ГГГГ-ММ-ДД
+
+•	static LocalDate of(int year, int month, int day) – подготовит дату с предустановленными годом, месяцем и днём.
+
+LocalDate ld = LocalDate.of(2019, 2, 29); // подготовит вывод дат с указанным годом, месяцем и днём. Причём в данном слуае выбросит ошибку, так как 29 февраля в 2019 году не было.
+
+•	int getYear() – возвращает год текущей даты
+•	int getMonthValue() – возвращает порядковый номер месяца даты (1-12).
+•	int getDayOfMonth() – возвращает порядковый номер дня месяца (1-31).
+•	int getDayOfYear() – возвращает порядковый номер дня года (1-365).
+•	LocalDate  plusDays(int i) / plusMonths(int i) / plusYears(int i) / plusWeeks(int i) – возвращает ту же дату с увеличенным на размер i значением дня/месяца/года/недели.
+•	LocalDate minusDays(int i) / minusMonth(int i) / minusYears(int i) / minusWeeks(int i) – возвращает ту же дату с уменьшённым на размер i значением дня/месяца/года/недели.
+•	Boolean isAfter(LocalDate), isBefore(LocalDate) и equals(LocalDate) проверяет объект LocalDate, что он более поздний / более ранний / равный тому, который мы передаём в скобках.
+Примеры использования:
+LocalDate ld = LocalDate.now();
+System.out.println(ld.getMonthValue()); // возвращает номер текущего месяца
+System.out.println(ld.getDayOfMonth()); // возвращает номер дня внутри месяца
+System.out.println(ld.getDayOfYear()); // возвращает номер дня внутри года
+System.out.println(ld.plusDays(1).plusMonths(1).plusYears(1).plusWeeks(1)); // выводит дату с увеличенными на один днём, месяцем и годом и неделей.
+System.out.println(ld.minusDays(2).minusMonths(2).minusYears(2).minusWeeks(2)); // выводит дату с уменьшённым на 2 днём, месяцем, годом и неделей.
+
+Пример проверки равенства двух дат:
+LocalDate now = LocalDate.now();
+LocalDate isNow = LocalDate.now();
+System.out.println(now.isBefore(isNow)); // проверяет, что now происходит до lt (false)
+System.out.println(now.equals(isNow)); // проверяет, что now совпадает с lt (true)
+System.out.println(now.isAfter(isNow)); // проверяет, что now происходит после lt (false)
+
+Материалы любезно предоставлены http://progwards.ru/

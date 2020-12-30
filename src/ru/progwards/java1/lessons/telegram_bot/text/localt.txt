@@ -1,0 +1,21 @@
+Представляет собой класс, отображающий часы, минуты, секунды и наносекунды. Не хранит информацию о зоне. Основные методы:
+•	LocalTime now() – возвращает текущее время (с наносекундами).
+LocalTime lt = LocalTime.now();
+System.out.println(lt); // выведет текущее время в формате ЧЧ:ММ:СС:ННННННННН
+
+•	LocalTime of(int hour, int minute, int second, int nano) – возвращает объект LocalTime с прописанными часами (hour) – от 0 до 23; минутами (minute) – от 0 до 59; секундами (second) – от 0 до 59; наносекундами (nano) – от 0 до 999999999. Причём последние два параметра необязательны.
+•	int getNano() / getSecond() / getMinute() / getHour() – возвращает целочисленное представление наносекунд / секунд / минут / часов от объекта LocalTime; если значение не прописано (nano или second), то вернётся 0.
+•	boolean isAfter(LocalTime lt) /  isBefore(LocalTime lt) / equals(LocalTime lt) – проверяет объект LocalTime, что он более поздний / более ранний / равный тому, который мы передаём в скобках.
+•	LocalTime plusNanos(int i) / plusSeconds(int i) / plusMinutes(int i) / plusHours(int i) – возвращает объект LocalTime c i добавленными наносекундами / секундами / минутами / часами. Если мы выскочим за пределы суток, мы как бы перейдём на другие (будущие) сутки. Таким образом, 20:00 + 6 часов – это 2:00.
+•	LocalTime minusNanos(int i) / minusSeconds(int i) / minusMinutes(int i)/ minushours(int i) - возвращает объект LocalTime c i убавленными наносекундами / секундами / минутами / часами. Если мы выскочим за пределы суток, мы как бы перейдём на другие (прошлые) сутки.
+
+Примеры использований:
+LocalTime now = LocalTime.now();
+LocalTime lt = LocalTime.of (1, 0);
+System.out.println("Time is " + now.getHour() + " hours, " + now.getMinute() + " minutess, " +  now.getSecond() + " seconds, " + now.getNano() + " nanos.");
+System.out.println(lt.plusNanos(1).plusSeconds(1).minusMinutes(1).minusHours(1)); // выведет LocalTime с изменениеями в наносекундах (+1), секундах (+1) минутах (-1) и часах (-1).
+System.out.println(now.isBefore(lt)); // проверяет, что now происходит до lt
+System.out.println(now.equals(lt)); // проверяет, что now совпадает с lt
+System.out.println(now.isAfter(lt)); // проверяет, что now происходит после lt
+
+Материалы любезно предоставлены http://progwards.ru/

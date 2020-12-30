@@ -1,0 +1,17 @@
+Это класс, отвечающий за часовые пояса. Основные методы:
+•	TimeZone getTimeZone(String ID) – используется вместо конструктора, по ID присваивает соответствующий часовой пояс;
+•	int getOffset(long date) – возвращает смещение от UTC на размер date;
+•	int getRawOffset() – возвращает «чистое» смещение (без учёта летнего/зимнего времени);
+•	boolean inDaylightTime(Date date) – возвращает информацию, что это летнее (true) или зимнее (false) время;
+•	boolean useDaylightTime() – возвращает информацию о наличие перехода на летнее/зимнее время;
+•	TimeZone getDefault() – получить временную зону по умолчанию;
+•	Void setDefault(TimeZone zone) – установить временную зону.
+
+String[] ids = TimeZone.getAvailableIDs(); // присваивает в ids возможный варианты TimeZone (всего их 628)
+TimeZone tz = TimeZone.getTimeZone("Europe/Moscow"); // устанавливаем TimeZone на Москву (+3 часа)
+System.out.println(tz.getRawOffset());// выведет 10800000 - отклонение от Гринвича равно 10800000 миллисекунд (3 часа)
+System.out.println(tz.useDaylightTime()); // выведет false - перехода на летнее/зимнее время нет
+Locale locale = new Locale("ru", "RU"); // вводим локаль - на каком языке будет выводиться дальнейшая информация
+System.out.println(tz.getDisplayName(locale)); // выведет "Москва, стандартное время"
+
+Материалы любезно предоставлены http://progwards.ru/ 

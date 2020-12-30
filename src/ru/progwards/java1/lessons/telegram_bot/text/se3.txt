@@ -1,0 +1,50 @@
+...
+Особые методы SortedSet(интерфейса, реализацией которого и является TreeSet):
+•	Comparator<? super E> comparator() – возвращает компаратор или null (тогда используется сompareTo элементов, реализующих интерфейс Comparable – это для случая, если мы не задали компаратор);
+•	E first() – возвращает первый элемент коллекции;
+•	E last() – возвращает последний элемент коллекции;
+•	SortedSet<E> subSet(E fromElement, E toElement) – возвращает подколлекцию (подсет) от fromElement(включительно) до toElement(исключительно) – внимание! имеется ввиду не положение элементов (fromElement и toElement), а именно их значение;
+•	SortedSet<E> headSet(E toElement) – возвращает подколлекцию от начала до toElement (исключительно);
+•	SortedSet<E> tailSet(E fromElement) – возвращает подколлекцию от fromElement(включительно) до конца.
+С JDK 1.6 пояился новый интерфейс NavigableSet, который является наследником SortedSet и именно его реализует TreeSet. NavigableSet объявляет дополнительные методы:
+•	E ceiling(E e) – находит ближайший по значению к “e” элемент из набора равных или больше, чем e;
+•	E floor(E e) – находит ближайший по значению к “e” элемент из набора равных или меньше, чем e;
+•	E higher(E e) - находит ближайший по значению к “e” элемент из набора строго больше, чем e;
+•	E lower(E e) - находит ближайший по значению к “e” элемент из набора строго меньше, чем e;
+•	Iterator<E> descendingIterator() – возвращает обратный итератор;
+•	E pollFirst() – возвращает первый элемент множества и удаляет его оттуда;
+•	E pollLast() – возвращает последний элемент множества и удаляет его оттуда.
+TreeSet<Integer> treeSet = new TreeSet<>(List.of(-1, 1, 0, -2, 2)); // создаём множество -2, -1, 0, 1, 2
+System.out.println(treeSet.ceiling(0)); // вернёт 0, так как элемент 0 больше или равен 0.
+System.out.println(treeSet.floor(0)); // вернёт 0, так как элемент 0 меньше или равен 0.
+System.out.println(treeSet.higher(0)); // вернёт 1, как наиболее близкий элемент > 0.
+System.out.println(treeSet.lower(0)); // вернёт -1, как наиболее близкий элемент < 0.
+System.out.println(treeSet.pollFirst()); // вернёт -2 и удалит из множества
+System.out.println(treeSet.pollLast()); // вернёт 2 и удалит из множества
+Два часто встречающихся в использовании множеств действия – это пересечение и объединение множеств.
+Пересечение: для вывода дубликатов в множество 1 и множества 2 используется метод retainAll. Например:
+HashSet<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 3, 4));
+HashSet<Integer> set2 = new HashSet<>(Arrays.asList(3, 4, 5, 6));
+set1.retainAll(set2);
+System.out.println(set1); // выведет 3, 4; то есть те данные, которые совпали в обоих множествах
+
+	Если же необходимо оставить оба множества в неизменном виде, а результаты получить в виде отдельного множества – это отдельное новое множество надо создать:
+HashSet<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 3, 4));
+HashSet<Integer> set2 = new HashSet<>(Arrays.asList(3, 4, 5, 6));
+HashSet<Integer> result = new HashSet<>(set1); // вводим дополнительный HashSet
+result.retainAll(set2);
+System.out.println(result); // выведет 3, 4; то есть те данные, которые совпали в обоих множествах
+	Объединение: используется метод addAll(). Пример:
+HashSet<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 3, 4));
+HashSet<Integer> set2 = new HashSet<>(Arrays.asList(3, 4, 5, 6));
+set1.addAll(set2);
+System.out.println(set1); // выведет 1, 2, 3, 4, 5, 6
+
+	Вариант без изменений параметров и вводом дополнительного параметра:
+HashSet<Integer> set1 = new HashSet<>(Arrays.asList(1, 2, 3, 4));
+HashSet<Integer> set2 = new HashSet<>(Arrays.asList(3, 4, 5, 6));
+HashSet<Integer> result = new HashSet<>(set1); // вводим дополнительный HashSet
+result.addAll(set2);
+System.out.println(result); // вывод - 1, 2, 3, 4, 5, 6
+
+Материалы любезно предоставлены http://progwards.ru/

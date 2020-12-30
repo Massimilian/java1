@@ -1,0 +1,43 @@
+ 
+Если знать seed, то тогда можно предсказать последовательность. «Взломать» seed можно при помощи такого кода:
+ 
+public class Main {
+    private static final long multiplier = 0x5DEECE66DL; // 25214903917
+    private static final long addend = 0xBL; // 11
+    private static final long mask = (1L << 48) - 1; // 281474976710655 = 2^48 – 1
+
+    public static void main(String[] args) {
+        Random random = new Random();
+        long v1 = random.nextInt();
+        long v2 = random.nextInt();
+        long v3 = random.nextInt();
+        long v4 = random.nextInt();
+        System.out.println("v1 = " + v1 + "\nv2 = " + v2 + "\nv3 = " + v3 + "\nv4 = " + v4); // выводим значения, которые возвращает random.
+        for (int i = 0; i < 65536; i++) { // начинаем перебирать seed-ы
+            long seed = (((long) v1) << 16) + i; // пробуем минимально возможный вариант seed
+            int nextInt = (int) (((seed * multiplier + addend) & mask) >>> 16);
+            if (nextInt == v2) {
+                System.out.println("Seed found: the number is " + seed);
+                Random crackingRandom = new Random();
+		// далее будет происходить обращение к внутренним полям класса
+                try {
+                    Field privateSeedField = Random.class.getDeclaredField("seed");
+                    privateSeedField.setAccessible(true);
+                    AtomicLong crackingSeed = (AtomicLong) privateSeedField.get(crackingRandom);
+                    crackingSeed.set(seed);
+                } catch (Exception e) {
+                    System.out.println(e.toString());
+                    System.exit(1);
+                }
+                long cv2 = crackingRandom.nextInt();
+                long cv3 = crackingRandom.nextInt();
+                long cv4 = crackingRandom.nextInt();
+                System.out.println("Set fiend seed and generate random numbers");
+                System.out.println("v1 = " + v1 + "\ncv2 = " + cv2 + "\ncv3 = " + cv3 + "\ncv4 = " + cv4);
+                break;
+            }
+        }
+    }
+}
+
+Материалы любезно предоставлены http://progwards.ru/

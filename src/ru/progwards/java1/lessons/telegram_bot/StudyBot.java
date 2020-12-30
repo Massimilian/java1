@@ -1,6 +1,7 @@
 package ru.progwards.java1.lessons.telegram_bot;
 
 import com.google.common.collect.TreeMultimap;
+import jdk.dynalink.linker.GuardedInvocationTransformer;
 import org.telegram.telegrambots.ApiContextInitializer;
 import ru.progwards.java1.testlesson.ProgwardsTelegramBot;
 
@@ -21,7 +22,7 @@ public class StudyBot extends ProgwardsTelegramBot {
                 return packing(Paths.get("src/ru/progwards/java1/lessons/telegram_bot/text/Оглавление.txt"));
             }
             if (checkLastFound("привет")) {
-                return "Приветствую. Есть вопрос по Java? Попробую ответить! Только прошу - спрашивай по-русски, либо - если приходится писать на английском - пиши точное название соответствующей главы. А если хочешь посмотреть оглавление - то так и напиши! P.S. Предложения и пожелания горячо приветствуются, просьба направлять их на адрес: javahelptelegrambot@gmail.com";
+                return "Приветствую. Есть вопрос по Java? Попробую ответить! Только прошу - спрашивай по-русски, либо - если приходится писать на английском - пиши точное название соответствующей главы. А если хочешь посмотреть оглавление - то так и напиши (возможно, именно с этого стоит начать)! P.S. Предложения и пожелания горячо приветствуются, просьба направлять их на адрес: javahelptelegrambot@gmail.com";
             }
             if (checkLastFound("кто ты есть")) {
                 return "Я бот!";
@@ -91,7 +92,7 @@ public class StudyBot extends ProgwardsTelegramBot {
 
         StudyBot bot = new StudyBot();
         bot.username = "JavaHelp1_bot";
-        bot.token = "1314830050:AAHt1LgpN0kNNPCDcH3dQZZK9B23AMYJPJ4";
+        bot.token = "1487945646:AAEvh8rzjSmGC9OuEtMJNXUrTJXv7YmnQhY";
 
 //      история
         bot.addTags("Java", "кофе, справка, истори, создани, когда, появлен, возникновен, джава, баз, мультиплатформенн");
@@ -116,12 +117,16 @@ public class StudyBot extends ProgwardsTelegramBot {
         bot.addTags("Double", "дроб, вещественное, числ, флот, дабл, даубл, мантисса, порядок, точность, переменн, цифр, данны");
         bot.addTags("Character", "символ, букв, знак, цифр, числ, код, переменн, данны");
         bot.addTags("String", "строк, текст, переменн, данны");
+        bot.addTags("Strin2", "strin2");
         bot.addTags("Wrapper", "класс, обёртк, враппер");
 
 //      особые числа
         bot.addTags("Number", "числ, цифр, номер");
         bot.addTags("BigDecimal", "дроб, числ, огромн, больш, гигантск, крупн");
         bot.addTags("BigInteger", "числ, огромн, больш, гигантск, крупн");
+
+//      Git
+        bot.addTags("Git", "гит, верси, пуш, репо, пул, коммит, мерж, ветк");
 
 //      базовые знания
         bot.addTags("Compilator", "трансля, компиля, интерпрета, .class");
@@ -135,10 +140,13 @@ public class StudyBot extends ProgwardsTelegramBot {
         bot.addTags("Comparison", "равн");
         bot.addTags("Enum", "перечислен, енум");
         bot.addTags("Static", "статическ, статик");
+        bot.addTags("Final", "финал");
         bot.addTags("Count", "систем, счислени, двоичн, десятичн, шестандцатеричн");
         bot.addTags("Bits", "битов, операц, бинарн");
         bot.addTags("Bit2", "bit2");
         bot.addTags("Memory", "памят");
+        bot.addTags("Immutable", "неизмен, финал");
+        bot.addTags("Console", "консоль, cmd");
 
 //      классы
         bot.addTags("Nested Class", "статическ, вложенн, внутр, класс");
@@ -151,6 +159,7 @@ public class StudyBot extends ProgwardsTelegramBot {
         bot.addTags("System", "систем, класс, вспомогательн, print");
         bot.addTags("Runtime", "рантайм, класс, вспомогательн");
         bot.addTags("Process", "процесс, класс, вспомогательн");
+        bot.addTags("Math", "арифмети, математи, вычислен, градус, степень");
 
 //      лямбда-выражение
         bot.addTags("Lambda", "лямбд, сокращённ, интерфейс");
@@ -180,6 +189,53 @@ public class StudyBot extends ProgwardsTelegramBot {
         bot.addTags("DynArr", "динамическ, массив, хранение, данн");
         bot.addTags("DynArrBlocked", "динамическ, массив, хранение, данн, блоч, блок");
         bot.addTags("PageArr", "страничн, массив, хранение, данн");
+
+//      коллекции
+        bot.addTags("Collection", "коллекци, лист, сет");
+        bot.addTags("CollWorker", "коллекци");
+        bot.addTags("CollWorke2", "CollWorke2");
+        bot.addTags("List", "лист, список, коллекци, связн");
+        bot.addTags("Lis2", "Lis2");
+        bot.addTags("Iterator", "итератор, перечислен, перебор, поочерёдн");
+        bot.addTags("Sets", "сет, коллекции, перечислен");
+        bot.addTags("Set2", "Set2");
+        bot.addTags("Se3", "Se3");
+        bot.addTags("Maps", "коллекции, карт, словар, ентри, энтри");
+        bot.addTags("Map2", "Map2");
+        bot.addTags("Ma3", "Ma3");
+        bot.addTags("M4", "M4");
+        bot.addTags("5", "5");
+        bot.addTags("Queue", "очередь, приоритет");
+        bot.addTags("Queu2", "Queu2");
+
+//      работа с датой и временем
+        bot.addTags("Almanac", "дат, врем, год, месяц, день, час, минут, секунд, миллисекунд, наносекунд");
+        bot.addTags("Util", "полезн");
+        bot.addTags("TimeClass", "время");
+        bot.addTags("Dates", "дат, событие");
+        bot.addTags("TimeZone", "врем, зон, пояс");
+        bot.addTags("Calendar", "календарь");
+        bot.addTags("SimpleDateFormat", "формат");
+        bot.addTags("Instant", "врем");
+        bot.addTags("Duration", "длительност, промежут, расстояни, отрез, врем");
+        bot.addTags("ZoneId", "зон, пояс");
+        bot.addTags("LocalD", "дат, локальн");
+        bot.addTags("LocalT", "врем, локальн");
+        bot.addTags("LocalDT", "врем, дат, локальн");
+        bot.addTags("ZonedDT", "врем, дат, локальн, зон, пояс, zoneddatetime");
+        bot.addTags("OffsetDateTime", "врем, дат, оффсет, офсет");
+        bot.addTags("Period", "длительност, промежут, расстояни, отрез, врем");
+        bot.addTags("DateTimeformatter", "формат");
+        bot.addTags("DateTimeFormatte2", "datetimeformatte2");
+
+//      псевдослучайные числа
+        bot.addTags("Rannum", "случайн, рандом, генер, произвольн, вероятност");
+        bot.addTags("Randoms", "рандом");
+        bot.addTags("Random2", "random2");
+        bot.addTags("SplittableRandom", "сплит, рандом");
+        bot.addTags("ThreadLocalRandom", "локальн, потокобезопасн, рандом");
+        bot.addTags("SecureRandom", "рандом");
+        bot.addTags("SecureRando2", "SecureRando2");
 
 //      сборщики мусора
         bot.addTags("Garbage", "сборщик, мусор, коллектор");

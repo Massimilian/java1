@@ -63,4 +63,7 @@ System.out.println(d); // 12.65
     System.out.println(lowerCaseFry); // philip j. fry
     System.out.println(upperCaseFry); // PHILIP J. FRY
 
+...
+Для продолжения наберите "strin2"
+
 Материалы любезно предоставлены сайтом http://javarush.ru/
