@@ -57,8 +57,13 @@ public class FiboMapCache {
      * Method for showing test cache results with cache-on and cache-off
      */
     public static void test() {
-        System.out.println(test(new FiboMapCache(true)));
-        System.out.println(test(new FiboMapCache(false)));
+        FiboMapCache fmct = new FiboMapCache(true);
+        System.out.println(test(fmct));
+        fmct.clearCahe();
+        FiboMapCache fmcf = new FiboMapCache(false);
+        System.out.println(test(fmcf));
+        fmcf.clearCahe();
+
     }
 
     /**
@@ -105,8 +110,8 @@ public class FiboMapCache {
                 BigDecimal semiresult = new BigDecimal("1836311903");
                 for (int i = 46; i < n; i++) {
                     semiresult = helperOne.add(helperTwo);
-                    helperOne = new BigDecimal(helperTwo.toString());
-                    helperTwo = new BigDecimal(semiresult.toString());
+                    helperOne = helperTwo;
+                    helperTwo = semiresult;
                 }
                 result = semiresult;
             }
