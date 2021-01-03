@@ -37,10 +37,8 @@ public class FiboMapCache {
         if (this.cacheOn) {
             if (!fiboCache.containsKey(n)) {
                 fiboCache.put(n, calculateFibo(n));
-                result = fiboCache.get(n);
-            } else {
-                result = fiboCache.get(n);
             }
+            result = fiboCache.get(n);
         } else {
             result = calculateFibo(n);
         }
@@ -122,7 +120,5 @@ public class FiboMapCache {
 
     public static void main(String[] args) {
         test();
-        FiboMapCache fmc = new FiboMapCache(true);
-        System.out.println(fmc.fiboNumber(1));
     }
 }
