@@ -36,7 +36,8 @@ public class FiboMapCache {
         BigDecimal result = null;
         if (this.cacheOn) {
             if (!fiboCache.containsKey(n)) {
-                result = fiboCache.put(n, calculateFibo(n));
+                fiboCache.put(n, calculateFibo(n));
+                result = fiboCache.get(n);
             } else {
                 result = fiboCache.get(n);
             }
@@ -63,7 +64,6 @@ public class FiboMapCache {
         FiboMapCache fmcf = new FiboMapCache(false);
         System.out.println(test(fmcf));
         fmcf.clearCahe();
-
     }
 
     /**
@@ -122,5 +122,7 @@ public class FiboMapCache {
 
     public static void main(String[] args) {
         test();
+        FiboMapCache fmc = new FiboMapCache(true);
+        System.out.println(fmc.fiboNumber(1));
     }
 }
