@@ -107,7 +107,6 @@ public class FiboMapCache {
                 BigDecimal helperTwo = new BigDecimal("1836311903");
                 BigDecimal semiresult = new BigDecimal("1836311903");
                 for (int i = 46; i < n; i++) {
-                    // corrected
                     semiresult = helperOne.add(helperTwo);
                     helperOne = helperTwo;
                     helperTwo = semiresult;
