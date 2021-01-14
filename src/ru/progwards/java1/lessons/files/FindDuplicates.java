@@ -55,10 +55,10 @@ public class FindDuplicates {
         for (int i = 0; i < duples.size() - 1; i++) {
             List<String> list = new ArrayList<>();
             boolean forAdd = false;
-            list.add(duples.get(i).getName());
+            list.add(duples.get(i).getFullName());
             for (int j = i + 1; j < duples.size(); j++) {
                 if (duples.get(i).equals(duples.get(j))) {
-                    list.add(duples.get(j).getName());
+                    list.add(duples.get(j).getFullName());
                     forAdd = true;
                 }
             }
