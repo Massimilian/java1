@@ -13,4 +13,7 @@ public class OrderItem {
         this.count = count;
         this.price = price;
     }
+
+    public OrderItem() {
+    }
 }
