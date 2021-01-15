@@ -363,7 +363,7 @@ public class SeaBattleAlg {
 
     static void test() {
         System.out.println("Sea battle");
-        SeaBattle seaBattle = new SeaBattle(true);
+        SeaBattle seaBattle = new SeaBattle();
         new SeaBattleAlg().battleAlgorithm(seaBattle);
         System.out.println(seaBattle.getResult());
     }
