@@ -1,4 +1,4 @@
-package ru.progwards.java1.lessons.SeaBattle.vasalekmas;
+package ru.progwards.java1.SeaBattle.vasalekmas;
 
 import ru.progwards.java1.SeaBattle.SeaBattle;
 
@@ -48,7 +48,7 @@ public class SeaBattleAlg {
         int count = 3;
         initTest(seaBattle);
         for (int i = 0; i < 3; i++) {
-            hits = this.round(seaBattle, hits, count);
+            hits = this.round(seaBattle, count);
             count--;
             if (hits >= 20) {
                 return;
@@ -65,11 +65,13 @@ public class SeaBattleAlg {
         this.hits = 0;
     }
 
-    private int round(SeaBattle seaBattle, int hits, int count) {
+    private int round(SeaBattle seaBattle, int count) {
         int x = 0;
         int y = 0;
+        int step = count;
         while (y < 10) {
-            x = notInOneLine(x, y, count);
+//            x = notInOneLine(x, y, count);
+
             if (test[x][y] == '*') {
                 SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
                 if (fireResult == SeaBattle.FireResult.HIT || fireResult == SeaBattle.FireResult.DESTROYED) {
@@ -88,7 +90,7 @@ public class SeaBattleAlg {
             }
             x += count;
             if (x >= 10) {
-                x -= 10;
+                x = count - --step;
                 y++;
             }
             if (hits >= 20) {
