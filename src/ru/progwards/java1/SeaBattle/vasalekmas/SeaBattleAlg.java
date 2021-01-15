@@ -45,7 +45,7 @@ public class SeaBattleAlg {
     public void battleAlgorithm(SeaBattle seaBattle) {
         // пример алгоритма:
         // стрельба по всем квадратам поля полным перебором
-        int count = 3;
+        int count = 4;
         initTest(seaBattle);
         for (int i = 0; i < 3; i++) {
             hits = this.round(seaBattle, count);
@@ -70,7 +70,6 @@ public class SeaBattleAlg {
         int y = 0;
         int step = count;
         while (y < 10) {
-//            x = notInOneLine(x, y, count);
             System.out.println("X: " + x + "; Y: " + y);
             if (test[x][y] == '*') {
                 SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
@@ -88,7 +87,7 @@ public class SeaBattleAlg {
             }
             x += count;
             if (x >= 10) {
-                x =  count - --step;
+                x = count - --step;
                 if (x == count) {
                     step = count;
                     x = 0;
