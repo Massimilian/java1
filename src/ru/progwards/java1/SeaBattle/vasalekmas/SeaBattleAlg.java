@@ -99,10 +99,7 @@ public class SeaBattleAlg {
                 }
                 y++;
             }
-            if (allShipsDown()) {
-                break;
-            }
-            if (ships[round] == 0) {
+            if (allShipsDown() || ships[round] == 0) {
                 break;
             }
         }
