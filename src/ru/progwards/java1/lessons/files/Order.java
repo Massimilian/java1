@@ -22,7 +22,4 @@ public class Order {
         this.items = items;
         this.sum = sum;
     }
-
-    public Order() {
-    }
 }

@@ -1,38 +1,92 @@
 package ru.progwards.java1.lessons;
 
-
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.time.zone.ZoneRules;
-import java.util.Date;
-import java.util.Locale;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Collections;
 
 public class Test {
-    Date createDate() {
-        return new Date(509922000000L);
+    String createFolder(String name) {
+        String s = Paths.get(".").toAbsolutePath().normalize().resolve(name).toString(); // создаём путь к текущей папке
+        File file = new File(s);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        return Paths.get("..").toAbsolutePath().normalize().toString();
     }
 
-    Instant createInstant() {
-        return Instant.parse("2020-01-01T15:00:00Z").plusNanos(1);
+    boolean replaceF(String name) {
+        try {
+            Path path = Path.of(name);
+            String s = Files.readString(path);
+            s = s.replaceAll("[F]", "f");
+            Files.writeString(path, s);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
-// Напишите метод, с сигнатурой ZonedDateTime parseZDT(String str),
-// который возвращает ZonedDateTime, парся строку вида
-// "01.01.2020 16:27:14.444 +0300 Moscow Standard Time"
-    ZonedDateTime parseZDT(String str) {
-        ZoneRules zg;
-        str = String.format("%s:%s", str.substring(0, 27), str.substring(27, 29));
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.uuuu HH:m:s.SSS z");
-        LocalDateTime ldt = LocalDateTime.parse(str, dtf);
-        ZonedDateTime z = ZonedDateTime.of(ldt, ZoneId.of("Europe/Moscow"));
-        return z;
+    public static void main(String[] args) throws IOException {
+        char[][] test = new char[10][10];
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                test[i][j] = '*';
+            }
+        }
+        int x = 0;
+        int y = 0;
+        int count = 3;
+        while (y < 10) {
+            if (test[x][y] == '0') {
+                System.out.println("Position " + x + " " + y + " skipped.");
+            }
+            test[x][y] = '0';
+            x += count;
+            if (x >= 10) {
+                x -= 10;
+                y++;
+            }
+        }
+        x = 0;
+        y = 0;
+        count--;
+        while (y < 10) {
+            if (test[x][y] == '0') {
+                System.out.println("Position " + x + " " + y + " skipped.");
+            }
+            test[x][y] = '0';
+            x += count;
+            if (x >= 10) {
+                x -= 10;
+                y++;
+            }
+        }
+        x = 0;
+        y = 0;
+        count--;
+        while (y < 10) {
+            if (test[x][y] == '0') {
+                System.out.println("Position " + x + " " + y + " skipped.");
+            }
+            test[x][y] = '0';
+            x += count;
+            if (x >= 10) {
+                x -= 10;
+                y++;
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(test[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
-
-    public static void main(String[] args) {
-        Test test = new Test();
-        ZonedDateTime zdt = test.parseZDT("01.01.2020 16:27:14.444 +0300 Moscow Standard Time");
-    }
 }
