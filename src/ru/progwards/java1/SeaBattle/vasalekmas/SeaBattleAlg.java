@@ -108,8 +108,8 @@ public class SeaBattleAlg {
 
     private boolean allShipsDown() {
         boolean result = true;
-        for (int i = 0; i < ships.length; i++) {
-            result = ships[i] == 0;
+        for (int ship : ships) {
+            result = ship == 0;
             if (!result) {
                 break;
             }
