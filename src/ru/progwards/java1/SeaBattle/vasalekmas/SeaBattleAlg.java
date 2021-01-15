@@ -33,7 +33,8 @@ public class SeaBattleAlg {
 
     char field[][];
     char test[][];
-    int hits;
+    int[] ships;
+    int numberOfHits = 1;
 
     void init(SeaBattle seaBattle) {
         field = new char[seaBattle.getSizeY()][seaBattle.getSizeX()];
@@ -46,14 +47,16 @@ public class SeaBattleAlg {
         // пример алгоритма:
         // стрельба по всем квадратам поля полным перебором
         int count = 4;
+        int roundNumber = 0;
         initTest(seaBattle);
-        for (int i = 0; i < 3; i++) {
-            hits = this.round(seaBattle, count);
+        for (int i = 0; i < 4; i++) {
+            this.round(seaBattle, count, roundNumber);
             count--;
-            if (hits >= 20) {
+            roundNumber++;
+            if (allShipsDown()) {
                 return;
             }
-            System.out.println("new round" + System.lineSeparator());
+            System.out.println("New round"  + System.lineSeparator() + System.lineSeparator() + System.lineSeparator());
         }
     }
 
@@ -62,22 +65,24 @@ public class SeaBattleAlg {
         for (int i = 0; i < seaBattle.getSizeY(); i++) {
             Arrays.fill(this.test[i], '*');
         }
-        this.hits = 0;
+        ships = new int[]{1, 2, 3, 4};
     }
 
-    private int round(SeaBattle seaBattle, int count) {
+    private void round(SeaBattle seaBattle, int count, int round) {
         int x = 0;
         int y = 0;
         int step = count;
+        boolean endAtThisRound = false;
         while (y < 10) {
             System.out.println("X: " + x + "; Y: " + y);
             if (test[x][y] == '*') {
                 SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
                 if (fireResult == SeaBattle.FireResult.HIT || fireResult == SeaBattle.FireResult.DESTROYED) {
-                    hits++;
                     test[x][y] = 'Z';
                     if (fireResult == SeaBattle.FireResult.HIT) {
-                        hardWork(seaBattle, x, y);
+                        hardWork(seaBattle, x, y, round);
+                    } else {
+                        ships[3]--;
                     }
                 } else if (fireResult == SeaBattle.FireResult.MISS) {
                     test[x][y] = '0';
@@ -94,18 +99,31 @@ public class SeaBattleAlg {
                 }
                 y++;
             }
-            if (hits >= 20) {
+            if (allShipsDown()) {
+                break;
+            }
+            if (ships[round] == 0) {
                 break;
             }
         }
         show();
-        return hits;
+    }
+
+    private boolean allShipsDown() {
+        boolean result = true;
+        for (int i = 0; i < ships.length; i++) {
+            result = ships[i] == 0;
+            if (!result) {
+                break;
+            }
+        }
+        return result;
     }
 
     //   ***
     //   *Z*
     //   ***
-    private void hardWork(SeaBattle seaBattle, int x, int y) {
+    private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
         String result = "";
         boolean up = x > 0 && test[x - 1][y] == '*';
         boolean down = x < 9 && test[x + 1][y] == '*';
@@ -175,7 +193,7 @@ public class SeaBattleAlg {
         boolean left = y > 0 && test[x][y - 1] == '*';
         SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
         if (fireResult == SeaBattle.FireResult.HIT) {
-            hits++;
+            numberOfHits++;
             test[x][y] = 'Z';
             if (left) {
                 result = tryLeft(seaBattle, x, y);
@@ -183,7 +201,8 @@ public class SeaBattleAlg {
                 result = "Left is all";
             }
         } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            hits++;
+            numberOfHits++;
+            checkFleet();
             test[x][y] = 'Z';
             result = "Killed";
         } else if (fireResult == SeaBattle.FireResult.MISS) {
@@ -199,7 +218,7 @@ public class SeaBattleAlg {
         boolean right = y < 9 && test[x][y + 1] == '*';
         SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
         if (fireResult == SeaBattle.FireResult.HIT) {
-            hits++;
+            numberOfHits++;
             test[x][y] = 'Z';
             if (right) {
                 result = tryRight(seaBattle, x, y);
@@ -207,7 +226,8 @@ public class SeaBattleAlg {
                 result = "Right is all";
             }
         } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            hits++;
+            numberOfHits++;
+            checkFleet();
             test[x][y] = 'Z';
             result = "Killed";
         } else if (fireResult == SeaBattle.FireResult.MISS) {
@@ -223,7 +243,7 @@ public class SeaBattleAlg {
         boolean down = x < 9 && test[x + 1][y] == '*';
         SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
         if (fireResult == SeaBattle.FireResult.HIT) {
-            hits++;
+            numberOfHits++;
             test[x][y] = 'Z';
             if (down) {
                 result = tryDown(seaBattle, x, y);
@@ -231,7 +251,8 @@ public class SeaBattleAlg {
                 result = "Down is all";
             }
         } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            hits++;
+            numberOfHits++;
+            checkFleet();
             test[x][y] = 'Z';
             result = "Killed";
         } else if (fireResult == SeaBattle.FireResult.MISS) {
@@ -247,7 +268,7 @@ public class SeaBattleAlg {
         boolean up = x > 0 && test[x - 1][y] == '*';
         SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
         if (fireResult == SeaBattle.FireResult.HIT) {
-            hits++;
+            numberOfHits++;
             test[x][y] = 'Z';
             if (up) {
                 result = tryUp(seaBattle, x, y);
@@ -255,7 +276,8 @@ public class SeaBattleAlg {
                 result = "Up is all";
             }
         } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            hits++;
+            numberOfHits++;
+            checkFleet();
             test[x][y] = 'Z';
             result = "Killed";
         } else if (fireResult == SeaBattle.FireResult.MISS) {
@@ -263,6 +285,17 @@ public class SeaBattleAlg {
             test[x][y] = '0';
         }
         return result;
+    }
+
+    private void checkFleet() {
+        if (numberOfHits == 2) {
+            ships[2]--;
+        } else if (numberOfHits == 3) {
+            ships[1]--;
+        } else if (numberOfHits == 4) {
+            ships[0]--;
+        }
+        numberOfHits = 1;
     }
 
 
@@ -330,7 +363,7 @@ public class SeaBattleAlg {
 
     static void test() {
         System.out.println("Sea battle");
-        SeaBattle seaBattle = new SeaBattle();
+        SeaBattle seaBattle = new SeaBattle(true);
         new SeaBattleAlg().battleAlgorithm(seaBattle);
         System.out.println(seaBattle.getResult());
     }
