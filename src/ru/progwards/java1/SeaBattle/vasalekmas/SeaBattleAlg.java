@@ -71,7 +71,7 @@ public class SeaBattleAlg {
         int step = count;
         while (y < 10) {
 //            x = notInOneLine(x, y, count);
-
+            System.out.println("X: " + x + "; Y: " + y);
             if (test[x][y] == '*') {
                 SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
                 if (fireResult == SeaBattle.FireResult.HIT || fireResult == SeaBattle.FireResult.DESTROYED) {
@@ -85,12 +85,14 @@ public class SeaBattleAlg {
                 }
                 addNulls();
                 show();
-            } else {
-                System.out.println("The same: " + x + " " + y);
             }
             x += count;
             if (x >= 10) {
-                x = count - --step;
+                x =  count - --step;
+                if (x == count) {
+                    step = count;
+                    x = 0;
+                }
                 y++;
             }
             if (hits >= 20) {
