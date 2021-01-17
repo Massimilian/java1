@@ -116,67 +116,67 @@ public class SeaBattleAlg {
         return result;
     }
 
-//    private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
-//        String result = "";
-//        boolean up = x > 0 && test[x - 1][y] == '*';
-//        boolean down = x < 9 && test[x + 1][y] == '*';
-//        boolean right = y < 9 && test[x][y + 1] == '*';
-//        boolean left = y > 0 && test[x][y - 1] == '*';
-//        while (!result.equals("Killed")) {
-//            if (up) {
-//                result = tryUp(seaBattle, x, y);
-//                if (result.equals("Change from up") || result.equals("Up is all") || result.equals("Killed")) {
-//                    up = false;
-//                }
-//                if (result.equals("Up is all") || result.equals("Killed")) {
-//                    right = false;
-//                    left = false;
-//                }
-//                if (result.equals("Killed")) {
-//                    down = false;
-//                }
-//            }
-//            if (down) {
-//                result = tryDown(seaBattle, x, y);
-//                if (result.equals("Change from down") || result.equals("Down is all") || result.equals("Killed")) {
-//                    down = false;
-//                }
-//                if (result.equals("Down is all") || result.equals("Killed")) {
-//                    right = false;
-//                    left = false;
-//                }
-//                if (result.equals("Killed")) {
-//                    up = false;
-//                }
-//            }
-//            if (right) {
-//                result = tryRight(seaBattle, x, y);
-//                if (result.equals("Change from right") || result.equals("Right is all") || result.equals("Killed")) {
-//                    right = false;
-//                }
-//                if (result.equals("Right is all") || result.equals("Killed")) {
-//                    up = false;
-//                    down = false;
-//                }
-//                if (result.equals("Killed")) {
-//                    left = false;
-//                }
-//            }
-//            if (left) {
-//                result = tryLeft(seaBattle, x, y);
-//                if (result.equals("Change from left") || result.equals("Left is all") || result.equals("Killed")) {
-//                    left = false;
-//                }
-//                if (result.equals("Left is all") || result.equals("Killed")) {
-//                    up = false;
-//                    down = false;
-//                }
-//                if (result.equals("Killed")) {
-//                    right = false;
-//                }
-//            }
-//        }
-//    }
+    private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
+        String result = "";
+        boolean up = x > 0 && test[x - 1][y] == '*';
+        boolean down = x < 9 && test[x + 1][y] == '*';
+        boolean right = y < 9 && test[x][y + 1] == '*';
+        boolean left = y > 0 && test[x][y - 1] == '*';
+        while (!result.equals("Killed")) {
+            if (up) {
+                result = tryUp(seaBattle, x, y);
+                if (result.equals("Change from up") || result.equals("Up is all") || result.equals("Killed")) {
+                    up = false;
+                }
+                if (result.equals("Up is all") || result.equals("Killed")) {
+                    right = false;
+                    left = false;
+                }
+                if (result.equals("Killed")) {
+                    down = false;
+                }
+            }
+            if (down) {
+                result = tryDown(seaBattle, x, y);
+                if (result.equals("Change from down") || result.equals("Down is all") || result.equals("Killed")) {
+                    down = false;
+                }
+                if (result.equals("Down is all") || result.equals("Killed")) {
+                    right = false;
+                    left = false;
+                }
+                if (result.equals("Killed")) {
+                    up = false;
+                }
+            }
+            if (right) {
+                result = tryRight(seaBattle, x, y);
+                if (result.equals("Change from right") || result.equals("Right is all") || result.equals("Killed")) {
+                    right = false;
+                }
+                if (result.equals("Right is all") || result.equals("Killed")) {
+                    up = false;
+                    down = false;
+                }
+                if (result.equals("Killed")) {
+                    left = false;
+                }
+            }
+            if (left) {
+                result = tryLeft(seaBattle, x, y);
+                if (result.equals("Change from left") || result.equals("Left is all") || result.equals("Killed")) {
+                    left = false;
+                }
+                if (result.equals("Left is all") || result.equals("Killed")) {
+                    up = false;
+                    down = false;
+                }
+                if (result.equals("Killed")) {
+                    right = false;
+                }
+            }
+        }
+    }
 
     private String tryLeft(SeaBattle seaBattle, int x, int y) {
         String result = "";
@@ -202,6 +202,7 @@ public class SeaBattleAlg {
         }
         return result;
     }
+
     private String tryRight(SeaBattle seaBattle, int x, int y) {
         String result = "";
         y++;
@@ -250,6 +251,7 @@ public class SeaBattleAlg {
         }
         return result;
     }
+
     private String tryUp(SeaBattle seaBattle, int x, int y) {
         String result = "";
         x--;
@@ -275,26 +277,26 @@ public class SeaBattleAlg {
         return result;
     }
 
-    // new version
-    private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
-        String result = "";
-        boolean[] possibleSteps = new boolean[]{x > 0 && test[x - 1][y] == '*', x < 9 && test[x + 1][y] == '*',
-                y < 9 && test[x][y + 1] == '*', y > 0 && test[x][y - 1] == '*'};
-        while (!result.equals("Killed")) {
-            if (possibleSteps[0]) {
-                action(result = tryRightLeftStep(seaBattle, x, y, -1, false), new int[]{0, 2, 3, 1}, possibleSteps);
-            }
-            if (possibleSteps[1]) {
-                action(result = tryRightLeftStep(seaBattle, x, y, 1, false), new int[]{1, 2, 3, 0}, possibleSteps);
-            }
-            if (possibleSteps[2]) {
-                action(result = tryRightLeftStep(seaBattle, x, y, 1, true), new int[]{2, 0, 1, 3}, possibleSteps);
-            }
-            if (possibleSteps[3]) {
-                action(result = tryRightLeftStep(seaBattle, x, y, -1, true), new int[]{3, 0, 1, 2}, possibleSteps);
-            }
-        }
-    }
+// new version
+//    private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
+//        String result = "";
+//        boolean[] possibleSteps = new boolean[]{x > 0 && test[x - 1][y] == '*', x < 9 && test[x + 1][y] == '*',
+//                y < 9 && test[x][y + 1] == '*', y > 0 && test[x][y - 1] == '*'};
+//        while (!result.equals("Killed")) {
+//            if (possibleSteps[0]) {
+//                action(result = tryRightLeftStep(seaBattle, x, y, -1, false), new int[]{0, 2, 3, 1}, possibleSteps);
+//            }
+//            if (possibleSteps[1]) {
+//                action(result = tryRightLeftStep(seaBattle, x, y, 1, false), new int[]{1, 2, 3, 0}, possibleSteps);
+//            }
+//            if (possibleSteps[2]) {
+//                action(result = tryRightLeftStep(seaBattle, x, y, 1, true), new int[]{2, 0, 1, 3}, possibleSteps);
+//            }
+//            if (possibleSteps[3]) {
+//                action(result = tryRightLeftStep(seaBattle, x, y, -1, true), new int[]{3, 0, 1, 2}, possibleSteps);
+//            }
+//        }
+//    }
 
     private void action(String result, int[] ints, boolean[] possibleSteps) {
         possibleSteps[ints[0]] = threeTrueMakeFalse(result);
