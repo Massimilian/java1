@@ -31,11 +31,16 @@ public class SeaBattleAlg {
     //         8|X|.|.|.|.|.|.|X|.|.|
     //         9|X|.|.|.|X|.|.|.|.|.|
 
-    char field[][];
-    char test[][];
+    char[][] field;
+    char[][] test;
     int[] ships;
     int numberOfHits = 1;
 
+    /**
+     * Start initialisation method.
+     *
+     * @param seaBattle is a general field for work.
+     */
     void init(SeaBattle seaBattle) {
         field = new char[seaBattle.getSizeY()][seaBattle.getSizeX()];
         for (int i = 0; i < seaBattle.getSizeY(); i++) {
@@ -43,9 +48,25 @@ public class SeaBattleAlg {
         }
     }
 
+    /**
+     * Method for initialization the Test methods.
+     *
+     * @param seaBattle is a general field for work.
+     */
+    private void initTest(SeaBattle seaBattle) {
+        this.test = new char[seaBattle.getSizeY()][seaBattle.getSizeX()];
+        for (int i = 0; i < seaBattle.getSizeY(); i++) {
+            Arrays.fill(this.test[i], '*');
+        }
+        ships = new int[]{1, 2, 3, 4};
+    }
+
+    /**
+     * Method of main algorithm.
+     *
+     * @param seaBattle is a general field for work.
+     */
     public void battleAlgorithm(SeaBattle seaBattle) {
-        // пример алгоритма:
-        // стрельба по всем квадратам поля полным перебором
         int count = 4;
         int roundNumber = 0;
         initTest(seaBattle);
@@ -56,30 +77,27 @@ public class SeaBattleAlg {
             if (allShipsDown()) {
                 return;
             }
-            System.out.println("New round" + System.lineSeparator() + System.lineSeparator() + System.lineSeparator());
         }
     }
 
-    private void initTest(SeaBattle seaBattle) {
-        this.test = new char[seaBattle.getSizeY()][seaBattle.getSizeX()];
-        for (int i = 0; i < seaBattle.getSizeY(); i++) {
-            Arrays.fill(this.test[i], '*');
-        }
-        ships = new int[]{1, 2, 3, 4};
-    }
-
+    /**
+     * The method of action round
+     *
+     * @param seaBattle is a general field for work
+     * @param count     is a size of ships for find
+     * @param round     is a number of new round
+     */
     private void round(SeaBattle seaBattle, int count, int round) {
         int x = 0;
         int y = 0;
         int step = count;
         while (y < 10) {
-            System.out.println("X: " + x + "; Y: " + y);
             if (test[x][y] == '*') {
                 SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
                 if (fireResult == SeaBattle.FireResult.HIT || fireResult == SeaBattle.FireResult.DESTROYED) {
                     test[x][y] = 'Z';
                     if (fireResult == SeaBattle.FireResult.HIT) {
-                        hardWork(seaBattle, x, y, round);
+                        hardWork(seaBattle, x, y);
                     } else {
                         ships[3]--;
                     }
@@ -87,7 +105,6 @@ public class SeaBattleAlg {
                     test[x][y] = '0';
                 }
                 addNulls();
-                show();
             }
             x += count;
             if (x >= 10) {
@@ -97,18 +114,18 @@ public class SeaBattleAlg {
                     x = 0;
                 }
                 y++;
-                if (y == 9) {
-                    System.out.println("for delete. Step = " + step);
-                }
-                System.out.println("y = " + y);
             }
             if (allShipsDown() || ships[round] == 0) {
                 break;
             }
         }
-        show();
     }
 
+    /**
+     * Method for check that all ships are down
+     *
+     * @return all ships are down
+     */
     private boolean allShipsDown() {
         boolean result = true;
         for (int ship : ships) {
@@ -120,7 +137,14 @@ public class SeaBattleAlg {
         return result;
     }
 
-    private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
+    /**
+     * Method of main work with concrete position
+     *
+     * @param seaBattle   is a general field
+     * @param x-parameter
+     * @param y-parameter
+     */
+    private void hardWork(SeaBattle seaBattle, int x, int y) {
         String result = "";
         boolean[] possibleSteps = new boolean[]{x > 0 && test[x - 1][y] == '*', x < 9 && test[x + 1][y] == '*',
                 y < 9 && test[x][y + 1] == '*', y > 0 && test[x][y - 1] == '*'};
@@ -140,6 +164,13 @@ public class SeaBattleAlg {
         }
     }
 
+    /**
+     * Method for corrections of the next step
+     *
+     * @param result        is a String with result of last shooting
+     * @param ints          ism the order of destinations
+     * @param possibleSteps destinations
+     */
     private void action(String result, int[] ints, boolean[] possibleSteps) {
         possibleSteps[ints[0]] = possibleSteps[ints[0]] && threeTrueMakeFalse(result);
         possibleSteps[ints[1]] = possibleSteps[ints[1]] && twoTrueMakeFalse(result);
@@ -147,22 +178,46 @@ public class SeaBattleAlg {
         possibleSteps[ints[3]] = possibleSteps[ints[3]] && oneTrueMakesFalse(result);
     }
 
+    /**
+     * Is possible step with one prohibition
+     *
+     * @param result is a String with result of last shooting
+     * @return is possibility
+     */
     private boolean oneTrueMakesFalse(String result) {
         return !result.equals("Killed");
     }
 
+    /**
+     * Is possible step with two prohibitions
+     *
+     * @param result is a String with result of last shooting
+     * @return is possibility
+     */
     private boolean twoTrueMakeFalse(String result) {
-        if (result.equals("All") || result.equals("Killed")) {
-            return false;
-        } else {
-            return true;
-        }
+        return !result.equals("All") && !result.equals("Killed");
     }
 
+    /**
+     * Is possible step with three prohibitions
+     *
+     * @param result is a String with result of last shooting
+     * @return is possibility
+     */
     private boolean threeTrueMakeFalse(String result) {
         return !(result.equals("Change") || result.equals("All") || result.equals("Killed"));
     }
 
+    /**
+     * Method for make the shooting
+     *
+     * @param seaBattle   is a main field
+     * @param x-parameter
+     * @param y-parameter
+     * @param correct     is a correct parameter to change position
+     * @param rightLeft   is this right or left moving?
+     * @return String with information about shooting
+     */
     private String tryRightLeftStep(SeaBattle seaBattle, int x, int y, int correct, boolean rightLeft) {
         String result = "";
         boolean destination;
@@ -194,6 +249,9 @@ public class SeaBattleAlg {
         return result;
     }
 
+    /**
+     * Method for check the number of alive ships
+     */
     private void checkFleet() {
         if (numberOfHits == 2) {
             ships[2]--;
@@ -205,6 +263,9 @@ public class SeaBattleAlg {
         numberOfHits = 1;
     }
 
+    /**
+     * Method for surround 'Z' with 'O'
+     */
     private void addNulls() {
         for (int i = 0; i < test.length; i++) {
             for (int j = 0; j < test[i].length; j++) {
@@ -215,6 +276,12 @@ public class SeaBattleAlg {
         }
     }
 
+    /**
+     * Method for put nulls around 'Z'
+     *
+     * @param i is x-parameter
+     * @param j is y-parameter
+     */
     private void makeNulls(int i, int j) {
         if (i > 0 && j > 0 && test[i - 1][j - 1] == '*') {
             test[i - 1][j - 1] = '0';
@@ -253,6 +320,9 @@ public class SeaBattleAlg {
         return x;
     }
 
+    /**
+     * Method for show the field with known positions
+     */
     private void show() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
@@ -263,7 +333,9 @@ public class SeaBattleAlg {
         System.out.println("---------------------");
     }
 
-
+    /**
+     * Method for test the algorithm
+     */
     static void test() {
         System.out.println("Sea battle");
         SeaBattle seaBattle = new SeaBattle();
