@@ -97,6 +97,10 @@ public class SeaBattleAlg {
                     x = 0;
                 }
                 y++;
+                if (y == 9) {
+                    System.out.println("for delete. Step = " + step);
+                }
+                System.out.println("y = " + y);
             }
             if (allShipsDown() || ships[round] == 0) {
                 break;
@@ -118,191 +122,29 @@ public class SeaBattleAlg {
 
     private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
         String result = "";
-        boolean up = x > 0 && test[x - 1][y] == '*';
-        boolean down = x < 9 && test[x + 1][y] == '*';
-        boolean right = y < 9 && test[x][y + 1] == '*';
-        boolean left = y > 0 && test[x][y - 1] == '*';
+        boolean[] possibleSteps = new boolean[]{x > 0 && test[x - 1][y] == '*', x < 9 && test[x + 1][y] == '*',
+                y < 9 && test[x][y + 1] == '*', y > 0 && test[x][y - 1] == '*'};
         while (!result.equals("Killed")) {
-            if (up) {
-                result = tryUp(seaBattle, x, y);
-                if (result.equals("Change from up") || result.equals("Up is all") || result.equals("Killed")) {
-                    up = false;
-                }
-                if (result.equals("Up is all") || result.equals("Killed")) {
-                    right = false;
-                    left = false;
-                }
-                if (result.equals("Killed")) {
-                    down = false;
-                }
+            if (possibleSteps[0]) {
+                action(result = tryRightLeftStep(seaBattle, x, y, -1, false), new int[]{0, 2, 3, 1}, possibleSteps);
             }
-            if (down) {
-                result = tryDown(seaBattle, x, y);
-                if (result.equals("Change from down") || result.equals("Down is all") || result.equals("Killed")) {
-                    down = false;
-                }
-                if (result.equals("Down is all") || result.equals("Killed")) {
-                    right = false;
-                    left = false;
-                }
-                if (result.equals("Killed")) {
-                    up = false;
-                }
+            if (possibleSteps[1]) {
+                action(result = tryRightLeftStep(seaBattle, x, y, 1, false), new int[]{1, 2, 3, 0}, possibleSteps);
             }
-            if (right) {
-                result = tryRight(seaBattle, x, y);
-                if (result.equals("Change from right") || result.equals("Right is all") || result.equals("Killed")) {
-                    right = false;
-                }
-                if (result.equals("Right is all") || result.equals("Killed")) {
-                    up = false;
-                    down = false;
-                }
-                if (result.equals("Killed")) {
-                    left = false;
-                }
+            if (possibleSteps[2]) {
+                action(result = tryRightLeftStep(seaBattle, x, y, 1, true), new int[]{2, 0, 1, 3}, possibleSteps);
             }
-            if (left) {
-                result = tryLeft(seaBattle, x, y);
-                if (result.equals("Change from left") || result.equals("Left is all") || result.equals("Killed")) {
-                    left = false;
-                }
-                if (result.equals("Left is all") || result.equals("Killed")) {
-                    up = false;
-                    down = false;
-                }
-                if (result.equals("Killed")) {
-                    right = false;
-                }
+            if (possibleSteps[3]) {
+                action(result = tryRightLeftStep(seaBattle, x, y, -1, true), new int[]{3, 0, 1, 2}, possibleSteps);
             }
         }
     }
-
-    private String tryLeft(SeaBattle seaBattle, int x, int y) {
-        String result = "";
-        y--;
-        boolean left = y > 0 && test[x][y - 1] == '*';
-        SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
-        if (fireResult == SeaBattle.FireResult.HIT) {
-            numberOfHits++;
-            test[x][y] = 'Z';
-            if (left) {
-                result = tryLeft(seaBattle, x, y);
-            } else {
-                result = "Left is all";
-            }
-        } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            numberOfHits++;
-            checkFleet();
-            test[x][y] = 'Z';
-            result = "Killed";
-        } else if (fireResult == SeaBattle.FireResult.MISS) {
-            result = "Change from left";
-            test[x][y] = '0';
-        }
-        return result;
-    }
-
-    private String tryRight(SeaBattle seaBattle, int x, int y) {
-        String result = "";
-        y++;
-        boolean right = y < 9 && test[x][y + 1] == '*';
-        SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
-        if (fireResult == SeaBattle.FireResult.HIT) {
-            numberOfHits++;
-            test[x][y] = 'Z';
-            if (right) {
-                result = tryRight(seaBattle, x, y);
-            } else {
-                result = "Right is all";
-            }
-        } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            numberOfHits++;
-            checkFleet();
-            test[x][y] = 'Z';
-            result = "Killed";
-        } else if (fireResult == SeaBattle.FireResult.MISS) {
-            result = "Change from right";
-            test[x][y] = '0';
-        }
-        return result;
-    }
-    private String tryDown(SeaBattle seaBattle, int x, int y) {
-        String result = "";
-        x++;
-        boolean down = x < 9 && test[x + 1][y] == '*';
-        SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
-        if (fireResult == SeaBattle.FireResult.HIT) {
-            numberOfHits++;
-            test[x][y] = 'Z';
-            if (down) {
-                result = tryDown(seaBattle, x, y);
-            } else {
-                result = "Down is all";
-            }
-        } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            numberOfHits++;
-            checkFleet();
-            test[x][y] = 'Z';
-            result = "Killed";
-        } else if (fireResult == SeaBattle.FireResult.MISS) {
-            result = "Change from down";
-            test[x][y] = '0';
-        }
-        return result;
-    }
-
-    private String tryUp(SeaBattle seaBattle, int x, int y) {
-        String result = "";
-        x--;
-        boolean up = x > 0 && test[x - 1][y] == '*';
-        SeaBattle.FireResult fireResult = seaBattle.fire(x, y);
-        if (fireResult == SeaBattle.FireResult.HIT) {
-            numberOfHits++;
-            test[x][y] = 'Z';
-            if (up) {
-                result = tryUp(seaBattle, x, y);
-            } else {
-                result = "Up is all";
-            }
-        } else if (fireResult == SeaBattle.FireResult.DESTROYED) {
-            numberOfHits++;
-            checkFleet();
-            test[x][y] = 'Z';
-            result = "Killed";
-        } else if (fireResult == SeaBattle.FireResult.MISS) {
-            result = "Change from up";
-            test[x][y] = '0';
-        }
-        return result;
-    }
-
-// new version
-//    private void hardWork(SeaBattle seaBattle, int x, int y, int round) {
-//        String result = "";
-//        boolean[] possibleSteps = new boolean[]{x > 0 && test[x - 1][y] == '*', x < 9 && test[x + 1][y] == '*',
-//                y < 9 && test[x][y + 1] == '*', y > 0 && test[x][y - 1] == '*'};
-//        while (!result.equals("Killed")) {
-//            if (possibleSteps[0]) {
-//                action(result = tryRightLeftStep(seaBattle, x, y, -1, false), new int[]{0, 2, 3, 1}, possibleSteps);
-//            }
-//            if (possibleSteps[1]) {
-//                action(result = tryRightLeftStep(seaBattle, x, y, 1, false), new int[]{1, 2, 3, 0}, possibleSteps);
-//            }
-//            if (possibleSteps[2]) {
-//                action(result = tryRightLeftStep(seaBattle, x, y, 1, true), new int[]{2, 0, 1, 3}, possibleSteps);
-//            }
-//            if (possibleSteps[3]) {
-//                action(result = tryRightLeftStep(seaBattle, x, y, -1, true), new int[]{3, 0, 1, 2}, possibleSteps);
-//            }
-//        }
-//    }
 
     private void action(String result, int[] ints, boolean[] possibleSteps) {
-        possibleSteps[ints[0]] = threeTrueMakeFalse(result);
-        possibleSteps[ints[1]] = twoTrueMakeFalse(result);
-        possibleSteps[ints[2]] = twoTrueMakeFalse(result);
-        possibleSteps[ints[3]] = oneTrueMakesFalse(result);
+        possibleSteps[ints[0]] = possibleSteps[ints[0]] && threeTrueMakeFalse(result);
+        possibleSteps[ints[1]] = possibleSteps[ints[1]] && twoTrueMakeFalse(result);
+        possibleSteps[ints[2]] = possibleSteps[ints[2]] && twoTrueMakeFalse(result);
+        possibleSteps[ints[3]] = possibleSteps[ints[3]] && oneTrueMakesFalse(result);
     }
 
     private boolean oneTrueMakesFalse(String result) {
@@ -310,19 +152,23 @@ public class SeaBattleAlg {
     }
 
     private boolean twoTrueMakeFalse(String result) {
-        return !(result.equals("All") || result.equals("Killed"));
+        if (result.equals("All") || result.equals("Killed")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private boolean threeTrueMakeFalse(String result) {
         return !(result.equals("Change") || result.equals("All") || result.equals("Killed"));
     }
 
-    private String tryRightLeftStep(SeaBattle seaBattle, int x, int y, int correct, boolean upDown) {
+    private String tryRightLeftStep(SeaBattle seaBattle, int x, int y, int correct, boolean rightLeft) {
         String result = "";
         boolean destination;
-        if (upDown) {
+        if (rightLeft) {
             y += correct;
-            destination = correct < 0 ? y > 0 : y < 9 && test[x][y + correct] == '*';
+            destination = (correct < 0 ? y > 0 : y < 9) && test[x][y + correct] == '*';
         } else {
             x += correct;
             destination = correct < 0 ? x > 0 : x < 9 && test[x + correct][y] == '*';
@@ -332,7 +178,7 @@ public class SeaBattleAlg {
             numberOfHits++;
             test[x][y] = 'Z';
             if (destination) {
-                result = tryRightLeftStep(seaBattle, x, y, correct, upDown);
+                result = tryRightLeftStep(seaBattle, x, y, correct, rightLeft);
             } else {
                 result = "All";
             }
