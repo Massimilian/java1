@@ -193,7 +193,7 @@ public class OrderProcessor {
             result = datetime.toLocalDate().isAfter(start);
         }
         if (finish != null) {
-            result = datetime.toLocalDate().isBefore(finish);
+            result = datetime.toLocalDate().isBefore(finish.plusDays(1));
         }
         return result;
     }
@@ -400,24 +400,35 @@ public class OrderProcessor {
         create(two);
         Path three = Path.of("orderProcessor/3").toAbsolutePath();
         create(three);
-        Path fileOneSec = methodForWrite("orderProcessor/3/S02-P01X05-0002.csv", "Пазл “Замок в лесу”, 1, 700", "2020-01-16T17:16:16");
-        Path fileTwoSec = methodForWrite("orderProcessor/3/S01-P01X02-0002.csv", "Пазл “Замок в лесу”, 1, 700", "2020-01-14T15:14:14");
-        Path fileThreeSec = methodForWrite("orderProcessor/3/S02-P01X04-0002.csv", "Error: credit card can not be validated", "2020-01-16T17:16:16"); // содержимое данного файла не является соответствующим условию ("Содержимое каждого файла имеет формат CSV (Comma Separated Values) со следующими данными Наименование товара, количество, цена за единицу")
+        Path fileOneSec = methodForWrite("orderProcessor/3/S02-P01X05-0002.csv", "Пазл “Замок в лесу”, 1, 700",
+                "2020-01-16T17:16:16");
+        Path fileTwoSec = methodForWrite("orderProcessor/3/S01-P01X02-0002.csv", "Пазл “Замок в лесу”, 1, 700",
+                "2020-01-14T15:14:14");
+        Path fileThreeSec = methodForWrite("orderProcessor/3/S02-P01X04-0002.csv", "Error: credit card can not be validated",
+                "2020-01-16T17:16:16"); // содержимое данного файла не является соответствующим условию ("Содержимое каждого файла имеет формат CSV (Comma Separated Values) со следующими данными Наименование товара, количество, цена за единицу")
         Path fileFourSec = methodForWrite("orderProcessor/1/S01-P01X01-0001.csv",
                 String.format("Игрушка мягкая “Мишка”, 1, 1500%sПазл “Замок в лесу”, 2, 700%sКнижка “Сказки Пушкина”, 1, 300", System.lineSeparator(), System.lineSeparator()),
                 "2020-01-01T13:00");
         Path fileFiveSec = methodForWrite("orderProcessor/1/S02-P01X01-0001.csv",
                 String.format("Игрушка мягкая “Мишка”, 1, 1500%sКнижка “Сказки Пушкина”, 2, 300", System.lineSeparator()),
                 "2020-01-01T16:00");
-        Path fileSixSec = methodForWrite("orderProcessor/2/S02-P01X02-0003.csv", "Игрушка мягкая “Мишка”, 1, 1500", "2020-01-05T13:12:12");
-        Path fileSevenSec = methodForWrite("orderProcessor/2/S02-P01X03-000.csv", "Книжка “Сказки Пушкина”, 1, 300", "2020-01-10T16:15:15"); // название данного файла, строго говоря, является не соответствующим условию ("...ZZZZ - обязательные 4 символа customerId - идентификатор покупателя...")
-        Path fileEightSec = methodForWrite("orderProcessor/2/S02-P01X03-0003.csv", "Книжка “Сказки Пушкина”, 1, 300", "2020-01-10T16:15:15");
+        Path fileSixSec = methodForWrite("orderProcessor/2/S02-P01X02-0003.csv", "Игрушка мягкая “Мишка”, 1, 1500",
+                "2020-01-05T13:12:12");
+        Path fileSevenSec = methodForWrite("orderProcessor/2/S02-P01X03-000.csv", "Книжка “Сказки Пушкина”, 1, 300",
+                "2020-01-10T16:15:15"); // название данного файла, строго говоря, является не соответствующим условию ("...ZZZZ - обязательные 4 символа customerId - идентификатор покупателя...")
+        Path fileEightSec = methodForWrite("orderProcessor/2/S02-P01X03-0003.csv", "Книжка “Сказки Пушкина”, 1, 300",
+                "2020-01-10T16:15:15");
         op = new OrderProcessor("orderProcessor");
         // Итого: есть два ошибочных файла. Но тест требует указать только один. Поэтому для отработки теста считаем, что количество символов customerId (идентификатора) <= 4 (а не == 4), что является нарушением условия для грамотной отработки теста.
         int result = op.loadOrders(null, null, null);
         assert result == 1;
         op = new OrderProcessor("orderProcessor");
-        int res = op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
+        result = op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
+        assert result == 0;
+        op = new OrderProcessor("orderProcessor");
+        op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
+        Map<String, Double> map = op.statisticsByShop();
+        System.out.println();
         delete(fileOneSec);
         delete(fileTwoSec);
         delete(fileThreeSec);
