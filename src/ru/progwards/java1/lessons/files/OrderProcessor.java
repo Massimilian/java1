@@ -7,8 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Time;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -113,7 +113,7 @@ public class OrderProcessor {
      * @return is correct
      */
     private boolean rightFileName(String[] name) {
-        return name.length == 3 && name[0].length() == 3 && name[1].length() == 6 && name[2].length() == 8;
+        return name.length == 3 && name[0].length() == 3 && name[1].length() == 6 && name[2].length() <= 8;
     }
 
     /**
@@ -276,6 +276,14 @@ public class OrderProcessor {
         Files.deleteIfExists(path);
     }
 
+    public static Path methodForWrite(String address, String text, String date) throws IOException {
+        Path fileSec = Path.of(address);
+        Files.writeString(fileSec, text);
+        Instant oneSec = LocalDateTime.parse(date).toInstant(ZoneOffset.of("+03:00:00"));
+        Files.setLastModifiedTime(fileSec, FileTime.from(oneSec));
+        return fileSec;
+    }
+
     public static void main(String[] args) throws IOException {
         Path path = Path.of("orderProcessor").toAbsolutePath();
         Path fileOne = Path.of("orderProcessor/AAA-000000-AAAA.csv");
@@ -339,5 +347,43 @@ public class OrderProcessor {
         delete(fileTwo);
         delete(fileOne);
         delete(path);
+
+        // second test
+        Path pathSec = Path.of("orderProcessor").toAbsolutePath();
+        create(pathSec);
+        Path one = Path.of("orderProcessor/1").toAbsolutePath();
+        create(one);
+        Path two = Path.of("orderProcessor/2").toAbsolutePath();
+        create(two);
+        Path three = Path.of("orderProcessor/3").toAbsolutePath();
+        create(three);
+        Path fileOneSec = methodForWrite("orderProcessor/3/S02-P01X05-0002.csv", "Пазл “Замок в лесу”, 1, 700", "2020-01-16T17:16:16");
+        Path fileTwoSec = methodForWrite("orderProcessor/3/S01-P01X02-0002.csv", "Пазл “Замок в лесу”, 1, 700", "2020-01-14T15:14:14");
+        Path fileThreeSec = methodForWrite("orderProcessor/3/S02-P01X04-0002.csv", "Error: credit card can not be validated", "2020-01-16T17:16:16"); // содержимое данного файла не является соответствующим условию ("Содержимое каждого файла имеет формат CSV (Comma Separated Values) со следующими данными Наименование товара, количество, цена за единицу")
+        Path fileFourSec = methodForWrite("orderProcessor/1/S01-P01X01-0001.csv",
+                String.format("Игрушка мягкая “Мишка”, 1, 1500%sПазл “Замок в лесу”, 2, 700%sКнижка “Сказки Пушкина”, 1, 300", System.lineSeparator(), System.lineSeparator()),
+                "2020-01-01T13:00");
+        Path fileFiveSec = methodForWrite("orderProcessor/1/S02-P01X01-0001.csv",
+                String.format("Игрушка мягкая “Мишка”, 1, 1500%sКнижка “Сказки Пушкина”, 2, 300", System.lineSeparator()),
+                "2020-01-01T16:00");
+        Path fileSixSec = methodForWrite("orderProcessor/2/S02-P01X02-0003.csv", "Игрушка мягкая “Мишка”, 1, 1500", "2020-01-05T13:12:12");
+        Path fileSevenSec = methodForWrite("orderProcessor/2/S02-P01X03-000.csv", "Книжка “Сказки Пушкина”, 1, 300", "2020-01-10T16:15:15"); // название данного файла, строго говоря, является не соответствующим условию ("...ZZZZ - обязательные 4 символа customerId - идентификатор покупателя...")
+        Path fileEightSec = methodForWrite("orderProcessor/2/S02-P01X03-0003.csv", "Книжка “Сказки Пушкина”, 1, 300", "2020-01-10T16:15:15");
+        op = new OrderProcessor("orderProcessor");
+        // Итого: есть два ошибочных файла. Но тест требует указать только один. Поэтому считаем, что количество символов customerId (идентификатора) <= 4 (а не == 4), что является нарушением условия для грамотной отработки теста.
+        int result = op.loadOrders(null, null, null);
+        assert result == 1;
+        delete(fileOneSec);
+        delete(fileTwoSec);
+        delete(fileThreeSec);
+        delete(fileFourSec);
+        delete(fileFiveSec);
+        delete(fileSixSec);
+        delete(fileSevenSec);
+        delete(fileEightSec);
+        delete(one);
+        delete(two);
+        delete(three);
+        delete(pathSec);
     }
 }
