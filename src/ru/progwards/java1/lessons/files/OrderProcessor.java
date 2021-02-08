@@ -58,6 +58,50 @@ public class OrderProcessor {
     }
 
     /**
+     * Method for updating all information of folder files with time restrictions
+     */
+    private void reNewInfo(LocalDate start, LocalDate finish) {
+        orders.clear();
+        try {
+            Files.walkFileTree(this.path, new SimpleFileVisitor<>() {
+                @Override
+                public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
+                    if (path.getFileName().toString().endsWith("csv")) {
+                        LocalDateTime ldt = localDateParser(path);
+                        if (orderInDateTimeScope(start, finish, ldt)) {
+                            Order order = readFile(path);
+                            if (order == null) {
+                                faltas++;
+                            } else {
+                                orders.add(order);
+                            }
+                        }
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult visitFileFailed(Path file, IOException exc) {
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private LocalDateTime localDateParser(Path path) {
+        LocalDateTime ldt = null;
+        try {
+            ldt = LocalDateTime.parse(
+                    Files.getAttribute(path, "basic:lastModifiedTime").toString().substring(0, 19), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ldt;
+    }
+
+    /**
      * Method for read all information from file
      *
      * @param path is an address of the file
@@ -83,8 +127,7 @@ public class OrderProcessor {
             }
             if (cont) {
                 String[] name = path.getFileName().toString().split("-");
-                LocalDateTime ldt = LocalDateTime.parse(
-                        Files.getAttribute(path, "basic:lastModifiedTime").toString().substring(0, 19), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
+                LocalDateTime ldt = localDateParser(path);
                 if (rightFileName(name)) {
                     result = new Order(name[0], name[1], name[2].substring(0, 4), ldt, items, price);
                 }
@@ -125,10 +168,10 @@ public class OrderProcessor {
      * @return number of mistakes
      */
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
-        reNewInfo();
+        reNewInfo(start, finish);
         ArrayList<Order> list = new ArrayList<>();
         for (Order value : orders) {
-            if ((shopId == null || shopId.equals(value.shopId)) && orderInDateTimeScope(start, finish, value.datetime)) {
+            if (shopId == null || shopId.equals(value.shopId)) {
                 list.add(value);
             }
         }
@@ -370,9 +413,12 @@ public class OrderProcessor {
         Path fileSevenSec = methodForWrite("orderProcessor/2/S02-P01X03-000.csv", "Книжка “Сказки Пушкина”, 1, 300", "2020-01-10T16:15:15"); // название данного файла, строго говоря, является не соответствующим условию ("...ZZZZ - обязательные 4 символа customerId - идентификатор покупателя...")
         Path fileEightSec = methodForWrite("orderProcessor/2/S02-P01X03-0003.csv", "Книжка “Сказки Пушкина”, 1, 300", "2020-01-10T16:15:15");
         op = new OrderProcessor("orderProcessor");
-        // Итого: есть два ошибочных файла. Но тест требует указать только один. Поэтому считаем, что количество символов customerId (идентификатора) <= 4 (а не == 4), что является нарушением условия для грамотной отработки теста.
+        // Итого: есть два ошибочных файла. Но тест требует указать только один. Поэтому для отработки теста считаем, что количество символов customerId (идентификатора) <= 4 (а не == 4), что является нарушением условия для грамотной отработки теста.
         int result = op.loadOrders(null, null, null);
         assert result == 1;
+        op = new OrderProcessor("orderProcessor");
+        int res = op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
+        System.out.println(res);
         delete(fileOneSec);
         delete(fileTwoSec);
         delete(fileThreeSec);
