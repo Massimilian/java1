@@ -193,7 +193,7 @@ public class OrderProcessor {
             result = datetime.toLocalDate().isAfter(start);
         }
         if (finish != null) {
-            result = datetime.toLocalDate().isBefore(finish.plusDays(1));
+            result = datetime.toLocalDate().isBefore(finish);
         }
         return result;
     }
