@@ -98,7 +98,7 @@ public class OrderProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return ldt;
+        return ldt.plusHours(3);
     }
 
     /**
@@ -418,7 +418,6 @@ public class OrderProcessor {
         assert result == 1;
         op = new OrderProcessor("orderProcessor");
         int res = op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
-        System.out.println(res);
         delete(fileOneSec);
         delete(fileTwoSec);
         delete(fileThreeSec);

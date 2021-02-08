@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
-import java.time.Instant;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class Test {
     String createFolder(String name) {
@@ -32,61 +34,22 @@ public class Test {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        char[][] test = new char[10][10];
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                test[i][j] = '*';
+    String swapWords(String sentance) {
+        StringTokenizer stn = new StringTokenizer(sentance, " .,-!\n");
+        String result = "";
+        while(stn.hasMoreElements()) {
+            String one = stn.nextToken();
+            String two = "";
+            if (stn.hasMoreElements()) {
+                two = stn.nextToken();
             }
+            result += two.equals("")? one + " " : two + " " + one + " ";
         }
-        int x = 0;
-        int y = 0;
-        int count = 3;
-        while (y < 10) {
-            if (test[x][y] == '0') {
-                System.out.println("Position " + x + " " + y + " skipped.");
-            }
-            test[x][y] = '0';
-            x += count;
-            if (x >= 10) {
-                x -= 10;
-                y++;
-            }
-        }
-        x = 0;
-        y = 0;
-        count--;
-        while (y < 10) {
-            if (test[x][y] == '0') {
-                System.out.println("Position " + x + " " + y + " skipped.");
-            }
-            test[x][y] = '0';
-            x += count;
-            if (x >= 10) {
-                x -= 10;
-                y++;
-            }
-        }
-        x = 0;
-        y = 0;
-        count--;
-        while (y < 10) {
-            if (test[x][y] == '0') {
-                System.out.println("Position " + x + " " + y + " skipped.");
-            }
-            test[x][y] = '0';
-            x += count;
-            if (x >= 10) {
-                x -= 10;
-                y++;
-            }
-        }
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print(test[i][j] + " ");
-            }
-            System.out.println();
-        }
+        return result.substring(0, result.length() - 1);
     }
 
+    public static void main(String[] args) throws IOException {
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println(ldt.plusHours(3));
+    }
 }
