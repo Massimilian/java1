@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
-import java.sql.Time;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -15,7 +14,10 @@ import java.util.stream.Collectors;
 
 public class OrderProcessor {
     Path path;
+    LocalDate start = null;
+    LocalDate finish = null;
     int faltas = 0;
+
     ArrayList<Order> orders = new ArrayList<>();
 
     /**
@@ -168,6 +170,8 @@ public class OrderProcessor {
      * @return number of mistakes
      */
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
+        this.start = start;
+        this.finish = finish;
         reNewInfo(start, finish);
         ArrayList<Order> list = new ArrayList<>();
         for (Order value : orders) {
@@ -219,7 +223,11 @@ public class OrderProcessor {
      * @return the sorted list
      */
     public List<Order> process(String shopId) {
-        reNewInfo();
+        if (start == null && finish == null) {
+            reNewInfo();
+        } else {
+            reNewInfo(start, finish);
+        }
         if (shopId != null) {
             cleanByShopId(shopId);
         }
@@ -251,11 +259,14 @@ public class OrderProcessor {
      * @return Map with information<shop id, sum>
      */
     public Map<String, Double> statisticsByShop() {
-        reNewInfo();
+        if (start == null && finish == null) {
+            reNewInfo();
+        } else {
+            reNewInfo(start, finish);
+        }
         Map<String, Double> result = new HashMap<>();
         for (Order temp : orders) {
             addIfGoodOrRenovate(result, temp.shopId, temp.sum);
-
         }
         return result;
     }
@@ -281,7 +292,11 @@ public class OrderProcessor {
      * @return prepared Map<name of product, price of all sold>
      */
     public Map<String, Double> statisticsByGoods() {
-        reNewInfo();
+        if (start == null && finish == null) {
+            reNewInfo();
+        } else {
+            reNewInfo(start, finish);
+        }
         Map<String, Double> result = new HashMap<>();
         for (Order order : orders) {
             for (int j = 0; j < order.items.size(); j++) {
@@ -298,7 +313,11 @@ public class OrderProcessor {
      * @return Map with date and sum of sold
      */
     public Map<LocalDate, Double> statisticsByDay() {
-        reNewInfo();
+        if (start == null && finish == null) {
+            reNewInfo();
+        } else {
+            reNewInfo(start, finish);
+        }
         Map<LocalDate, Double> result = new HashMap<>();
         for (Order order : orders) {
             LocalDate date = order.datetime.toLocalDate();
