@@ -208,10 +208,10 @@ public class OrderProcessor {
     private boolean orderInDateTimeScope(LocalDate start, LocalDate finish, LocalDateTime datetime) {
         boolean result = true;
         if (start != null) {
-            result = datetime.toLocalDate().isAfter(start);
+            result = datetime.toLocalDate().isAfter(start.minusDays(1));
         }
-        if (finish != null) {
-            result = datetime.toLocalDate().isBefore(finish);
+        if (finish != null && result) {
+            result = datetime.toLocalDate().isBefore(finish.plusDays(1));
         }
         return result;
     }
@@ -461,7 +461,6 @@ public class OrderProcessor {
         op = new OrderProcessor("orderProcessor");
         op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
         Map<String, Double> map = op.statisticsByShop();
-        System.out.println();
         delete(fileOneSec);
         delete(fileTwoSec);
         delete(fileThreeSec);
