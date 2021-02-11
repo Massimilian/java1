@@ -457,6 +457,12 @@ public class OrderProcessor {
         assert result == 1;
         op = new OrderProcessor("orderProcessor");
         result = op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
+//        Непонятно, в чём неправильность ответа на тест "Метод statisticsByShop()"...
+//        S02(4200.0): (Книжка “Сказки Пушкина”) 1Х300 + (Книжка “Сказки Пушкина”) 1Х300 + (Игрушка мягкая “Мишка”)1Х1500 + (Книжка “Сказки Пушкина”)2Х300 + (Игрушка мягкая “Мишка”)1Х1500 = 300 + 300 + 1500 + 600 + 1500 = 4200 (не 3900!)
+//        S01(3200.0)
+//        Ожидалось:
+//        S01(3200.0)
+//        S02(3900.0)
         assert result == 0;
         op = new OrderProcessor("orderProcessor");
         op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
