@@ -92,6 +92,39 @@ public class OrderProcessor {
         }
     }
 
+    /**
+     * Method for updating all information of folder files with time restrictions
+     */
+    private void reNewInfo(LocalDate start, LocalDate finish, String shopId) {
+        orders.clear();
+        try {
+            Files.walkFileTree(this.path, new SimpleFileVisitor<>() {
+                @Override
+                public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) {
+                    if (path.getFileName().toString().endsWith("csv") && (shopId == null || path.getFileName().toString().startsWith(shopId))) {
+                        LocalDateTime ldt = localDateParser(path);
+                        if (orderInDateTimeScope(start, finish, ldt)) {
+                            Order order = readFile(path);
+                            if (order == null) {
+                                faltas++;
+                            } else {
+                                orders.add(order);
+                            }
+                        }
+                    }
+                    return FileVisitResult.CONTINUE;
+                }
+
+                @Override
+                public FileVisitResult visitFileFailed(Path file, IOException exc) {
+                    return FileVisitResult.CONTINUE;
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private LocalDateTime localDateParser(Path path) {
         LocalDateTime ldt = null;
         try {
@@ -172,7 +205,7 @@ public class OrderProcessor {
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
         this.start = start;
         this.finish = finish;
-        reNewInfo(start, finish);
+        reNewInfo(start, finish, shopId);
         ArrayList<Order> list = new ArrayList<>();
         for (Order value : orders) {
             if (shopId == null || shopId.equals(value.shopId)) {
@@ -467,6 +500,8 @@ public class OrderProcessor {
         op = new OrderProcessor("orderProcessor");
         op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
         Map<String, Double> map = op.statisticsByShop();
+        op = new OrderProcessor("orderProcessor");
+        op.loadOrders(null, LocalDate.of(2020, Month.JANUARY, 16), "S01");
         delete(fileOneSec);
         delete(fileTwoSec);
         delete(fileThreeSec);
