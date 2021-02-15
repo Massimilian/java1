@@ -196,7 +196,7 @@ public class OrderProcessor {
      */
     private boolean rightFileName(String[] name) {
         return name.length == 3 && name[0].length() == 3 && name[1].length()
-                == 6 && name[2].length() <= 7;
+                == 6 && name[2].length() == 8;
     }
 
     /**
@@ -490,17 +490,10 @@ public class OrderProcessor {
         Path fileEightSec = methodForWrite("orderProcessor/2/S02-P01X03-0003.csv", "Книжка “Сказки Пушкина”, 1, 300",
                 "2020-01-10T16:15:15");
         OrderProcessor op = new OrderProcessor("orderProcessor");
-        // Итого: есть два ошибочных файла. Но тест требует указать только один. Поэтому для отработки теста считаем, что количество символов customerId (идентификатора) <= 4 (а не == 4), что является нарушением условия для грамотной отработки теста.
         int result = op.loadOrders(null, null, null);
         assert result == 1;
         op = new OrderProcessor("orderProcessor");
         result = op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
-//        Непонятно, в чём неправильность ответа на тест "Метод statisticsByShop()"...
-//        S02(4200.0): (Книжка “Сказки Пушкина”) 1Х300 + (Книжка “Сказки Пушкина”) 1Х300 + (Игрушка мягкая “Мишка”)1Х1500 + (Книжка “Сказки Пушкина”)2Х300 + (Игрушка мягкая “Мишка”)1Х1500 = 300 + 300 + 1500 + 600 + 1500 = 4200 (не 3900!)
-//        S01(3200.0)
-//        Ожидалось:
-//        S01(3200.0)
-//        S02(3900.0)
         assert result == 0;
         op = new OrderProcessor("orderProcessor");
         op.loadOrders(LocalDate.of(2020, Month.JANUARY, 1), LocalDate.of(2020, Month.JANUARY, 10), null);
