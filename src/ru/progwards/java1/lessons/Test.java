@@ -49,7 +49,8 @@ public class Test {
     }
 
     public static void main(String[] args) throws IOException {
-        LocalDateTime ldt = LocalDateTime.now();
-        System.out.println(ldt.plusHours(3));
+        LocalDate ldt = LocalDate.now();
+        System.out.println(ldt.isBefore(LocalDate.of(2200, 10, 10)));
+
     }
 }
