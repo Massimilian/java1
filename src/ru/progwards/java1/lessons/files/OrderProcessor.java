@@ -313,7 +313,7 @@ public class OrderProcessor {
         } else {
             reNewInfo(start, finish);
         }
-        Map<String, Double> result = new HashMap<>();
+        Map<String, Double> result = new LinkedHashMap<>();
         for (Order temp : orders) {
             addIfGoodOrRenovate(result, temp.shopId, temp.sum);
         }
