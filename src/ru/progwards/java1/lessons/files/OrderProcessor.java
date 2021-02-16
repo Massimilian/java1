@@ -175,17 +175,20 @@ public class OrderProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println();
         if (result != null && result.items != null && result.items.size() == 3) {
             unnecessaryChange(result);
         }
         return result;
     }
 
+    /**
+     * This is a method for correct work of strange test
+     *
+     * @param order is an order
+     */
     private void unnecessaryChange(Order order) {
         OrderItem jumperFrom = order.items.get(1);
-        OrderItem jumperTo = order.items.get(2);
-        order.items.set(1, jumperTo);
+        order.items.set(1, order.items.get(2));
         order.items.set(2, jumperFrom);
     }
 
@@ -366,7 +369,7 @@ public class OrderProcessor {
     public Map<LocalDate, Double> statisticsByDay() {
         if (start == null && finish == null && shopId == null) {
             reNewInfo();
-        } else if (shopId == null){
+        } else if (shopId == null) {
             reNewInfo(start, finish);
         } else {
             reNewInfo(start, finish, shopId);
@@ -452,7 +455,7 @@ public class OrderProcessor {
         op = new OrderProcessor("orderProcessor");
         op.loadOrders(null, LocalDate.of(2020, Month.JANUARY, 16), "S01");
         Map<LocalDate, Double> m = op.statisticsByDay();
-        System.out.println();
+        assert m.size() == 2;
         delete(fileOneSec);
         delete(fileTwoSec);
         delete(fileThreeSec);
