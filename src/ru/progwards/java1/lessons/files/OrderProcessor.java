@@ -16,6 +16,7 @@ public class OrderProcessor {
     Path path;
     LocalDate start = null;
     LocalDate finish = null;
+    String shopId = null;
     int faltas = 0;
 
     ArrayList<Order> orders = new ArrayList<>();
@@ -221,6 +222,7 @@ public class OrderProcessor {
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
         this.start = start;
         this.finish = finish;
+        this.shopId = shopId;
         reNewInfo(start, finish, shopId);
         ArrayList<Order> list = new ArrayList<>();
         for (Order value : orders) {
@@ -362,12 +364,14 @@ public class OrderProcessor {
      * @return Map with date and sum of sold
      */
     public Map<LocalDate, Double> statisticsByDay() {
-        if (start == null && finish == null) {
+        if (start == null && finish == null && shopId == null) {
             reNewInfo();
-        } else {
+        } else if (shopId == null){
             reNewInfo(start, finish);
+        } else {
+            reNewInfo(start, finish, shopId);
         }
-        Map<LocalDate, Double> result = new HashMap<>();
+        Map<LocalDate, Double> result = new LinkedHashMap<>();
         for (Order order : orders) {
             LocalDate date = order.datetime.toLocalDate();
             if (result.containsKey(date)) {
@@ -447,6 +451,7 @@ public class OrderProcessor {
         Map<String, Double> map = op.statisticsByShop();
         op = new OrderProcessor("orderProcessor");
         op.loadOrders(null, LocalDate.of(2020, Month.JANUARY, 16), "S01");
+        Map<LocalDate, Double> m = op.statisticsByDay();
         System.out.println();
         delete(fileOneSec);
         delete(fileTwoSec);
