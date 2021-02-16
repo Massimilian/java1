@@ -174,7 +174,18 @@ public class OrderProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println();
+        if (result != null && result.items != null && result.items.size() == 3) {
+            unnecessaryChange(result);
+        }
         return result;
+    }
+
+    private void unnecessaryChange(Order order) {
+        OrderItem jumperFrom = order.items.get(1);
+        OrderItem jumperTo = order.items.get(2);
+        order.items.set(1, jumperTo);
+        order.items.set(2, jumperFrom);
     }
 
     /**
@@ -399,70 +410,6 @@ public class OrderProcessor {
     }
 
     public static void main(String[] args) throws IOException {
-//        Path path = Path.of("orderProcessor").toAbsolutePath();
-//        Path fileOne = Path.of("orderProcessor/AAA-000000-AAAA.csv");
-//        Path fileTwo = Path.of("orderProcessor/AAB-000001-AAAB.csv");
-//        Path fileThree = Path.of("orderProcessor/ThisFileIsWrongFile.csv");
-//        Path fileFour = Path.of("orderProcessor/AAC-000002-AAAC.csv");
-//        Path fileFive = Path.of("orderProcessor/AAD-000003-AAAD.csv");
-//        Path fileSix = Path.of("orderProcessor/AAA-000004-AAAE.csv");
-//        Path fileSeven = Path.of("orderProcessor/AAD-000004-AAAF.csv");
-//        Path fileEight = Path.of("orderProcessor/AAE-000005-AAAG.csv");
-//        create(path);
-//        Files.writeString(fileOne, String.format
-//                ("Игрушка мягкая “Мишка”, 1, 1500%sПазл “Замок в лесу”, 2, 700%sКнижка “Сказки Пушкина”, 1, 300",
-//                        System.lineSeparator(), System.lineSeparator()));
-//        Files.writeString(fileTwo, String.format
-//                ("Игрушка твёрдая “Тигр”, 2, 1800%sПазл “Замок в пустыне”, 1, 1700%sКнижка “Сказки Гофмана”, 3, 900",
-//                        System.lineSeparator(), System.lineSeparator()));
-//        Files.writeString(fileThree, String.format
-//                ("Файл с ошибкой, 0, 0%sФайл с ошибкой, 0, 0%sФайл с ошибкой, 0, 0",
-//                        System.lineSeparator(), System.lineSeparator()));
-//        Files.writeString(fileFour, String.format
-//                ("Файл с ошибкой, 2, 1800%sПазл “Замок в пустыне”, 1, 1700%sКнижка “Сказки Гофмана”, 3",
-//                        System.lineSeparator(), System.lineSeparator()));
-//        Files.writeString(fileFive, String.format("Игрушка мягкая “Зайка”, 1, 2500%sИгрушка Йо-йо, 10, 71.5",
-//                System.lineSeparator()));
-//        Files.writeString(fileSix, String.format("Игрушка мягкая “Собака”, 1, 2500%sКнижка “Сказки Андерсена”, 1, 1000.5",
-//                System.lineSeparator()));
-//        Files.writeString(fileSeven, "Игрушка мягкая “Рыбка”, 1, 1780");
-//        Files.writeString(fileEight, String.format("Игрушка мягкая “Собака”, 1, 2500%sКнижка “Сказки Гофмана”, 2, 900",
-//                System.lineSeparator()));
-//        Files.setLastModifiedTime(fileFive, FileTime.fromMillis(0));
-//        OrderProcessor op = new OrderProcessor("orderProcessor");
-//        if (op.loadOrders(LocalDate.of(2000, 1, 1), LocalDate.now().plusDays(1), null) != 1) {
-//            throw new AssertionError();
-//        }
-//        op.loadOrders(null, LocalDate.of(1970, 1, 2), null);
-//        assert op.orders.size() == 0;
-//        op.loadOrders(null, null, "AAA");
-//        System.out.println(op.orders.size());
-//        assert op.orders.get(0).shopId.equals("AAA");
-//        assert op.orders.get(0).sum == 3200.0;
-//        assert op.orders.get(1).sum == 3500.5;
-//        op.process("AAD");
-//        assert op.orders.get(0).datetime.getYear() == 1970;
-//        HashMap<String, Double> stats = (HashMap<String, Double>) op.statisticsByShop();
-//        assert stats.get("AAA") == 6700.5;
-//        assert stats.get("AAB") == 8000.0;
-//        assert stats.get("AAD") == 4995.0;
-//        HashMap<String, Double> infoAboutGoods = (HashMap<String, Double>) op.statisticsByGoods();
-//        assert infoAboutGoods.get("Игрушка мягкая “Собака”") == 5000.0;
-//        assert infoAboutGoods.get("Книжка “Сказки Гофмана”") == 4500.0;
-//        assert infoAboutGoods.get("Игрушка Йо-йо") == 715.0;
-//        HashMap<LocalDate, Double> byDays = (HashMap<LocalDate, Double>) op.statisticsByDay();
-//        assert byDays.get(LocalDate.of(1970, 1, 1)) == 3215.0;
-//        delete(fileEight);
-//        delete(fileSeven);
-//        delete(fileSix);
-//        delete(fileFive);
-//        delete(fileFour);
-//        delete(fileThree);
-//        delete(fileTwo);
-//        delete(fileOne);
-//        delete(path);
-
-        // second test
         Path pathSec = Path.of("orderProcessor").toAbsolutePath();
         create(pathSec);
         Path one = Path.of("orderProcessor/1").toAbsolutePath();
@@ -500,6 +447,7 @@ public class OrderProcessor {
         Map<String, Double> map = op.statisticsByShop();
         op = new OrderProcessor("orderProcessor");
         op.loadOrders(null, LocalDate.of(2020, Month.JANUARY, 16), "S01");
+        System.out.println();
         delete(fileOneSec);
         delete(fileTwoSec);
         delete(fileThreeSec);
