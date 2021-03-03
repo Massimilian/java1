@@ -1,0 +1,34 @@
+Это класс, позволяющий работу с датой «по запчастям» (годы, месяцы, дни, часы, минуты, секунды, дни недели и т.д.). Calendar – это абстрактный класс. Создание Calendar:
+•	Calendar getInstance() – используется вместо дефолтного конструктора;
+•	Calendar getInstance(Locale alocale) – календарь с указанием Locale;
+•	Calendar getInstance(TimeZone zone) – календарь с указанием TimeZone;
+•	Calendar getInstance(TimeZone zone, Locale alocale) – календарь с указанием TimeZone и Locale – предпочтительный метод.
+
+Основные методы Calendar:
+•	Date getTime() – получить Date из календаря;
+•	void setTime(Date date) – установить Date;
+•	long getTimeInMillis() – получить смещение в миллисекундах;
+•	void setTimeInMillis() – установить смещение в миллисекундах;
+•	int get(int field) – получить значение поля (по номеру – собственно, «работа с запчастями»);
+•	void set(int field, int value) – установить значение поля (по номеру – собственно, «работа с запчастями»);
+•	void clear() – полностью очищает календарь.
+•	boolean after(Object when) – проверяет, что текущая дата наступит после when;
+•	boolean before(Object when) – проверяет, что текущая дата наступит до when;
+•	boolean equals(Object obj) – проверяет на равенство две даты;
+•	int compareTo(Calendar anotherCalendar) – стандартное сравнение двух дат и возврат числового результата.
+•	void add(int field, int amount) – добавляет к полю field значение amount (значение может быть отрицательным).
+Список field можно посмотреть в документации.
+Пример использования класса:
+Calendar calendar = Calendar.getInstance();
+Date date = new Date();
+System.out.println(date); // выведем текущую дату
+System.out.println(calendar.get(Calendar.DAY_OF_YEAR)); // выведет порядковый номер дня в году (отсчёт идёт с 1)
+System.out.println(calendar.get(Calendar.MONTH)); // выведет порядковый номер месяца (отсчёт месяца идёт с ноля)
+System.out.println(calendar.get(Calendar.DAY_OF_MONTH)); // выведет порядковый номер дня месяца (отсчёт идёт с 1)
+System.out.println(calendar.get(Calendar.DAY_OF_WEEK)); // выведет порядковый номер дня недели (с воскресения, отсчёт идёт с 1) 
+calendar.add(Calendar.DAY_OF_YEAR, 10); // меняем значение дня, увеличивая на 10; при переходе на следующий месяц/год, переход произойдёт автоматически
+
+Особенность работы методы set(): можно ввести не два параметра, а от 3 (int year, int month, int day) до 6 (… + int hour, int minute, int second). При этом те данные, которые мы не указываем, будут взяты из дефолтной установки. Для того, чтобы создать календарь «с чистого листа» - надо предварительно вызвать метод clear().
+Внимание! Calendar – mutable-class! Необходима максимальная осторожность при изменениях в этом классе. При копировании следует использовать метод clone().
+
+Материалы любезно предоставлены http://progwards.ru/

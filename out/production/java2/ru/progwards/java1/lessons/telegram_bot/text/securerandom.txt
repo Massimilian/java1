@@ -1,0 +1,55 @@
+Это  - самый криптозащищённый класс по работе с псевдослучайными числами. Он наследуется от класса Random и перегружает метод setSeed(), принимая теперь не long, а массив byte. Наследник класса Random, при этом наиболее защищённый от взлома класс. Методы – те же, что и в Random:
+
+public class Main {
+    public static void main(String[] args) {
+        SecureRandom random = new SecureRandom();
+        System.out.println(random.nextInt()); // запросы, аналогичные классу Random
+        System.out.println(random.nextLong());
+        System.out.println(random.nextDouble());
+        System.out.println(random.nextFloat());
+        System.out.println(random.nextBoolean());
+
+        byte[] bytes = new byte[5];
+        random.nextBytes(bytes); // заполнение массива типами byte
+        System.out.println(Arrays.toString(bytes));
+    }
+}
+
+Установить seed можно при создании экземпляра класса – но теперь это не экземпляр long, а массив byte. А при использовании метода .setseed(long) можно обнаружить, что задание seed не является определяющим фактором – последовательности будут другие. Причём под разными платформами SecureRandom работает под разными алгоритмами, что ещё больше усложняет возможность взломать алгоритм. Итак – SecureRandom позволяет генерировать криптоустойчивые случайные значения (разные для разных алгоритмов). 
+Как уже говорилось, SecureRandom имеет несколько алгоритмов реализации псевдослучайных чисел, которые зависят от платформы, на которой работает программа, и версии JDK. На каждой системе можно выяснить алгоритм по умолчанию для экземпляра SecureRandom, провайдера (который данный алгоритм предоставляет) и список всех возможных алгоритмов, которые предоставляет система для использования с SecureRandom:
+
+public class Main {
+    public static void main(String[] args) {
+        SecureRandom random = new SecureRandom(); // данные будут показаны при выводе на системе windows
+        System.out.println(random.getAlgorithm()); // вывод алгоритма по умолчанию - DRBG
+        System.out.println(random.getProvider()); // вывод провайдера - SUN version 11
+        System.out.println(Security.getAlgorithms("SecureRandom")); // вывод всех возможных алгоритмов - [DRBG, WINDOWS-PRNG, SHA1PRNG]
+    }
+}
+Алгоритм DRBG (детерминированный генератор случайных бит) присутствует на всех операционных системах. На данный момент есть три механизма реализации криптографически стойких псевдослучайных чисел:
+•	Hash_DRBG (на основе hash-функций)
+•	HMAC_DRBG (на основе hash-кода аутентификации сообщений)
+•	CTR_DRBG (на основе блочных шифров в режиме счётчика)
+
+CTR_DRBG официально является криптографически небезопасным решением (т.е. подверженным взлому). Hash_DRBG является самым быстрым.
+Объявление нового SecureRandom осуществляется в таком порядке:
+1.	Указываем алгоритм работы SecureRandom (в данном случае DRBG) – в Security.
+2.	Указываем механизм (Hash_DRBG / HMAX_DRBG / CTR_DRBG) – в Security.
+3.	Указываем алгоритм механизма.
+4.	Указываем уровень криптостойкости (целочисленный параметр N <= 256, который делает сложность по взлому 2 в степени N).
+Например:
+
+public class Main {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        Security.setProperty("securerandom.drbg.config", "HASH_DRBG, SHA-512"); // устанавливаем механизм внутрь алгоритма
+        SecureRandom random = SecureRandom.getInstance("DRBG", DrbgParameters.instantiation(256, PR_AND_RESEED, null)); // устанавливаем алгоритм SecureRandom, алгоритм механизма и его сложность.
+        System.out.println(random.nextInt()); // выводим случайное int
+    }
+}
+
+В этом примере мы указали, что следует использовать механизм Hash_DRBG на алгоритме SHA-512 с уровнем криптостойкости 256.
+
+...
+Для продолжения наберите "securerando2"
+
+Материалы любезно предоставлены http://progwards.ru/

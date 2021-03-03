@@ -1,139 +1,77 @@
 package ru.progwards.java2.lessons.recursion;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * Class to turn any number in all possible summing strings
+ */
 public class AsNumbersSum {
-    public static ArrayList<ArrayList<Integer>> list;
+    private final ArrayList<ArrayList<Integer>> list = new ArrayList<>();
 
+    /**
+     * Main method to prepare the summing String
+     * @param number for prepare
+     * @return prepares String
+     */
     public static String asNumbersSum(int number) {
-        String result = null;
-        if (number > 0) {
-            list = new ArrayList<>();
-            asNumberSumTwo(list, number);
-            list = (ArrayList<ArrayList<Integer>>) list.stream().distinct().collect(Collectors.toList());
-            result = finalPrepare(list);
-        }
-        return result;
+        AsNumbersSum ans = new AsNumbersSum();
+        ArrayList<Integer> temp = new ArrayList<>();
+        temp.add(number);
+        ans.fastAdd(temp);
+        ans.rebuild(number, new ArrayList<>());
+        return ans.fin(ans.list.stream().distinct().collect(Collectors.toList()));
     }
 
-    private static void asNumberSumTwo(ArrayList<ArrayList<Integer>> list, int number) {
-        ArrayList<Integer> last = new ArrayList<>();
-        while (number != -1) {
-            last.add(1);
-            number--;
-        }
-        list.add(last);
-        merge(last, 2);
+    /**
+     * Method for add new Summing variation
+     * @param value list with numbers for sum
+     */
+    private void fastAdd(ArrayList<Integer> value) {
+        Collections.sort(value);
+        Collections.reverse(value);
+        this.list.add(value);
     }
 
-
-    private static void merge(ArrayList<Integer> temp, int num) {
-        int point = 0;
-        while (temp.size() - 1 != point) {
-            boolean changed = false;
-            if (temp.get(point) < num && point + 1 < temp.size() - 1) {
-                ArrayList<Integer> newLast = (ArrayList<Integer>) temp.clone();
-                temp = newLast;
-                temp.set(point, temp.get(point) + 1);
-                temp.set(point + 1, temp.get(point + 1) - 1);
-                changed = true;
-                if (temp.get(point + 1) == 0) {
-                    temp.remove(point + 1);
-                    point--;
-                }
-            }
-            if (changed) {
-                list.add(temp);
-                merge(temp, num + 1);
-            }
-            point++;
+    /**
+     * Method for break the summing String in different variations in recurse way
+     * @param number for break
+     * @param temp list for new break
+     */
+    private void rebuild(int number, ArrayList<Integer> temp) {
+        int first = number - 1;
+        int second = 1;
+        while (number - second != 0) {
+            ArrayList<Integer> generalTemp = (ArrayList<Integer>) temp.clone();
+            generalTemp.add(first--);
+            ArrayList<Integer> newTemp = (ArrayList<Integer>) generalTemp.clone();
+            rebuild(second, newTemp);
+            generalTemp.add(second++);
+            this.fastAdd(generalTemp);
         }
     }
 
-    private static ArrayList<ArrayList<Integer>> asNumbersSum(ArrayList<ArrayList<Integer>> list) {
-        ArrayList<Integer> last = list.get(list.size() - 1);
-        ArrayList<Integer> newLast = (ArrayList<Integer>) last.clone();
-        if (last.size() == 1 && last.get(0) != 1) {
-            newLast.set(0, last.get(0) - 1);
-            newLast.add(1);
-            list.add(newLast);
-            asNumbersSum(list);
-            return list;
-        }
-        for (int i = last.size() - 1; i > 0; i--) {
-            if (last.get(i) == 1 && last.get(i - 1) > 2) {
-                newLast.set(i, last.get(i) + 1);
-                newLast.set(i - 1, last.get(i - 1) - 1);
-                list.add(newLast);
-                asNumbersSum(list);
+    /**
+     * Method for final prepare of String
+     * @param list new variation
+     * @return prepared String
+     */
+    public String fin(List<ArrayList<Integer>> list) {
+        StringBuilder sb = new StringBuilder();
+        for (ArrayList<Integer> integers : list) {
+            for (Integer integer : integers) {
+                sb.append(String.format("%s + ", integer));
             }
-            if (last.get(i) > 1) {
-                newLast.set(i, last.get(i) - 1);
-                newLast.add(1);
-                list.add(newLast);
-                asNumbersSum(list);
-            }
+            sb.setLength(sb.length() - 3);
+            sb.append(" = ");
         }
-        if (list.get(list.size() - 1).get(0) == 2 && list.get(list.size() - 1).get(1) == 1) {
-            newLast.set(0, 1);
-            newLast.add(1);
-            list.add(newLast);
-        }
-        return list;
+        sb.setLength(sb.length() - 3);
+        return sb.toString();
     }
 
-//    private static String finalPrepare(ArrayList<ArrayList<Integer>> list) {
-//        StringBuilder finalResult = new StringBuilder();
-//        ArrayList<String> complex = new ArrayList<>();
-//        for (int i = 0; i < list.size(); i++) {
-//            StringBuilder result = new StringBuilder();
-//            result.append(list.get(i).get(0));
-//            for (int j = 1; j < list.get(i).size(); j++) {
-//                result.append(String.format("+%s", String.valueOf(list.get(i).get(j))));
-//            }
-//            complex.add(result.toString());
-//        }
-//        complex = (ArrayList<String>) complex.stream().distinct().collect(Collectors.toList());
-//        for (int i = 0; i < complex.size(); i++) {
-//            finalResult.append(complex.get(i));
-//            finalResult.append(" = ");
-//        }
-//        return finalResult.substring(0, finalResult.length() - 3);
-//    }
-
-    private static String finalPrepare(ArrayList<ArrayList<Integer>> list) {
-        list = (ArrayList<ArrayList<Integer>>) list.stream().sorted((o1, o2) -> comparator.compare(o1, o2)).collect(Collectors.toList());
-        ArrayList<String> semiResult = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            StringBuilder result = new StringBuilder();
-            ArrayList<Integer> temp = list.get(i);
-            temp.sort((o1, o2) -> o2 - o1);
-            result.append(temp.get(0));
-            for (int j = 1; j < temp.size(); j++) {
-                result.append(String.format("+%s", String.valueOf(temp.get(j))));
-            }
-            result.setLength(result.length() - 2);
-            result.append(" = ");
-            semiResult.add(result.toString());
-        }
-        String result = semiResult.stream().distinct().reduce("", (s, y) -> String.format("%s%s", s, y));
-        return  result.substring(0, result.length() - 3);
+    public static void main(String[] args) {
+        assert asNumbersSum(5).equals("5 = 4 + 1 = 3 + 1 + 1 = 3 + 2 = 2 + 2 + 1 = 2 + 1 + 1 + 1 = 1 + 1 + 1 + 1 + 1");
     }
-
-    static Comparator<ArrayList<Integer>> comparator = new Comparator<>() {
-        @Override
-        public int compare(ArrayList<Integer> o1, ArrayList<Integer> o2) {
-            int result = o1.size() - o2.size();
-            int count = 0;
-            while (result == 0 && count == (o1.size() > o2.size() ? o2.size() : o1.size())) {
-                result = o1.get(count) - o2.get(count);
-                count++;
-            }
-            return result;
-        }
-    };
 }

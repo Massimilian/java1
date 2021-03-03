@@ -1,0 +1,35 @@
+ 	Для удобной работы с коллекциями есть специальный класс Collections, при помощи которого можно делать много удобных вещей. Условно можно выделить пять групп методов Collections:
+•	Наполнение данными;
+ 	boolean addAll(Collection<? super T> c, T… elements) – добавляет все elements в коллекцию c (три точки значат, что сюда можно передать любое количество данных типа T, либо массив T[]);
+ 	void copy(List<? super T> dest, List<? extends T> src) – копирует все элементы списка src в список dest;
+ 	void fill(List<? super T> list, T obj) – наполняет список list элементом obj;
+ 	List<T> nCopies(int n, T o) – возвращает inmutable (неизменяемый) список из n элементов o.
+
+List<Integer> list = new ArrayList<>();
+Collections.addAll(list, 3, 2, 1, 4, 5); // добавляем внутрь коллекции list 5 элементов
+List<Integer> link = new LinkedList<>();
+for (int i = 0; i < 10; i++) {
+    link.add(0); // заполняем LinkedList 10 нолями
+}
+Collections.copy(link, list); // теперь первые 5 элементов будут из list (остальные останутся нолями)
+Collections.fill(link, 10); // теперь все 10 элементов link будут равны 10
+List<Integer> inmutable = Collections.nCopies(5, 0); // создаётся inmutable коллекция с 5 нолями; точный тип получившейся коллекции не важен
+
+•	Алгоритмы (сортировка и т.д.);
+ 	void sort(List<T> list) - сортирует у коллекции все ячейки по возрастающей; если объекты comparable, то в аргументы ничего передавать не надо, если нет – необходимо передать Comparator;
+ 	void sort(List<T> list, Comparator <? super T> c) – проводит сортировку в соответствии с переданным компаратором c;
+ 	void shuffle(List<?> list) – перетасовывает list случайным образом;
+ 	void shuffle(List<?> list, Random rnd) - перетасовывает listна основе генератора rnd;
+ 	void reverse(List<?> list) – меняет порядок элементов коллекции list на обратный;
+ 	Comparator<T> reverseOrder() – возвращает обратный компаратор (для типа T, у которого уже есть компаратор);
+ 	Comparator<T> reverseOrder(Comparator<T> cmp) – возвращает компаратор, обратный компаратору cmp.
+
+List<Integer> list = new ArrayList<>();
+Collections.addAll(list, 4, 3, 2, 6, 5, 1, 7); // заполняем list рандомными значениями
+Collections.sort(list); // отсортировывает list
+Collections.reverse(list); // "разворачивает" list (меняем порядок на обратный)
+Collections.shuffle(list); // полностью перемешиваем значения    
+
+...
+Для продолжения наберите "collworke2"
+Материалы любезно предоставлены http://progwards.ru/

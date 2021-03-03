@@ -1,0 +1,55 @@
+...
+Теперь попробуем исполаьзовать другой алгоритм – HMAX_DRBG:
+
+public class Main {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        Security.setProperty("securerandom.drbg.config", "HMAС_DRBG, SHA-384"); // устанавливаем механизм внутрь алгоритма
+        SecureRandom random = SecureRandom.getInstance("DRBG", DrbgParameters.instantiation(255, RESEED_ONLY, null)); // устанавливаем алгоритм SecureRandom, алгоритм механизма и его сложность.
+        System.out.println(random.nextInt()); // выводим случайное int
+    }
+}
+
+Здесь указано, что следует использовать механизм HMAC_DRBG на алгоритме SHA-384 с уровнем криптостойкости 255.
+Теперь используем алгоритм CTR_DRBG:
+
+public class Main {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        Security.setProperty("securerandom.drbg.config", "CTR_DRBG, AES-128");
+        SecureRandom random = SecureRandom.getInstance("DRBG", DrbgParameters.instantiation(112, NONE, null));
+        System.out.println(random.nextInt()); // выводим случайные int
+    }
+}
+
+Здесь указано, что следует использовать механизм CTR_DRBG на алгоритме AES-128 с уровнем криптостойкости 112.
+Cтатическая функция DrbgParameters.instantiation позволяет менять параметры стойкости алгоритма. Кроме первого параметра, обозначающего уровень криптостойкости, в ней присутствуют ещё два параметра.
+DrbgParameters.Capability обладает значениями:
+•	PR_AND_RESEED: повысить устойчивость к прогнозированию и изменять seed в процессе генерации элементов;
+•	RESEED_ONLY: изменять seed в процессе генерации элементов;
+•	NONE: не делать ничего из вышеперечисленного.
+Если установлено требование NONE, то реальное значение может оказаться и NONE, и RESEED_ONLY, и PR_AND_RESEED. А если установлено RESEED_ONLY, то реальные значения могут быть RESEED_ONLY или PR_AND_RESEED.
+
+SHA1PRNG - Seed для данного алгоритма должен быть представлен в виде byte[55]. Создание SecureRandom с данным алгоритмом осуществляется следующим образом:
+
+public class Main {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+        byte[] bytes = random.getSeed(55); // создаём набор из 55 рандомных bytes
+        random.setSeed(bytes); // устанавливаем seed 
+    }
+}
+
+Внимание! В этом алгоритме рекомендуется следить за регулярным изменением seed самостоятельно.
+
+Native - это целое семейство алгоритмов, в которые входят NativePRNG, NativePRNGBlocking, NativePRNGNonBlocking. Работают только на unix-подобных системах (то есть не Windows). 
+
+public class Main {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        SecureRandom random = SecureRandom.getInstance("NativaPRNG");
+        System.out.println(random.nextInt());
+    }
+}
+
+На Windows этот код не отработает и выдаст ошибку NoSuchAlgorithmException. 
+Самый медленный алгоритм, при этом NativePRNG и NativePRNGBlocking при определённых обстоятельствах может зависать; но при всём этом это – криптографически довольно надёжный алгоритм.
+
+Материалы любезно предоставлены http://progwards.ru/

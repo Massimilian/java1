@@ -1,0 +1,60 @@
+Сам по себе интерфейс Collection является потомком интерфейса Iterable. Интерфейс Iterable сожержит один метод Iterator<T> Iterator(), который возвращает объект типа Iterator, при этом сам Iterator – это интерфейс (соответственно, возвращаемый объект должен реализовывать этот интерфейс). Каждый вызов этого метода будет возвращать новый итератор. Реализация интерфейса Iterable внутри какого-либо класса делает возможным использование цикла for-each для данного класса.
+	У интерфейса Iterator есть несколько методов:
+•	boolean hasNext() – ответ на вопрос – есть ли ещё элементы в коллекции;
+•	E next() – получить следующий элемент коллекции, а если элемента нет – выкинется исключение NoSuchElementException;
+•	void remove() – удаляет из коллекции элемент, полученный методом next(), а если коллекция не поддерживает удаление элементов – выбросит UnsupportedOperationException.
+Пример использования итератора:
+
+List<Integer> array = new ArrayList<>();
+for (int i = 0; i < 5; i++) {
+    array.add(i + 1);
+}
+Iterator<Integer> iterator = array.iterator();
+while(iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+
+Пример удаления итератором всех чётных элементов:
+
+List<Integer> array = new ArrayList<>();
+for (int i = 0; i < 5; i++) {
+    array.add(i + 1);
+}
+Iterator<Integer> iterator = array.iterator();
+while (iterator.hasNext()) {
+    if (iterator.next() % 2 == 0) {
+        iterator.remove();
+    }
+}
+
+То же, но с упрощённым синтаксисом (с использованием лямбды):
+    List<Integer> array = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+        array.add(i + 1);
+    }
+    array.removeIf(integer -> integer % 2 == 0);
+}
+
+ListIterator – улучшенная версия стандартного итератора, которая является наследником Iterator. Помимо старых методов, появляются новые:
+•	hasPrevious() – есть ли предыдущий элемент в коллекции;
+•	previous() – переход на предыдущий элемент в коллекции, а если элемента нет – выбросится исключение NoSuchElementException;
+•	int nextIndex() – получить индекс следующего элемента коллекции;
+•	int previousIndex() – получить индекс предыдущего элемента коллекции;
+•	void set(E e) – заменить текущий элемент элементом e;
+•	void add(E e) – вставить элемент e после текущего элемента.
+
+ListIterator содержит в себе два варианта конструктора:
+•	ListIterator<E> listIterator() – создание стандартного ListIterator с позиции 0;
+•	ListIterator<E> listIterator(int index) – создание стандартного ListIterator с конкретной позиции (от 0 до реальной длины списка – size()); если index окажется вне пределов данной коллекции, то выбросится исключение IndexOutOfBoundException.
+Как уже говорилось, добавление в середину LinkedList – процесс небыстрый. Однако ListIterator может значительно ускорить этот процесс, переместив курсор в середину и регулярно добавляя туда элементы.
+DescendingIterator – обратный итератор, который обладает теми же свойствами, как и обычный итератор, но движется из конца в начало. Методы – те же, как и в обычном итераторе. DescendingIterator работает в классах-наследниках Que, например – LinkedList; в ArrayList он работать не будет.
+LinkedList<Integer> link = new LinkedList<>();
+for (int i = 0; i < 5; i++) {
+    link.add(i + 1);
+}
+Iterator<Integer> iterator = link.descendingIterator();
+while(iterator.hasNext()) {
+    System.out.println(iterator.next()); // выведет значения с конца до начала
+}
+
+Материалы любезно предоставлены http://progwards.ru/

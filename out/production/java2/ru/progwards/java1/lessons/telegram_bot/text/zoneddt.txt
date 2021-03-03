@@ -1,0 +1,35 @@
+Это класс, который помогает создать дату и время, привязанные к конкретной дате. Самый удобный класс для работы со временем. Для того, чтобы понять, в каком часовом поясе мы находимся, необходимо создать экземпляр специального класса – ZoneID. Пример использования ZoneID:
+System.out.println(ZoneId.getAvailableZoneIds()); // список возможных значений
+ZoneId zone = ZoneId.systemDefault(); // вытаскиваем конкретное ID для той зоны, в которой существует компьютер
+System.out.println(zone.getId()); // вытащить значение ID для данного ZoneID
+ZoneId anotherZone = ZoneId.of("Etc/GMT-3"); // присвоить значение пояса по Гринвичу; в данном случае -3 часа - Московское время (можно и другие значения от -14 до +12) 
+
+Способы создания ZonedDateTime:
+•	По умолчанию – через now();
+•	Так же, но с указанием ZoneId – через now(ZoneId zone);
+•	С прямым указанием всех параметров – через of(int year, int month, int dayOfMonth, int hour,  int minute, int second, int nanoOfSecond, ZoneId zone);
+•	Из LocalDate и LocalTime + ZoneId;
+•	Из LocalDateTime + ZoneId.
+ZoneId zi = ZoneId.of("Europe/Moscow"); // прямое указание зоны
+ZonedDateTime zdt = ZonedDateTime.now(zi); // получить текущее время
+LocalDate ld = LocalDate.of(1984, 03, 19); // ставим дату на 19/03/1984
+LocalTime lt = LocalTime.of(12, 0, 0); // ставим время на 12:00:00
+LocalDateTime ldt = LocalDateTime.of(ld, lt); // создаём на основе ld и lt объект
+ZonedDateTime zdtTwo = ZonedDateTime.of(1984, 3, 19, 13, 0, 0, 0, zi); // получить указанное время
+ZonedDateTime zdtThree = ZonedDateTime.of(ld, lt, zi); // получить указанное время
+ZonedDateTime zdtFour = ZonedDateTime.of(ldt, zi); // получить указанное время
+ZonedDateTime zdtFive = ZonedDateTime.ofInstant(Instant.now(), zi); // получить текущее время с указанием Instant
+
+Создать экземпляр ZonedDateTime без использования ZoneID можно. Но лучше так не делать.
+Методы get…(int i), plus…(int i) и minus…(int i) работают по тем же принципам, что и в LocalDateTime.
+Ещё одна интересная особенность данного класса – это возможность сохранять значения из ZonedDateTime в LocalDate, LocalTime и LocalDateTime. Делается это при помощи методов:
+•	LocalDate toLocalDate()
+•	LocalTime toLocalTime()
+•	LocalDateTime toLocalDateTime()
+Основные методы ZonedDateTime:
+•	ZonedDateTime minus(long amountToSubtract, TemporalUnit unit) – создать новый ZonedDateTime на основе существующего минус amountToSubtract данных unit;
+•	ZonedDateTime plus(long amountToAdd, TemporalUnit unit) – создать новый ZonedDateTime на основе существующего плюс amountToSubtract данных unit;
+•	ZonedDateTime minusDays/minusMinutes/minusHours/ etc.(long days/minutes/hours) – создать новый ZonedDateTime на основе существующего минус соответствующее количество указанных единиц;
+•	ZonedDateTime plusDays/plusMinutes/plusHours/ etc.(long days/minutes/hours) – создать новый ZonedDateTime на основе существующего плюс соответствующее количество указанных единиц.
+
+Материалы любезно предоставлены http://progwards.ru/

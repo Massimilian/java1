@@ -1,0 +1,26 @@
+
+Примеры использования:
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // подготовка даты в формате "15-12-2020"
+// System.out.println(dtf.format(Instant.now())); // UnsupportedTemporalTypeException: Unsupported field: DayOfMonth (Instant поддерживает только секунды и наносекунды)
+LocalDate ld = LocalDate.now();
+System.out.println(dtf.format(ld)); // здесь всё будет выведено без ошибок
+DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("'Сегодня 'EEEE"); // подготовка даты в формате "Сегодня вторник"
+System.out.println(dtf2.format(ld));
+DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern("'Сейчас 'H' часов'"); // подготовка форматера по типу "Сейчас 10 часов"
+// System.out.println(dtf3.format(ld)); // UnsupportedTemporalTypeException: Unsupported field: HourOfDay (LocalDate поддерживает только дату, но не время)
+ZonedDateTime zdt = Instant.now().atZone(ZoneId.of("Europe/Moscow")); // добавляем текущее время в тип ZonedDateTime
+System.out.println(dtf3.format(zdt)); // вывод проведётся без ошибок
+DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("dd-MM-yyyy kk:mm:ss"); // подготовка даты и времени в формате "15-12-2020 10:39:19"
+LocalDateTime ldt = LocalDateTime.now();
+System.out.println(dtf4.format(ldt)); // вывод проведётся без ошибок
+String dtf4Str = "19-03-1984 13:00:00"; // подготавливаем строку для парсинга
+TemporalAccessor ta = dtf4.parse(dtf4Str); // парсим строку в промежуточный класс
+LocalDateTime ldt2 = LocalDateTime.from(ta); // преобразуем промежуточный класс в LocalDateTime (дата и время будут сохранены)
+DateTimeFormatter iso = DateTimeFormatter.ISO_INSTANT;
+String date = "1984-03-19T13:00:00.000000000Z"; // подготавливаем дату и время в нужном для ISO_INSTANT формате
+Instant inst = Instant.from(iso.parse(date)); // парсим строку в Instant
+System.out.println(inst); // вывод на экран успешен
+
+В Java есть предопределённые форматеры. При использовании предопределённых форматеров следует иметь ввиду, что некоторые могут присваиваться только в определённые типы (LocalDate, LocalTime, LocalDateTime, ZonedDateTime), и для окончательного приведения необходимо дополнительно прописывать их парсинг в нужный формат.
+
+Материалы любезно предоставлены http://progwards.ru/

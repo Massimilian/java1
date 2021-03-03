@@ -1,0 +1,2 @@
+Обновлённый вариант работы со временем, созданный с учётом прошлых ошибок. По сути – тоже, что и старый вариант. Появился только с Java 8. Главное отличие – здесь классы immutable. Основные рабочие классы - Instant, Duration, ZoneId, LocalDate, LocalTime, LocalDateTime, ZonedDateTime, OffsetDateTime, Period, DateTimeFormatter.
+Материалы любезно предоставлены http://progwards.ru/ 

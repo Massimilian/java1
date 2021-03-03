@@ -1,0 +1,26 @@
+Это специальный генератор псевдослучайных чисел, который работает в условиях многопоточности (и поэтому потокобезопасен). Во многом похож на SplittableRandom, те же методы и особенности (есть метод .nextFloat() со значением от ноля до единицы). Не совсем привычное создание отдельного экземпляра класса (через отдельный метод), конструктора для создания отдельного класса нет. 
+
+public class Main {
+    public static void main(String[] args) {
+        ThreadLocalRandom random = ThreadLocalRandom.current(); // обращаем внимание на особенности созданияь экземпляра
+        System.out.println(random.nextInt(-10, 10)); // запрос случайного числа в диапазоне
+        System.out.println(random.nextLong(-100L, 100L)); // эти же методы могут быть без диапазона
+        System.out.println(random.nextDouble(-1.9999999, 1.0000001));
+        System.out.println(random.nextFloat()); // floar вызывается без диапазона
+        System.out.println(random.nextBoolean());
+
+        int size = 5;
+        byte[] bytes = new byte[size];
+        random.nextBytes(bytes); // заполняем массив рандомными значениями
+        System.out.println(Arrays.toString(bytes));
+
+        int min = -1;
+        int max = 2;
+        int[] ints = random.ints(size, min, max).toArray(); // помещаем поток в массив; size - размер массива; min - минимальное значение; max- максимальное значение.
+        System.out.println(Arrays.toString(ints)); // вывод на экран
+    }
+}
+
+Является наследником Random, но при этом любая работа с seed запрещена (выбросится ошибка UnsupportedOperationException).
+
+Материалы любезно предоставлены http://progwards.ru/

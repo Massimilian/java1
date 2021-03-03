@@ -1,0 +1,54 @@
+Принцип работы словаря – создание коллекции сущностей типа Entry, которые состоят из ключа и значения. По ключу всегда можно получить значения (но не наоборот). Ключ – всегда уникален. Значения могут повторяться. Каждому ключу соответствует одно значение; одному значению могут соответствовать разные ключи. Основное предназначение – быстрый поиск по ключу.
+Словари реализуют интерфейс Map<K,V> (не Collection). 
+
+Map – основной интерфейс для всех словарей. У этого интерфейса есть внутренний интерфейс Map.Entry<K,V>, который описывает пару «ключ-значение». У самого Map.Entry<K,V> есть несколько встроенных методов:
+•	K getKey() – получение ключа Entry;
+•	V getValue() – получение значения Entry;
+•	V setValue(V value) – установка значения value внутрь Entry (внимание! ключ поменять нельзя!)
+
+Методы интерфейса Map:
+•	V put(K key, V value) – добавить в словарь пару ключ-значение (Entry), вернуть значение;
+•	V get(Object key) – найти и вернуть значение по ключу;
+•	V remove(Object key) – удалить Entry по ключу;
+•	void clear() – очистить словарь;
+•	void putAll(Map<? extends K, ? extends V> m) – добавить все элементы из словаря m;
+•	int size() – количество Entry в данном словаре;
+•	boolean isEmpty() – проверка словаря на пустоту;
+•	boolean containsKey(Object key) – проверка на наличие ключа;
+•	boolean containsValue(Object value) – проверка на наличие значения;
+•	Set<Map.Entry<K,V>> entrySet() – создание множества элементов Set;
+•	Set<K> keySet() – создание множества ключей;
+•	Collection<V> values() – создание коллекции со значениями.
+•	V getOrDefault(Object key, V defaultValue) – найти и вернуть значение по ключу либо defaultValue, если значение не найдено;
+•	V putIfAbsent(K key, V value) – добавить пару ключ-значение; если такого ключа нет в словаре – установить новый Entry и вернуть null, если есть – вернуть значение по ключу;
+•	boolean remove(Object key, Object value) – удалить Entry по ключу и значению;
+•	V replace(K key, V value) – заменить значение по ключу, только если такой ключ уже есть (если нет – ничего не делать);
+•	boolean replace (K key, V oldValue, V newValue) – заменить значение по ключу на newValue, если такое сочетание ключ (key) + значение (oldValue) уже есть.
+
+В JDK 9 и 10 появился ряд статических методов Map:
+•	Map<K, V> Map.of(k1, v1, k2, v2, …) – создаёт unmodifiable Map на основе Entry(k1, v1), Entry(k2, v2), …;
+•	Map<K, V> Map.copyOf(Map<K, V> map) - создаёт unmodifiable копию (именно копию, не обёртку!) map;
+•	Entry<K, V> Map.entry(K k, V v) - создаёт unmodifiable Entry.
+
+HashMap (HashTable) - основаны на хэш-таблице. Порядок элементов не определён. Для эффективной работы нужна хорошая функция хэш-кода для ключа.
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "First"); // кладём элемент с ключом 1 и значением First
+map.put(2, "Second");
+System.out.println(map.get(1)); // выведет First - значение Entry с ключом 1 из словаря map.
+for (Map.Entry<Integer, String> entry : map.entrySet()) { // через foreach выводим все значения Entry из map
+    System.out.println(entry.getKey() + " " + entry.getValue()); // вывод ключа и значения текущего entry;
+}
+map.put(1, "Number x"); // редактирует значение под ключом 1
+map.put(0, "Number x"); // добавим такое же значение под другим ключом
+map.remove(2); // удаляется Entry с ключом 2; внимание! этот метод ВОЗВРАЩАЕТ удаляемое значение
+map.remove(3); // ключа 3 нет - ничего не произойдёт
+map.put(null, null); // внутрь HashMap   можно положить ключ = null и значение = null. ВНИМАНИЕ! HashTable не умеет работать с null (и в ключе, и в значении) - будет выброшена NullPointerException
+System.out.println(map.containsKey(null)); // проверка - есть ли ключ null (вывод - true)
+System.out.println(map.containsValue(null)); // проверка - есть ли значение null (вывод - true)
+Set<Integer> keys = map.keySet(); // получение множества (Set) ключей
+Collection<String> collection = map.values(); // получение коллекции значений
+
+...
+Для продолжения наберите "map2"
+
+Материалы любезно предоставлены http://progwards.ru/
