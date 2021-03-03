@@ -6,6 +6,7 @@ package ru.progwards.java2.lessons.recursion;
 public class HanoiTower {
     private final int[][] tower;
     private int pos;
+    private boolean on = false;
 
     public HanoiTower(int size, int pos) {
         this.tower = new int[size][size];
@@ -23,6 +24,14 @@ public class HanoiTower {
             tower[pos - 1][i] = i + 1;
         }
         print();
+    }
+
+    /**
+     * Method to put on/off at field print
+     * @param on is a interrupter
+     */
+    private void setTrace(boolean on) {
+        this.on = on;
     }
 
     /**
@@ -102,7 +111,9 @@ public class HanoiTower {
     private void changeRingPlace(int startPosition, int startHeight, int newPosition, int newHeight) {
         tower[newPosition][newHeight] = tower[startPosition][startHeight];
         tower[startPosition][startHeight] = 0;
-        print();
+        if (on) {
+            print();
+        }
     }
 
     /**
