@@ -30,6 +30,12 @@ class Person {
         }
     }
 
+    int sumSequence(int n) {
+        if (n == 1)
+            return n;
+        return sumSequence(n-2)+n;
+    }
+
     public static void main(String[] args) {
         ArrayList<Person> persons = new ArrayList<>();
         persons.add(new Person("One", 1));
@@ -39,5 +45,6 @@ class Person {
         Person p = new Person("Zero", 0);
         p.sortAndPrint(persons);
         String s = p.reverseChars("54321");
+        System.out.println(p.sumSequence(3));
     }
 }
