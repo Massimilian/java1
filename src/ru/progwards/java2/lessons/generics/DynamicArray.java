@@ -70,6 +70,7 @@ public class DynamicArray<T> {
     public T remove(int pos) {
         T t = array[pos];
         array[pos] = null;
+        System.arraycopy(this.array, pos + 1, this.array, pos, array.length - 1 - pos);
         return t;
     }
 
@@ -127,6 +128,5 @@ public class DynamicArray<T> {
         dsInt.add(2);
         dsInt.insert(0, 0);
         dsInt.remove(1);
-        System.out.println(dsInt.size());
     }
 }

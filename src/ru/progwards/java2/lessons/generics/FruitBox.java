@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 /**
  * Special class for work with fruit boxes
+ *
  * @param <T>
  */
 public class FruitBox<T extends Fruit> extends ArrayList<T> {
 
     /**
      * Method for get the weight
+     *
      * @return the weight of the box
      */
     public float getWeight() {
@@ -20,8 +22,17 @@ public class FruitBox<T extends Fruit> extends ArrayList<T> {
         return result;
     }
 
+    @Override
+    public boolean add(T t) {
+        if (!this.isEmpty() && !this.get(0).getClass().equals(t.getClass())) {
+            throw new UnsupportedOperationException("Mixed fruits.");
+        }
+        return super.add(t);
+    }
+
     /**
      * Method for move all values into the new place
+     *
      * @param fruits is an array for fill
      * @throws UnsupportedOperationException throws if the types are incompatible
      */
@@ -38,6 +49,7 @@ public class FruitBox<T extends Fruit> extends ArrayList<T> {
 
     /**
      * Method for compare two values
+     *
      * @param fruits second value for compare
      * @return -1: 1<2; 0: 1=1; 1: 1>2;
      */
