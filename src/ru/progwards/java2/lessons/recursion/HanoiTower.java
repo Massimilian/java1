@@ -1,175 +1,137 @@
 package ru.progwards.java2.lessons.recursion;
 
-/**
- * Class for demonstrate Hanoy Tower with different sizes
- */
+
 public class HanoiTower {
-    private final int[][] tower;
-    private int pos;
-    private boolean on = false;
+    final private int SPIKE = 3;
+    Ring[][] tower;
+    private boolean trace = false;
 
     public HanoiTower(int size, int pos) {
-        this.tower = new int[size][size];
-        this.fillSpike(pos);
+        tower = new Ring[SPIKE][size];
+        fillTower(pos);
     }
 
-    /**
-     * Method for fill all spikes with "rings"
-     *
-     * @param pos is a position number
-     */
-    private void fillSpike(int pos) {
-        this.pos = pos;
-        for (int i = 0; i < tower[pos - 1].length; i++) {
-            tower[pos - 1][i] = i + 1;
+    private void fillTower(int pos) {
+        for (int i = tower[0].length; i > 0; i--) {
+            tower[pos][tower[0].length - i] = new Ring(i);
         }
-        print();
     }
 
-    /**
-     * Method to put on/off at field print
-     * @param on is a interrupter
-     */
-    private void setTrace(boolean on) {
-        this.on = on;
-    }
-
-    /**
-     * Main method for move the tower
-     *
-     * @param from where we move
-     * @param to what position we want to get
-     */
     public void move(int from, int to) {
-        if (from == this.pos) {
-            int cycles = (tower.length - from + to) % tower.length;
-            for (int i = 0; i < cycles; i++) {
-                this.firstCycle();
-                this.secondStep(from);
-                this.finalAct(from, 2);
-                this.pos = from = from++ >= tower.length ? 1 : from;
+        if (tower[from][tower[0].length - 1] != null) {
+            move(to);
+        }
+    }
+
+    private void move(int to) {
+        firstStep();
+        if (checkFinished(to)) {
+            secondStep();
+            move(to);
+        } else {
+            if (trace) {
+                print();
             }
         }
     }
 
-    /**
-     * Method of final constructing of the tower in recurse style
-     *
-     * @param from     what position the tower has been taken
-     * @param ringSize the number of position
-     */
-    private void finalAct(int from, int ringSize) {
-        if (ringSize <= tower.length) {
-            for (int i = 0; i < tower.length; i++) {
-                if (tower[i][0] == ringSize) {
-                    changeRingPlace(i, 0, from == tower.length ? 0 : from, ringSize - 1);
-                    finalAct(from, ++ringSize);
-                    break;
-                }
-            }
-        }
+    private boolean checkFinished(int to) {
+        return tower[to][tower[0].length - 1] == null;
     }
 
-    /**
-     * Method for prepare all to a new tower
-     *
-     * @param from what position the tower has been taken
-     */
-    private void secondStep(int from) {
-        int startPosition = from == tower.length - 1 ? 0 : from == tower.length ? 1 : from + 1;
-        changeRingPlace(from == tower.length ? 0 : from, 0, startPosition, 1);
-        changeRingPlace(from - 1, 0, from == tower.length ? 0 : from, 0);
-        changeRingPlace(startPosition, 1, from - 1, 0);
+    private void firstStep() {
+        int fromSpike = findRing(1);
+        int toSpike = getSPIKE(fromSpike, 1);
+        moveRing(fromSpike, toSpike);
+        moveRing(fromSpike, getSPIKE(toSpike, 1));
+        moveRing(findRing(1), findRing(2));
     }
 
-    /**
-     * Method for destruct the tower
-     */
-    private void firstCycle() {
-        if (isFirstCycleNotFinished()) {
-            int startHeight = 0;
-            for (int i = tower.length - 1; i >= 0; i--) {
-                if (tower[this.pos - 1][i] != 0) {
-                    startHeight = i;
-                    break;
-                }
-            }
-            int newPosition = findNewPosition();
-            changeRingPlace(this.pos - 1, startHeight, newPosition, 0);
-            firstCycle();
-        }
-    }
-
-    /**
-     * Method for move the ring
-     *
-     * @param startPosition start position
-     * @param startHeight   height of the ring
-     * @param newPosition   new position
-     * @param newHeight     height of a ring on a new position
-     */
-    private void changeRingPlace(int startPosition, int startHeight, int newPosition, int newHeight) {
-        tower[newPosition][newHeight] = tower[startPosition][startHeight];
-        tower[startPosition][startHeight] = 0;
-        if (on) {
+    private void moveRing(int fromSpike, int toSpike) {
+        if (trace) {
             print();
         }
+        Ring forMove = null;
+        for (int i = tower[fromSpike].length - 1; i >= 0; i--) {
+            if (tower[fromSpike][i] != null) {
+                forMove = tower[fromSpike][i];
+                tower[fromSpike][i] = null;
+                break;
+            }
+        }
+        for (int i = tower[toSpike].length - 2; i >= 0; i--) {
+            if (tower[toSpike][i] != null) {
+                tower[toSpike][i + 1] = forMove;
+                break;
+            }
+        }
+        if (tower[toSpike][0] == null) {
+            tower[toSpike][0] = forMove;
+        }
     }
 
-    /**
-     * Method for show the situation and pause the process
-     */
-    private void print() {
+    private int findRing(int size) {
+        int result = -1;
         for (int i = 0; i < tower.length; i++) {
-            for (int[] ints : tower) {
-                if (ints[i] != 0) {
-                    specialPrint(ints[i]);
-                } else {
-                    System.out.print("  I  ");
+            for (int j = 0; j < tower[i].length; j++) {
+                if (tower[i][j] != null && tower[i][j].getSize() == size) {
+                    result = i;
+                    break;
                 }
             }
-            System.out.println();
-        }
-        System.out.println("=================");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Method to pring the ring
-     *
-     * @param value is a ring number
-     */
-    private void specialPrint(int value) {
-        System.out.print(String.format("<%s>", preparedInteger(value)));
-    }
-
-    /**
-     * Method for prepare the image of a ring
-     *
-     * @param value is a number of ring
-     * @return prepared ring (string)
-     */
-    private String preparedInteger(int value) {
-        return value < 10 ? String.format("00%d", value) : value < 100 ? String.format("0%d", value) : String.valueOf(value);
-    }
-
-    /**
-     * Method for find a new position for ring
-     *
-     * @return number of a new position
-     */
-    private int findNewPosition() {
-        int result = -1;
-        for (int i = pos - 1; i <= tower.length; i++) {
-            if (i == tower.length) {
-                i = -1;
-                continue;
+            if (result >= 0) {
+                break;
             }
-            if (tower[i][0] == 0) {
+        }
+        return result;
+    }
+
+    private int getSPIKE(int value, int plus) {
+        return (value + plus) % SPIKE;
+    }
+
+
+    private void secondStep() {
+        int to = getEmptySpike();
+        if (to == -1) {
+            to = getBiggestRing();
+        }
+        int from = getThird(findRing(1), to, 0);
+        moveRing(from, to);
+    }
+
+    private int getThird(int one, int two, int result) {
+        if (result != one && result != two) {
+            return result;
+        } else {
+            return getThird(one, two, ++result);
+        }
+    }
+
+    private int getBiggestRing() {
+        int result = -1;
+        int size = -1;
+        for (int i = 0; i < tower.length; i++) {
+            int res = -1;
+            for (int j = 0; j < tower[i].length; j++) {
+                if (tower[i][j] == null) {
+                    break;
+                }
+                res = tower[i][j].getSize();
+            }
+            if (res > size) {
+                result = i;
+                size = res;
+            }
+
+        }
+        return result;
+    }
+
+    private int getEmptySpike() {
+        int result = -1;
+        for (int i = 0; i < tower.length; i++) {
+            if (tower[i][0] == null) {
                 result = i;
                 break;
             }
@@ -177,25 +139,34 @@ public class HanoiTower {
         return result;
     }
 
-    /**
-     * Method for check is this a first acr
-     *
-     * @return first act o no
-     */
-    private boolean isFirstCycleNotFinished() {
-        boolean result = false;
-        for (int[] ints : tower) {
-            if (ints[0] == 0) {
-                result = true;
-                break;
+    void print() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = tower[0].length - 1; i >= 0; i--) {
+            for (int j = 0; j < SPIKE; j++) {
+                if (tower[j][i] == null) {
+                    sb.append("  I  ");
+                } else {
+                    sb.append(String.format("<%s>", prepareNumber(tower[j][i].getSize())));
+                }
+                sb.append(" ");
             }
+            sb.append(System.lineSeparator());
         }
-        return result;
+        sb.append("=================");
+        System.out.println(sb.toString());
+    }
+
+    private String prepareNumber(int size) {
+        return size < 10? "00" + size : size < 100? "0" + size : String.valueOf(size);
+    }
+
+    void setTrace(boolean on) {
+        this.trace = on;
     }
 
     public static void main(String[] args) {
-        HanoiTower ht = new HanoiTower(10, 4);
-        ht.move(4, 5);
-        System.out.println();
+        HanoiTower ht = new HanoiTower(10, 0);
+        ht.setTrace(true);
+        ht.move(0, 2);
     }
 }
