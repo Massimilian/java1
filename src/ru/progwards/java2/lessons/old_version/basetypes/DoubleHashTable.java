@@ -1,4 +1,4 @@
-package ru.progwards.java2.lessons.basetypes;
+package ru.progwards.java2.lessons.old_version.basetypes;
 
 import java.util.Iterator;
 
