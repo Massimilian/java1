@@ -1,7 +1,9 @@
 package ru.progwards.java2.lessons.tests.calc;
 
 public class SimpleCalculator {
-    enum action {SUM, DIFF, MULT, DIV};
+    enum action {SUM, DIFF, MULT, DIV}
+
+    ;
 
     public int sum(int val1, int val2) {
         check(action.SUM, val1, val2);
@@ -29,22 +31,21 @@ public class SimpleCalculator {
                 if ((long) one + two > Integer.MAX_VALUE || (long) one + two < Integer.MIN_VALUE) {
                     throw new ArithmeticException("Impossible sum.");
                 }
+                break;
             case DIFF:
                 if ((long) one - two > Integer.MAX_VALUE || (long) one - two < Integer.MIN_VALUE) {
                     throw new ArithmeticException("Impossible diff");
                 }
+                break;
             case MULT:
                 if ((long) one * two > Integer.MAX_VALUE || (long) one * two < Integer.MIN_VALUE) {
                     throw new ArithmeticException("Impossible mult");
                 }
+                break;
             case DIV:
                 if (two == 0) {
                     throw new ArithmeticException("Cannot div in 0");
                 }
         }
-    }
-
-    public static void main(String[] args) {
-        SimpleCalculator sc = new SimpleCalculator();
     }
 }
