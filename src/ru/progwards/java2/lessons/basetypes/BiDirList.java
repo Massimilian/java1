@@ -70,27 +70,33 @@ public class BiDirList<T> implements Iterable<T> {
      * @param item is a value for remove
      */
     public void remove(T item) {
+        boolean notExists = false;
         Node<T> pointer = this.base;
-        while (pointer.getT().equals(item)) {
+        while (!notExists && !pointer.getT().equals(item)) {
             pointer = pointer.getPost();
+            notExists = pointer == null;
         }
-        if (this.base.getT().equals(item)) {
-            if (base.getPost() != null) {
-                base.getPost().setPrev(null);
-            }
-            base = base.getPost();
-        } else if (this.tail.getT().equals(item)) {
-            tail.getPrev().setPost(null);
-            if (size == 1) {
-                tail = null;
+        if (!notExists) {
+            if (this.base.getT().equals(item)) {
+                if (base.getPost() != null) {
+                    base.getPost().setPrev(null);
+                }
+                base = base.getPost();
+            } else if (this.tail.getT().equals(item)) {
+                tail.getPrev().setPost(null);
+                if (size == 1) {
+                    tail = null;
+                } else {
+                    tail = tail.getPrev();
+                }
             } else {
-                tail = tail.getPrev();
+                pointer.getPost().setPrev(pointer.getPrev());
+                pointer.getPrev().setPost(pointer.getPost());
             }
+            size--;
         } else {
-            pointer.getPost().setPrev(pointer.getPrev());
-            pointer.getPrev().setPost(pointer.getPost());
+            System.out.println("Impossible value for delete.");
         }
-        size--;
     }
 
     /**
@@ -165,9 +171,9 @@ public class BiDirList<T> implements Iterable<T> {
     }
 
     /**
-     * method for the first pit into the list
+     * method for the first put into the list
      * @param node for put
-     * @return
+     * @return is put
      */
     private boolean addIfNull(Node<T> node) {
         boolean result = false;
@@ -188,16 +194,10 @@ public class BiDirList<T> implements Iterable<T> {
         assert bdl.size() == 5;
         bdl.remove(0);
         bdl.remove(3);
-        Integer[] array = bdl.toArray();
-        int forCheck = -2;
-//        for (int i = 0; i < array.length; i++) {
-//            assert (int) array[i] == ++forCheck;
-//        }
-//        bdl = BiDirList.of(1, 2, 3, 4, 5);
-//        Iterator iterator = bdl.iterator();
-//        forCheck = 1;
-//        while (iterator.hasNext()) {
-//            assert (int) iterator.next() == forCheck++;
-//        }
+        bdl.remove(-3);
+        assert bdl.toArray().length == 4;
+        bdl.remove(2);
+        bdl.remove(-2);
+        assert bdl.toArray().length == 2;
     }
 }
