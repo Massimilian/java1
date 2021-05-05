@@ -1,19 +1,19 @@
 package ru.progwards.java2.lessons.basetypes;
 
-public class Bean<V> {
+public class Bean<K extends Key, V> {
     private V value;
-    private int key;
+    private K key;
 
     public V getValue() {
         return value;
     }
 
-    public int getKey() {
+    public Key getKey() {
         return key;
     }
 
-    public Bean(int key, V value) {
+    public Bean(Key key, V value) {
         this.value = value;
-        this.key = key;
+        this.key = (K) key;
     }
 }

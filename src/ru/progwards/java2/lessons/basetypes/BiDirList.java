@@ -11,7 +11,7 @@ public class BiDirList<T> implements Iterable<T> {
     private Node<T> tail;
     private int size = 0;
 
-    public static <T> BiDirList<T> from(T[] array) {
+    public static <T> BiDirList from(T[] array) {
         BiDirList result = new BiDirList();
         for (T t : array) {
             result.addLast(t);

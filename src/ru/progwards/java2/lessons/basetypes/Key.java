@@ -1,5 +1,8 @@
 package ru.progwards.java2.lessons.basetypes;
 
-public abstract class Key implements HashValue{
+/**
+ * Abstract class to keep the key value
+ */
+public abstract class Key implements HashValue {
 
 }

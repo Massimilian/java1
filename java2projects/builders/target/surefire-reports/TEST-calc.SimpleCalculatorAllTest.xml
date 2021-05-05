@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="40" failures="0" name="calc.SimpleCalculatorAllTest" time="0.016" errors="0" skipped="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.vm.version" value="14.0.1+7"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-14.0.1\bin"/>
+    <property name="maven.multiModuleProjectDirectory" value="D:\progwards\java2\src\ru\progwards\java2\lessons\builders"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="path.separator" value=";"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="RU"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="D:\progwards\java2\src\ru\progwards\java2\lessons\builders"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="java.runtime.version" value="14.0.1+7"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\vasal\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.2\plugins\maven\lib\maven-event-listener.jar"/>
+    <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.2\plugins\maven\lib\maven3\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1251"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-14.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-14.0.1\bin;C:\Program Files\nodejs\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\vasal\AppData\Local\Microsoft\WindowsApps;C:\Program Files\apache-ant-1.10.8\bin;C:\Program Files\apache-maven-3.6.3\bin;;C:\Users\vasal\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\vasal\AppData\Roaming\npm;."/>
+    <property name="maven.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.2\plugins\maven\lib\maven3/conf"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="java.class.version" value="58.0"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="user.home" value="C:\Users\vasal"/>
+    <property name="user.timezone" value="Europe/Moscow"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="14"/>
+    <property name="user.name" value="vasal"/>
+    <property name="java.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.2\plugins\maven\lib\maven3\boot\plexus-classworlds-2.6.0.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.2\plugins\maven\lib\maven3\boot\plexus-classworlds.license"/>
+    <property name="java.vm.specification.version" value="14"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version2020.1.3 install"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-14.0.1"/>
+    <property name="user.language" value="ru"/>
+    <property name="idea.version2020.1.3" value="true"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.version" value="14.0.1"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.2\plugins\maven\lib\maven3"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.version.date" value="2020-04-14"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToMakeAnExceptionThenDoIt[Test №0: 4 - 2 = 2]" time="0.008"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToDiffDifferentNumbersThenDoIt[Test №0: 4 - 2 = 2]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToMakeAnExceptionThenDoIt[Test №1: -1 - 1 = -2]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToDiffDifferentNumbersThenDoIt[Test №1: -1 - 1 = -2]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToMakeAnExceptionThenDoIt[Test №2: 200 - -200 = 400]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToDiffDifferentNumbersThenDoIt[Test №2: 200 - -200 = 400]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToMakeAnExceptionThenDoIt[Test №3: -11 - 1 = -12]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToDiffDifferentNumbersThenDoIt[Test №3: -11 - 1 = -12]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToMakeAnExceptionThenDoIt[Test №4: 20 - 1 = 19]" time="0.008"/>
+  <testcase classname="calc.SimpleCalculatorDiffTest" name="whenTryToDiffDifferentNumbersThenDoIt[Test №4: 20 - 1 = 19]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToMakeAnExceptionThenDoIt[Test №0: 4 / 2 = 2]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToDivDifferentNumbersThenDoIt[Test №0: 4 / 2 = 2]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToMakeAnExceptionThenDoIt[Test №1: -1 / 1 = -1]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToDivDifferentNumbersThenDoIt[Test №1: -1 / 1 = -1]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToMakeAnExceptionThenDoIt[Test №2: 200 / -200 = -1]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToDivDifferentNumbersThenDoIt[Test №2: 200 / -200 = -1]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToMakeAnExceptionThenDoIt[Test №3: -11 / 1 = -11]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToDivDifferentNumbersThenDoIt[Test №3: -11 / 1 = -11]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToMakeAnExceptionThenDoIt[Test №4: 20 / 1 = 20]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorDivTest" name="whenTryToDivDifferentNumbersThenDoIt[Test №4: 20 / 1 = 20]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMakeAnExceptionThenDoIt[Test №0: 4 * 2 = 8]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMultDifferentNumbersThenDoIt[Test №0: 4 * 2 = 8]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMakeAnExceptionThenDoIt[Test №1: -1 * 1 = -1]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMultDifferentNumbersThenDoIt[Test №1: -1 * 1 = -1]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMakeAnExceptionThenDoIt[Test №2: 200 * -200 = -40 000]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMultDifferentNumbersThenDoIt[Test №2: 200 * -200 = -40 000]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMakeAnExceptionThenDoIt[Test №3: -11 * 1 = -11]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMultDifferentNumbersThenDoIt[Test №3: -11 * 1 = -11]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMakeAnExceptionThenDoIt[Test №4: 20 * 12 = 240]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorMultTest" name="whenTryToMultDifferentNumbersThenDoIt[Test №4: 20 * 12 = 240]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToMakeAnExceptionThenDoIt[Test №0: 1 + 2 = 3]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToAddDifferentNumbersThenDoIt[Test №0: 1 + 2 = 3]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToMakeAnExceptionThenDoIt[Test №1: -1 + 1 = 0]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToAddDifferentNumbersThenDoIt[Test №1: -1 + 1 = 0]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToMakeAnExceptionThenDoIt[Test №2: 100 + -200 = -100]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToAddDifferentNumbersThenDoIt[Test №2: 100 + -200 = -100]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToMakeAnExceptionThenDoIt[Test №3: -1 + 11 = 10]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToAddDifferentNumbersThenDoIt[Test №3: -1 + 11 = 10]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToMakeAnExceptionThenDoIt[Test №4: 1 + 20 = 21]" time="0"/>
+  <testcase classname="calc.SimpleCalculatorSumTest" name="whenTryToAddDifferentNumbersThenDoIt[Test №4: 1 + 20 = 21]" time="0"/>
+</testsuite>

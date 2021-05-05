@@ -1,9 +1,7 @@
 package ru.progwards.java2.lessons.tests.calc;
 
 public class SimpleCalculator {
-    enum action {SUM, DIFF, MULT, DIV}
-
-    ;
+    enum action {SUM, DIFF, MULT, DIV};
 
     public int sum(int val1, int val2) {
         check(action.SUM, val1, val2);
