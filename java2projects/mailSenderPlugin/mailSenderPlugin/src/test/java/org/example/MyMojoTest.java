@@ -15,13 +15,11 @@ public class MyMojoTest
     public MojoRule rule = new MojoRule()
     {
         @Override
-        protected void before() throws Throwable 
-        {
+        protected void before() throws Throwable {
         }
 
         @Override
-        protected void after()
-        {
+        protected void after() {
         }
     };
 

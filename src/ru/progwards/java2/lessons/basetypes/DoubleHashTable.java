@@ -8,7 +8,7 @@ import java.util.Iterator;
  * @param <K> key
  * @param <V> value
  */
-public class DoubleHashTable<K extends Key, V> implements Iterable<V> {
+public class DoubleHashTable<K extends HashValue, V> implements Iterable<V> {
     int size = 10;
     int attempts = size / 10;
     Bean<K, V>[] beans;
@@ -70,7 +70,7 @@ public class DoubleHashTable<K extends Key, V> implements Iterable<V> {
      * @param key1 for delete
      * @param key2 for put
      */
-    public void change(K key1, Key key2) {
+    public void change(K key1, K key2) {
         int position = findCorrectPosition(key1);
         V v = beans[position].getValue();
         this.remove(key1);
@@ -200,7 +200,7 @@ public class DoubleHashTable<K extends Key, V> implements Iterable<V> {
     }
 
     public static void main(String[] args) {
-        DoubleHashTable<Key, String> dht = new DoubleHashTable<>();
+        DoubleHashTable<HashValue, String> dht = new DoubleHashTable<>();
         dht.add(new StringKey("one"), "One");
         dht.add(new StringKey("two"), "Two");
         assert dht.size() == 2;

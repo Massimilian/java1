@@ -17,6 +17,9 @@ import java.io.IOException;
  */
 @Mojo( name = "touch", defaultPhase = LifecyclePhase.PROCESS_SOURCES )
 public class MyMojo extends AbstractMojo {
+//    @Parameter(property = "vasalekmas@gmail.com", required = true)
+    private String mailTo = "vasalekmas@gmail.com";
+
     /**
      * Location of the file.
      */
@@ -24,7 +27,8 @@ public class MyMojo extends AbstractMojo {
     private File outputDirectory;
 
     public void execute() throws MojoExecutionException {
+        final String to = mailTo;
         Mail mail = new Mail();
-        mail.send();
+        mail.send(to);
     }
 }

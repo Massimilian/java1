@@ -1,6 +1,6 @@
 package ru.progwards.java2.lessons.basetypes;
 
-public class Bean<K extends Key, V> {
+public class Bean<K extends HashValue, V> {
     private V value;
     private K key;
 
@@ -8,11 +8,11 @@ public class Bean<K extends Key, V> {
         return value;
     }
 
-    public Key getKey() {
+    public K getKey() {
         return key;
     }
 
-    public Bean(Key key, V value) {
+    public Bean(K key, V value) {
         this.value = value;
         this.key = (K) key;
     }

@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Class for keep the key value in String format
  */
-public class StringKey extends Key {
+public class StringKey implements HashValue {
     private final String value;
 
     public StringKey(String value) {

@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 /**
  * Class to keep values in doubly linked list
+ *
  * @param <T> is a type of values
  */
 public class BiDirList<T> implements Iterable<T> {
@@ -26,6 +27,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Add value in the tail of list
+     *
      * @param item is a value
      */
     public void addLast(T item) {
@@ -42,6 +44,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Method for adding in the list
+     *
      * @param prev is a preview value
      * @param post is a postview value
      */
@@ -53,6 +56,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Add value in the head of list
+     *
      * @param item is a value
      */
     public void addFirst(T item) {
@@ -67,14 +71,19 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Method for remove value from list
+     *
      * @param item is a value for remove
      */
     public void remove(T item) {
         boolean notExists = false;
         Node<T> pointer = this.base;
-        while (!notExists && !pointer.getT().equals(item)) {
-            pointer = pointer.getPost();
-            notExists = pointer == null;
+        if (pointer != null) {
+            while (!notExists && !pointer.getT().equals(item)) {
+                pointer = pointer.getPost();
+                notExists = pointer == null;
+            }
+        } else {
+            notExists = true;
         }
         if (!notExists) {
             if (this.base.getT().equals(item)) {
@@ -101,6 +110,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Method for get value by its position
+     *
      * @param i is a number of position
      * @return value
      */
@@ -117,6 +127,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Return a current size of list
+     *
      * @return size
      */
     public int size() {
@@ -125,6 +136,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * put array into the list
+     *
      * @param array is a array for put
      */
     public void toArray(T[] array) {
@@ -135,6 +147,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Put the list into array
+     *
      * @return array from list
      */
     public T[] toArray() {
@@ -149,6 +162,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * Method for prepare an iterator
+     *
      * @return prepared iterator
      */
     @Override
@@ -172,6 +186,7 @@ public class BiDirList<T> implements Iterable<T> {
 
     /**
      * method for the first put into the list
+     *
      * @param node for put
      * @return is put
      */

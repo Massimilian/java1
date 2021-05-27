@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Class for keep the key value in Integer format
  */
-public class IntKey extends Key{
+public class IntKey implements HashValue {
     private final int value;
 
     public IntKey(int value) {
