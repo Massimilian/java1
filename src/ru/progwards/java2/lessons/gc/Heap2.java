@@ -96,7 +96,6 @@ public class Heap2 implements FatherHeap {
      */
     public void clear() {
         this.bytes = new byte[bytes.length];
-        Arrays.fill(bytes, (byte) 0);
         this.holes.clear();
         this.count = 0;
         this.renovationHolesTime = 0;

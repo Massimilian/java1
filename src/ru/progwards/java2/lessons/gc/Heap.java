@@ -44,12 +44,12 @@ public class Heap implements FatherHeap {
     /**
      * delete object from the memory array (bytes) and join (if necessary) the hole
      *
-     * @param ptr position of an object for delete
+     * @param ptr start position of an object for delete
      * @throws InvalidPointerException
      */
     public void free(int ptr) throws InvalidPointerException {
         if (bytes[ptr] == 2) {
-            int size = deleteBlock(ptr);
+            int size = deleteBlock(ptr); // returned the size of deleted block (new Hole)
             joinHoles(ptr, size);
         } else {
             throw new InvalidPointerException();
@@ -63,7 +63,6 @@ public class Heap implements FatherHeap {
         this.bytes = new byte[bytes.length];
         this.holes.clear();
         this.count = 0;
-        Arrays.fill(bytes, (byte) 0);
     }
 
     /**
@@ -123,15 +122,15 @@ public class Heap implements FatherHeap {
      * @param size size of a new hole
      */
     private void joinHoles(int ptr, int size) {
-        while (ptr != 0 && bytes[ptr - 1] == 0) {
+        while (ptr != 0 && bytes[ptr - 1] == 0) { // try to grow "background"
             size++;
             ptr--;
         }
         if (ptr != size - 1 && bytes[ptr + size - 1] == 0) {
             holes.remove(ptr + size);
         }
-        while (ptr != size - 1 && bytes.length < ptr + size - 1 && bytes[ptr + size - 1] == 0) {
-            size++;
+        while (ptr != size - 1 && bytes.length < ptr + size - 1 && bytes[ptr + size - 1] == 0) { // try to grow "upstairs"
+             size++;
         }
         if (holes.containsKey(ptr)) {
             holes.replace(ptr, size);

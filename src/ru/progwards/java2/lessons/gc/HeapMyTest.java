@@ -25,7 +25,7 @@ public class HeapMyTest {
     /**
      * Free method test
      *
-     * @param heap heap for testp
+     * @param heap heap for test
      * @throws HeapException
      */
     public static void testFree(FatherHeap heap) throws HeapException {
@@ -55,7 +55,7 @@ public class HeapMyTest {
      * @param name name of heap
      * @throws OutOfMemoryException
      */
-    public static void thousandTestsMalloc(FatherHeap heap, String name) throws OutOfMemoryException {
+    public static void thousandTestsMalloc(FatherHeap heap, String name) throws OutOfMemoryException, InvalidPointerException {
         Instant start = Instant.now();
         for (int i = 0; i < 1000; i++) {
             testMalloc(heap);
@@ -72,7 +72,7 @@ public class HeapMyTest {
      * @param heap heap for test
      * @throws OutOfMemoryException
      */
-    private static void testMalloc(FatherHeap heap) throws OutOfMemoryException {
+    private static void testMalloc(FatherHeap heap) throws OutOfMemoryException, InvalidPointerException {
         for (int i = 1; i < 40; i++) {
             for (int j = 1; j < 40; j++) {
                 heap.malloc(j);
@@ -135,17 +135,23 @@ public class HeapMyTest {
     public static void main(String[] args) throws HeapException {
         Heap heap = new Heap(30420);
         Heap2 heap2 = new Heap2(30420);
+        Heap3 heap3 = new Heap3(30420);
         System.out.println("1. Testing malloc method (1000 actions).");
         thousandTestsMalloc(heap, "Heap-1");
         thousandTestsMalloc(heap2, "Heap-2");
+        thousandTestsMalloc(heap3, "Heap-3");
         System.out.println("2. Testing malloc & free (not all) method (1000 actions).");
         thousandTestsMallocAndHalfFree(heap, "Heap-1");
         thousandTestsMallocAndHalfFree(heap2, "Heap-2");
+        thousandTestsMallocAndHalfFree(heap3, "Heap-3");
         System.out.println("3. Testing malloc & free (not all) and new malloc (big files) method (100 actions).");
         hundredTestsMallocAndFreeAndAddBigFiles(heap, "Heap-1");
         hundredTestsMallocAndFreeAndAddBigFiles(heap2, "Heap-2");
+        hundredTestsMallocAndFreeAndAddBigFiles(heap3, "Heap-3");
         System.out.println("4. Testing malloc & free (not all) and new malloc (small files) method (100 actions).");
         hundredTestsMallocAndFreeAndAddSmallFiles(heap, "Heap-1");
         hundredTestsMallocAndFreeAndAddSmallFiles(heap2, "Heap-2");
+        hundredTestsMallocAndFreeAndAddSmallFiles(heap3, "Heap-3");
+
     }
 }

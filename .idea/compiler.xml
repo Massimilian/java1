@@ -16,11 +16,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="builders" />
+        <module name="classloaders" />
         <module name="Calculator" />
+        <module name="MailSenderPlugin" />
+        <module name="tree" />
+        <module name="trees" />
+        <module name="ClassLoader" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="builders" target="8" />
       <module name="Calculator" target="9" />
+      <module name="ClassLoader" target="1.5" />
+      <module name="classloaders" target="10" />
+      <module name="MailSenderPlugin" target="1.7" />
+      <module name="Test" target="1.5" />
+      <module name="TestProject" target="1.5" />
+      <module name="tree" target="11" />
+      <module name="trees" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

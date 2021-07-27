@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/calculator" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/trees/docs" />
     <option name="OPTION_SCOPE" value="private" />
     <option name="OTHER_OPTIONS" value="-encoding utf8 -docencoding utf8 -charset utf8" />
   </component>
@@ -9,6 +9,12 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/Calculator/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/builders/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/trees/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/testProject/Test/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloaders/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/MailSenderPlugin/pom.xml" />
       </list>
     </option>
   </component>
