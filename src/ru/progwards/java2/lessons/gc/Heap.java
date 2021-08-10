@@ -1,36 +1,24 @@
 package ru.progwards.java2.lessons.gc;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Special heap keeper with auto-defrag (real-time-join-hole) system
  */
 public class Heap implements FatherHeap {
     byte[] bytes;
-    HashMap<Integer, Integer> holes = new HashMap<>();
+    NavigableMap<Integer, Integer> holes = new TreeMap<>();
     int count = 0;
 
     Heap(int maxHeapSize) {
         this.bytes = new byte[maxHeapSize];
-        Arrays.fill(bytes, (byte) 0);
     }
 
-    /**
-     * Add new object into the memory array (bytes)
-     *
-     * @param size is a number of positions into the array
-     * @return start position of a new object into the memory
-     * @throws OutOfMemoryException
-     */
+    @Override
     public int malloc(int size) throws OutOfMemoryException {
         boolean newPosition = false;
         int position;
-        if (holes.containsValue(size)) {
-            position = findKey(holes, size);
-            holes.remove(position);
-        } else {
+        if ((position = findBiggerHole(size)) == -1) {
             if (hasNoMorePlace(size)) {
                 compactAndCheck(size);
             }
@@ -42,26 +30,42 @@ public class Heap implements FatherHeap {
     }
 
     /**
-     * delete object from the memory array (bytes) and join (if necessary) the hole
+     * Method for find the current hole.
      *
-     * @param ptr start position of an object for delete
-     * @throws InvalidPointerException
+     * @param size is a position of this hole
+     * @return
      */
+    private int findBiggerHole(int size) {
+        int result = -1;
+        for (Map.Entry<Integer, Integer> entry : holes.entrySet()) {
+            if (entry.getValue() <= size) {
+                result = entry.getKey();
+                entry.setValue(entry.getValue() - size);
+                if (entry.getValue() != 0) {
+                    holes.put(entry.getKey() + size, entry.getValue() - size);
+                }
+                holes.remove(entry.getKey());
+                break;
+            }
+        }
+        return result;
+
+    }
+
+    @Override
     public void free(int ptr) throws InvalidPointerException {
         if (bytes[ptr] == 2) {
-            int size = deleteBlock(ptr); // returned the size of deleted block (new Hole)
+            int size = deleteBlock(ptr);
             joinHoles(ptr, size);
         } else {
             throw new InvalidPointerException();
         }
     }
 
-    /**
-     * Method to clear and restart all memory system
-     */
+    @Override
     public void clear() {
         this.bytes = new byte[bytes.length];
-        this.holes.clear();
+        this.holes = new TreeMap<>();
         this.count = 0;
     }
 
@@ -81,7 +85,7 @@ public class Heap implements FatherHeap {
         }
         bytes = newBytes;
         this.count = count;
-        this.holes = new HashMap<>();
+        this.holes = new TreeMap<>();
         if (hasNoMorePlace(size)) {
             throw new OutOfMemoryException();
         }
@@ -98,45 +102,29 @@ public class Heap implements FatherHeap {
     }
 
     /**
-     * Find the position of a hole into the memory array (bytes)
-     *
-     * @param holes all found holes
-     * @param size  requied size of hole
-     * @return the position of the hole
-     */
-    private int findKey(HashMap<Integer, Integer> holes, int size) {
-        int result = 0;
-        for (Map.Entry<Integer, Integer> entry : holes.entrySet()) {
-            if (entry.getValue() == size) {
-                result = entry.getKey();
-                break;
-            }
-        }
-        return result;
-    }
-
-    /**
      * Method for looking the holes near new hole
      *
      * @param ptr  position of a new hole
      * @param size size of a new hole
      */
     private void joinHoles(int ptr, int size) {
-        while (ptr != 0 && bytes[ptr - 1] == 0) { // try to grow "background"
-            size++;
-            ptr--;
+        int start = -1;
+        int end = -1;
+        if (ptr != 0) {
+            Map.Entry<Integer, Integer> entry = holes.lowerEntry(ptr);
+            if (entry != null && entry.getKey() + entry.getValue() == ptr) {
+                start = entry.getKey();
+                size = ptr - start;
+            }
         }
-        if (ptr != size - 1 && bytes[ptr + size - 1] == 0) {
-            holes.remove(ptr + size);
+        if (ptr != size - 1) {
+            Map.Entry<Integer, Integer> entry = holes.higherEntry(ptr);
+            if (entry != null && entry.getKey() == ptr + size) {
+                end = size + (start != -1 ? ptr - start : 0) + entry.getValue();
+                holes.remove(entry.getKey());
+            }
         }
-        while (ptr != size - 1 && bytes.length < ptr + size - 1 && bytes[ptr + size - 1] == 0) { // try to grow "upstairs"
-             size++;
-        }
-        if (holes.containsKey(ptr)) {
-            holes.replace(ptr, size);
-        } else {
-            holes.put(ptr, size);
-        }
+        holes.put(start != -1 ? start : ptr, end != -1 ? end : size);
     }
 
     /**
@@ -170,25 +158,5 @@ public class Heap implements FatherHeap {
             bytes[++point] = 1;
         }
         this.count = newPosition ? ++point : this.count;
-    }
-
-
-    public static void main(String[] args) throws HeapException {
-        Heap heap = new Heap(24);
-        heap.malloc(3);
-        heap.malloc(3);
-        heap.malloc(3);
-        heap.malloc(3);
-        heap.malloc(3);
-        heap.malloc(3);
-        heap.free(3);
-        heap.free(9);
-        heap.free(6);
-        heap.malloc(3);
-        heap.malloc(9);
-        heap.free(3);
-        heap.malloc(6);
-        heap.malloc(6);
-        System.out.println();
     }
 }

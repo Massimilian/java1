@@ -25,16 +25,13 @@
         <module name="ClassLoader" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="builders" target="8" />
-      <module name="Calculator" target="9" />
-      <module name="ClassLoader" target="1.5" />
-      <module name="classloaders" target="10" />
-      <module name="MailSenderPlugin" target="1.7" />
-      <module name="Test" target="1.5" />
-      <module name="TestProject" target="1.5" />
-      <module name="tree" target="11" />
-      <module name="trees" target="1.5" />
+    <bytecodeTargetLevel target="14">
+      <module name="builders" target="14" />
+      <module name="Calculator" target="14" />
+      <module name="classloaders" target="14" />
+      <module name="MailSenderPlugin" target="14" />
+      <module name="tree" target="14" />
+      <module name="trees" target="14" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

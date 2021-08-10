@@ -38,7 +38,7 @@ public class HeapTest {
     }
 
     public static void main(String[] args) throws InvalidPointerException, OutOfMemoryException {
-        Heap heap = new Heap(maxSize);
+        FatherHeap heap = new Heap(maxSize);
         ArrayDeque<Block> blocks = new ArrayDeque<>();
         int count = 0;
         int allocTime = 0;

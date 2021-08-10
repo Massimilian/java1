@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * Hole class for Heap2
  */
-public class Hole implements Comparator<Hole> {
+public class Hole implements Comparator<Hole>, Comparable<Hole> {
     private int size;
     private int position;
 
@@ -55,5 +55,10 @@ public class Hole implements Comparator<Hole> {
     @Override
     public int hashCode() {
         return Objects.hash(position);
+    }
+
+    @Override
+    public int compareTo(Hole o) {
+        return Integer.compare(this.position, o.getPosition());
     }
 }

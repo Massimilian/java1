@@ -10,9 +10,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class SimpleAutoLoader extends ClassLoader {
-    final static String PATH_OF_TASKS = "d:/progwards/java2/"; // создаёмбазовый адрес, в котором находится весь проект
+    final static String PATH_OF_TASKS = "c:/data"; // создаём базовый адрес, каталог для плагинов
     final static String DOT_CLASS = ".class"; // пометка расширения для типа класса - скомпилированного файла Java
-    private static SimpleAutoLoader loader = new SimpleAutoLoader(PATH_OF_TASKS); // внутренний экземпляр ClassLoader
+    private static SimpleAutoLoader loader = new SimpleAutoLoader(PATH_OF_TASKS); // внутренний экземпляр ClassLoader с уже прописанным basePath.
 
     private final String basePath;
 
@@ -52,10 +52,10 @@ public class SimpleAutoLoader extends ClassLoader {
 
     private static String makeClassName(Path path) throws IOException {
         path = path.toAbsolutePath().toRealPath(); // получаем полный маршрут, без точек("..") и относительностей
-        Path relPath = Paths.get(PATH_OF_TASKS).relativize(path); // получаем именно package
+        Path relPath = Paths.get(PATH_OF_TASKS).relativize(path); // создаёт "релятивный" путь (т.е. путь без PATH_OF_TASKS)
         String className = relPath.toString().replaceAll("[\\/\\\\]", "."); // заменяем \ или / на точку
         if (className.toLowerCase().endsWith(DOT_CLASS)) { // если всё заканчивается на .class
-            className = className.substring(0, className.length() - DOT_CLASS.length()); // убираем .class
+            className = className.substring(0, className.length() - DOT_CLASS.length()); // убираем .class, если это необходимо (в идеале, это необходимо всегда)
         }
         return className;
     }
@@ -67,16 +67,14 @@ public class SimpleAutoLoader extends ClassLoader {
                 if (path.toString().endsWith(DOT_CLASS)) { // проверяем, является ли загруженный класс байт-кодом (т.е. заканчивается на ".class")
                     String className = makeClassName(path); // формируем имя класса на основе найденного пути
                     Task task = tasks.get(className); // используем это имя для поиска в списке задач
-                    if (task == null) {
-                        { // если находим - то делать ничего не нужно (в этой версии программы мы не модифицируем классы - какой загружен, такой и остаётся до конца работы программы). А вот если нет -
-                            try {
-                                Class taskClass = loader.loadClass(className, true); // загружаем при помощи ClassLoader этот класс
-                                Task newTask = (Task) taskClass.getDeclaredConstructor().newInstance(); // при помощи рефлексии создаём экземпляр класса
-                                tasks.put(className, newTask); // кладём его в список классов tasks
-                                System.out.println("Добавлен класс " + className);
-                            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-                                e.printStackTrace();
-                            }
+                    if (task == null) {// если находим - то делать ничего не нужно (в этой версии программы мы не модифицируем классы - какой загружен, такой и остаётся до конца работы программы). А вот если нет -
+                        try {
+                            Class taskClass = loader.loadClass(className, true); // загружаем при помощи ClassLoader этот класс
+                            Task newTask = (Task) taskClass.getDeclaredConstructor().newInstance(); // при помощи рефлексии создаём экземпляр класса
+                            tasks.put(className, newTask); // кладём его в список классов tasks
+                            System.out.println("Добавлен класс " + className);
+                        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -92,20 +90,21 @@ public class SimpleAutoLoader extends ClassLoader {
     }
 
     public static void main(String[] args) throws Exception {
-        Map<String, Task> tasks = new LinkedHashMap<>();
-
+        Map<String, Task> tasks = new LinkedHashMap<>(); // здесь мы будем хранить список названий классов и сами экземпляры классов
+        loader.updateTaskList(tasks);
         while (true) {
             System.out.println("Проверка классов и запуск задач: ");
             System.out.printf("%1$tI:%1$tM:%1$tS.%1$tN", new Date());
+            System.out.println();
 
-            updateTaskList(tasks);
+            updateTaskList(tasks); // обновляем список классов, которые мы подгрузили
 
             SecureRandom random = new SecureRandom();
             byte[] data = new byte[1000];
-            random.nextBytes(data);
+            random.nextBytes(data); // создаём объём byte для отработки классов
 
             for (var task : tasks.entrySet())
-                System.out.println("     " + task.getValue().process(data));
+                System.out.println("     " + task.getValue().process(data)); // запускаем все классы подряд
 
             Thread.sleep(5_000);
         }

@@ -1,8 +1,6 @@
 package ru.progwards.java2.lessons.gc;
 
-import org.apache.logging.log4j.core.util.JsonUtils;
-import org.w3c.dom.ls.LSOutput;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -68,17 +66,5 @@ public class Heap3 implements FatherHeap {
         }
         bytes = newBytes;
         position = newPos;
-    }
-
-    public static void main(String[] args) throws InvalidPointerException, OutOfMemoryException {
-        Heap3 h = new Heap3(10);
-        h.malloc(1);
-        h.malloc(2);
-        h.malloc(3);
-        h.malloc(4);
-        h.free(0);
-        h.free(6);
-        h.malloc(5);
-        System.out.println();
     }
 }

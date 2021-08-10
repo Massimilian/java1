@@ -136,22 +136,26 @@ public class HeapMyTest {
         Heap heap = new Heap(30420);
         Heap2 heap2 = new Heap2(30420);
         Heap3 heap3 = new Heap3(30420);
+        Heap4 heap4 = new Heap4(30420);
         System.out.println("1. Testing malloc method (1000 actions).");
         thousandTestsMalloc(heap, "Heap-1");
         thousandTestsMalloc(heap2, "Heap-2");
         thousandTestsMalloc(heap3, "Heap-3");
+        thousandTestsMalloc(heap4, "Heap-4");
         System.out.println("2. Testing malloc & free (not all) method (1000 actions).");
         thousandTestsMallocAndHalfFree(heap, "Heap-1");
         thousandTestsMallocAndHalfFree(heap2, "Heap-2");
         thousandTestsMallocAndHalfFree(heap3, "Heap-3");
+        thousandTestsMallocAndHalfFree(heap4, "Heap-4");
         System.out.println("3. Testing malloc & free (not all) and new malloc (big files) method (100 actions).");
         hundredTestsMallocAndFreeAndAddBigFiles(heap, "Heap-1");
         hundredTestsMallocAndFreeAndAddBigFiles(heap2, "Heap-2");
         hundredTestsMallocAndFreeAndAddBigFiles(heap3, "Heap-3");
+        hundredTestsMallocAndFreeAndAddBigFiles(heap4, "Heap-4");
         System.out.println("4. Testing malloc & free (not all) and new malloc (small files) method (100 actions).");
         hundredTestsMallocAndFreeAndAddSmallFiles(heap, "Heap-1");
         hundredTestsMallocAndFreeAndAddSmallFiles(heap2, "Heap-2");
         hundredTestsMallocAndFreeAndAddSmallFiles(heap3, "Heap-3");
-
+        hundredTestsMallocAndFreeAndAddSmallFiles(heap4, "Heap-4");
     }
 }
