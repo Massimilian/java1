@@ -159,4 +159,14 @@ public class Heap implements FatherHeap {
         }
         this.count = newPosition ? ++point : this.count;
     }
+
+    @Override
+    public void getBytes(int ptr, byte[] bytes) {
+        System.arraycopy(this.bytes, ptr, bytes, 0, count);
+    }
+
+    @Override
+    public void setBytes(int ptr, byte[] bytes) {
+        System.arraycopy(bytes, 0, this.bytes, ptr, count);
+    }
 }

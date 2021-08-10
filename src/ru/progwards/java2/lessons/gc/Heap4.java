@@ -187,4 +187,15 @@ public class Heap4 implements FatherHeap {
         bricks.clear();
         count = 0;
     }
+
+
+    @Override
+    public void getBytes(int ptr, byte[] bytes) {
+        System.arraycopy(this.bytes, ptr, bytes, 0, count);
+    }
+
+    @Override
+    public void setBytes(int ptr, byte[] bytes) {
+        System.arraycopy(bytes, 0, this.bytes, ptr, count);
+    }
 }

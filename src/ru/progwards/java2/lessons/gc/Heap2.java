@@ -170,4 +170,15 @@ public class Heap2 implements FatherHeap {
         }
         return result == -1 ? count : result;
     }
+
+
+    @Override
+    public void getBytes(int ptr, byte[] bytes) {
+        System.arraycopy(this.bytes, ptr, bytes, 0, count);
+    }
+
+    @Override
+    public void setBytes(int ptr, byte[] bytes) {
+        System.arraycopy(bytes, 0, this.bytes, ptr, count);
+    }
 }

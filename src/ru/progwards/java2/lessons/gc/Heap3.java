@@ -1,6 +1,5 @@
 package ru.progwards.java2.lessons.gc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -66,5 +65,16 @@ public class Heap3 implements FatherHeap {
         }
         bytes = newBytes;
         position = newPos;
+    }
+
+
+    @Override
+    public void getBytes(int ptr, byte[] bytes) {
+        System.arraycopy(this.bytes, ptr, bytes, 0, bytes.length);
+    }
+
+    @Override
+    public void setBytes(int ptr, byte[] bytes) {
+        System.arraycopy(bytes, 0, this.bytes, ptr, bytes.length);
     }
 }

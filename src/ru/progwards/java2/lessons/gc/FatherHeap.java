@@ -26,4 +26,20 @@ public interface FatherHeap {
      * Method to clear and restart all memory system
      */
     void clear();
+
+    /**
+     * Method for test
+     *
+     * @param ptr
+     * @param bytes
+     */
+    public void getBytes(int ptr, byte[] bytes);
+
+    /**
+     * Method for test
+     *
+     * @param ptr
+     * @param bytes
+     */
+    public void setBytes(int ptr, byte[] bytes);
 }
