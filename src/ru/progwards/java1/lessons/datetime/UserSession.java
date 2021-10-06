@@ -1,4 +1,4 @@
-package ru.progwards.java1.lessons.datetime;
+package lessons.datetime;
 
 import java.time.Instant;
 import java.util.Random;

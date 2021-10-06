@@ -1,6 +1,18 @@
 package starter;
 
 public class Dispersion implements Task {
+    private long modifiedTime;
+
+    @Override
+    public long getModifiedTime() {
+        return modifiedTime;
+    }
+
+    @Override
+    public void setModifiedTime(long time) {
+        this.modifiedTime = time;
+    }
+
     @Override
     public String process(byte[] data) {
         if (data.length == 0)

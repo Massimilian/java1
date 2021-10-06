@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class SimpleAutoLoader extends ClassLoader {
-    final static String PATH_OF_TASKS = "c:/data"; // создаём базовый адрес, каталог для плагинов
+    final static String PATH_OF_TASKS = "c:/data"; // создаём базовый адрес, каталог для плагинов. Внимание! Плагины должнеы загружаться сюда с правильной структурой папок - с такой же, как они прописаны в проекте.
     final static String DOT_CLASS = ".class"; // пометка расширения для типа класса - скомпилированного файла Java
     private static SimpleAutoLoader loader = new SimpleAutoLoader(PATH_OF_TASKS); // внутренний экземпляр ClassLoader с уже прописанным basePath.
 
@@ -67,12 +67,17 @@ public class SimpleAutoLoader extends ClassLoader {
                 if (path.toString().endsWith(DOT_CLASS)) { // проверяем, является ли загруженный класс байт-кодом (т.е. заканчивается на ".class")
                     String className = makeClassName(path); // формируем имя класса на основе найденного пути
                     Task task = tasks.get(className); // используем это имя для поиска в списке задач
-                    if (task == null) {// если находим - то делать ничего не нужно (в этой версии программы мы не модифицируем классы - какой загружен, такой и остаётся до конца работы программы). А вот если нет -
+                    if (task == null || task.getModifiedTime() != attrs.lastModifiedTime().toMillis()) {// если находим - то делать ничего не нужно (в этой версии программы мы не модифицируем классы - какой загружен, такой и остаётся до конца работы программы).
+                        // Кроме того, теперь мы проверяем ещё и насколько lastModifiedTime в task (новое значение) соответствует lastModifiedTime (последнему времени модификации) объекта attrs (сохранённое значение).
                         try {
+                            if (task != null) { // если task равен нолю - значит, плагин появился впервые. А если не равен - значит, такой плагин уже есть, но в другой версии.
+                                loader = new SimpleAutoLoader(PATH_OF_TASKS);
+                            }
                             Class taskClass = loader.loadClass(className, true); // загружаем при помощи ClassLoader этот класс
                             Task newTask = (Task) taskClass.getDeclaredConstructor().newInstance(); // при помощи рефлексии создаём экземпляр класса
+                            newTask.setModifiedTime(attrs.lastModifiedTime().toMillis()); // присваивааем в newTask значение последнего изменения загружаемого файла
                             tasks.put(className, newTask); // кладём его в список классов tasks
-                            System.out.println("Добавлен класс " + className);
+                            System.out.println(task == null? "Добавлен" : "Загружен" + " класс " + className); // в зависимости от того, добавлен ли (task нулевой) или загружен (task не нулевой) плагин - выводим сообщение
                         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
                             e.printStackTrace();
                         }

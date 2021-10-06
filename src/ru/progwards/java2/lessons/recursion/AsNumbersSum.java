@@ -72,6 +72,7 @@ public class AsNumbersSum {
     }
 
     public static void main(String[] args) {
+        asNumbersSum(5);
         assert asNumbersSum(5).equals("5 = 4 + 1 = 3 + 1 + 1 = 3 + 2 = 2 + 2 + 1 = 2 + 1 + 1 + 1 = 1 + 1 + 1 + 1 + 1");
     }
 }
