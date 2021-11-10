@@ -16,22 +16,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="builders" />
-        <module name="classloaders" />
-        <module name="SystemProfiler" />
-        <module name="SpringOne" />
-        <module name="Calculator" />
-        <module name="tree" />
-        <module name="graph" />
-        <module name="SpringTesterProject" />
-        <module name="MailSenderPlugin" />
-        <module name="TestArea" />
-        <module name="classloader" />
-        <module name="trees" />
         <module name="ClassLoader" />
+        <module name="graph" />
+        <module name="classloader" />
+        <module name="builders" />
+        <module name="SpringOne" />
+        <module name="synchro" />
+        <module name="trees" />
+        <module name="threads" />
+        <module name="TestArea" />
+        <module name="classloaders" />
+        <module name="SpringTesterProject" />
+        <module name="Calculator" />
+        <module name="MailSenderPlugin" />
+        <module name="tree" />
+        <module name="SystemProfiler" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="14">
+    <bytecodeTargetLevel target="8">
       <module name="builders" target="8" />
       <module name="Calculator" target="14" />
       <module name="classLoader" target="11" />
@@ -40,8 +42,10 @@
       <module name="MailSenderPlugin" target="1.7" />
       <module name="SpringOne" target="14" />
       <module name="SpringTesterProject" target="14" />
+      <module name="synchro" target="7" />
       <module name="SystemProfiler" target="11" />
       <module name="TestArea" target="8" />
+      <module name="threads" target="9" />
       <module name="tree" target="11" />
       <module name="trees" target="14" />
     </bytecodeTargetLevel>

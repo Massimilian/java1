@@ -14,6 +14,8 @@
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloaders/classloaders.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloaders/classloaders.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/graph/graph/graph.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/graph/graph/graph.iml" />
       <module fileurl="file://$PROJECT_DIR$/java2.iml" filepath="$PROJECT_DIR$/java2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/synchro/synchro.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/synchro/synchro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/threads/threads.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/threads/threads.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/trees/tree.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/trees/tree.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/trees.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/trees.iml" />
     </modules>
