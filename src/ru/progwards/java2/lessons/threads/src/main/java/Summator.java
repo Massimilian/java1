@@ -12,7 +12,7 @@ public class Summator {
 
     public BigInteger sum(BigInteger number) {
         BigInteger result = null;
-        if (Integer.valueOf(number.toString()) <= count) {
+        if (number.longValue() <= count) {
             Span span = new Span(0, Long.valueOf(number.toString()));
             FutureTask<BigInteger> future = new FutureTask<>(span);
             new Thread(future).start();
