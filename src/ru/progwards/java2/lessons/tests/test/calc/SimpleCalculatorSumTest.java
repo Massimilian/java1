@@ -41,6 +41,6 @@ public class SimpleCalculatorSumTest {
 
     @Test (expected = ArithmeticException.class)
     public void whenTryToMakeAnExceptionThenDoIt() {
-        sc.sum(Integer.MAX_VALUE, 1);
+        sc.sum(Integer.MAX_VALUE, -1);
     }
 }

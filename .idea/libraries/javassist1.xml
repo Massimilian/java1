@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="javassist1">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloader/SystemProfiler/src/main/resources/javassist.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

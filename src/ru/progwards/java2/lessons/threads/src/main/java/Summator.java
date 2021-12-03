@@ -22,7 +22,7 @@ public class Summator {
                 e.printStackTrace();
             }
         } else {
-            Span[] edges = prepareEdges(number);
+            Span[] edges = prepareEdgesNew(number);
             ExecutorService es = Executors.newFixedThreadPool(count);
             List<Future<BigInteger>> futures = new ArrayList<>();
             for (int i = 0; i < count; i++) {
@@ -42,6 +42,7 @@ public class Summator {
         return result;
     }
 
+    @Deprecated
     private Span[] prepareEdges(BigInteger number) {
         BigInteger divided = number.divide(new BigInteger(String.valueOf(this.count)));
         Span[] nums = new Span[count];
@@ -56,9 +57,40 @@ public class Summator {
         return nums;
     }
 
+    private Span[] prepareEdgesNew(BigInteger number) {
+        Span[] nums = new Span[count];
+        long divided = number.longValue();
+        divided /= this.count;
+        long from = 1L;
+        long to;
+        for (int i = count - 1; i > 0 ; i--) {
+            to = from + divided;
+            nums[i] = new Span(from, to);
+            from = to + 1;
+        }
+        nums[0] = new Span(from, number.longValue());
+        return nums;
+    }
+
     public static void main(String[] args) {
-        Summator sum = new Summator(4);
-        System.out.println(sum.sum(new BigInteger(String.valueOf(1000000000))));
+        int num = 1356543;
+        long l = 0;
+        for (int i = 0; i <= num; i++) {
+            l = l + i;
+        }
+        System.out.println("long   = " + l);
+
+        long time = System.currentTimeMillis();
+        int tr = 100_000;
+        Summator test = new Summator(tr);
+        System.out.println("result = " + test.sum(BigInteger.valueOf(num)) + "   потоков - " + tr);
+        System.out.println("Время работы: " + (System.currentTimeMillis() - time) + " мс.");
+
+        time = System.currentTimeMillis();
+        tr = 2;
+        test = new Summator(tr);
+        System.out.println("result = " + test.sum(BigInteger.valueOf(num)) + "   потоков - " + tr);
+        System.out.println("Время работы: " + (System.currentTimeMillis() - time) + " мс.");
     }
 }
 

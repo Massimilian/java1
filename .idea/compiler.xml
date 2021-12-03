@@ -33,7 +33,7 @@
         <module name="SystemProfiler" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
+    <bytecodeTargetLevel target="14">
       <module name="builders" target="8" />
       <module name="Calculator" target="14" />
       <module name="classLoader" target="11" />
