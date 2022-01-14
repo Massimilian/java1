@@ -1,4 +1,4 @@
-package ru.progwards.java1.lessons.arrays;
+package lessons.arrays;
 
 import org.junit.Assert;
 import java.util.Arrays;

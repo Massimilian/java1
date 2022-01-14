@@ -51,7 +51,7 @@ public class Profiler {
     }
 
     /**
-     * Method for clean, collapse and sort StatisticIbfos.
+     * Method for clean, collapse and sort StatisticInfos.
      *
      * @return prepares ArrayList with StatisticInfos
      */

@@ -24,6 +24,7 @@
         <module name="synchro" />
         <module name="trees" />
         <module name="threads" />
+        <module name="sort" />
         <module name="TestArea" />
         <module name="classloaders" />
         <module name="SpringTesterProject" />
@@ -40,11 +41,12 @@
       <module name="classloaders" target="10" />
       <module name="graph" target="9" />
       <module name="MailSenderPlugin" target="1.7" />
+      <module name="sort" target="11" />
       <module name="SpringOne" target="14" />
       <module name="SpringTesterProject" target="14" />
       <module name="synchro" target="7" />
       <module name="SystemProfiler" target="11" />
-      <module name="TestArea" target="8" />
+      <module name="TestArea" target="9" />
       <module name="threads" target="9" />
       <module name="tree" target="11" />
       <module name="trees" target="14" />
