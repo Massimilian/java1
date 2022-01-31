@@ -1,15 +1,12 @@
-public class Test {
-    int GetMinrun(int n) {
-        int r = 0;
-        while (n >= 64) {
-            r |= n & 1;
-            n >>= 1;
-        }
-        return n + r; // на 200 вернёт 50; на 255 - 64; на 256 - 32.
-    }
+import java.io.*;
+import java.nio.file.Paths;
 
-    public static void main(String[] args) {
-        Test test = new Test();
-        System.out.println(test.GetMinrun(63));
+public class Test {
+    public static void main(String[] args) throws IOException {
+        DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("D:/text.txt")));
+        dos.writeBytes("Some information: "); // записываем информацию в файл
+        dos.flush(); // финализируем буфер обмена
+        dos.close(); // закрываем ресурс
+
     }
 }
