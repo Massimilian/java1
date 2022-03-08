@@ -13,6 +13,8 @@
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloader.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloader.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloaders/classloaders.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/classloaders/classloaders.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/graph/graph/graph.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/graph/graph/graph.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/http/http/http.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/http/http/http.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/jarPrepare/jarPrepare/jarPrepare.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/jarPrepare/jarPrepare/jarPrepare.iml" />
       <module fileurl="file://$PROJECT_DIR$/java2.iml" filepath="$PROJECT_DIR$/java2.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/sort/sort.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/sort/sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/ru/progwards/java2/lessons/synchro/synchro.iml" filepath="$PROJECT_DIR$/src/ru/progwards/java2/lessons/synchro/synchro.iml" />

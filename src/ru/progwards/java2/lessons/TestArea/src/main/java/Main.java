@@ -8,8 +8,11 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        try (ServerSocket ss = new ServerSocket(80)) { // в качестве аргумента указываем порт
-            Socket serverSocket = ss.accept(); // получаем серверный сокет
+        try (ServerSocket ss = new ServerSocket(40000)) { // создали сервер с портом 40000
+            while (true) {
+                Socket serverSocket = ss.accept(); // открыли работу сервера
+                new Thread(new RequestHandler(serverSocket)).start(); // создаём новый поток, в который помещаем RequestHandler, в котором лежит наш сервер
+            }
         } catch (IOException io) {
             io.printStackTrace();
         }
@@ -17,8 +20,7 @@ public class Main {
 }
 
 class RequestHandler implements Runnable {
-
-    Socket server; // сюда мы передаём серверный сокет
+    Socket server; // серверный сокет
 
     public RequestHandler(Socket server) {
         this.server = server;
@@ -27,16 +29,23 @@ class RequestHandler implements Runnable {
     @Override
     public void run() {
         try (InputStream is = server.getInputStream();
-            OutputStream os = server.getOutputStream();
-        ) {
-            Scanner sc = new Scanner(is);
-            boolean isDone = false;
-
-            while(!isDone && sc.hasNextLine()) {
-
+             OutputStream os = server.getOutputStream();) { // через try-with-resources создаём Input- и OutputStream сокета
+            Scanner scanner = new Scanner(is);
+            boolean done = false;
+            while (scanner.hasNextLine() && !done) {
+                String part = scanner.nextLine();
+                if (part.equals("EXIT")) {
+                    done = true;
+                } else {
+                    PrintWriter pw = new PrintWriter(os);
+                    pw.println("Echo: " + part + System.lineSeparator());
+                    pw.flush();
+                    server.shutdownOutput();
+                }
             }
-        }catch (IOException io) {
-            io.printStackTrace();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
