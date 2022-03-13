@@ -37,7 +37,7 @@ class RequestHandler implements Runnable {
     private final String goodHeaders = "HTTP/1.1 200 OK" + neck;
     private final String badHeaders = "HTTP/1.1 404 BadRequest" + neck;
     private boolean needGoodRequest = true;
-    private Socket server;
+    private final Socket server;
     AtmClient atm;
 
     public RequestHandler(Socket server, AtmClient atm) {
@@ -49,7 +49,7 @@ class RequestHandler implements Runnable {
     @Override
     public void run() {
         try (InputStream is = server.getInputStream();
-             OutputStream os = server.getOutputStream();) {
+             OutputStream os = server.getOutputStream()) {
             StringBuilder sb = new StringBuilder();
             Scanner scanner = new Scanner(is);
             System.out.println(Store.getStore());
@@ -82,20 +82,20 @@ class RequestHandler implements Runnable {
                 case "deposit":
                     System.out.println("Deposit on work:");
                     amount = params.get("param2");
-                    atm.deposit(acc, Double.valueOf(amount));
+                    atm.deposit(acc, Double.parseDouble(amount));
                     sb.append("The balance is replenished (your balance now is ").append(acc.getAmount()).append(").");
                     break;
                 case "withdraw":
                     System.out.println("Withdraw on work:");
                     amount = params.get("param2");
-                    atm.withdraw(acc, Double.valueOf(amount));
+                    atm.withdraw(acc, Double.parseDouble(amount));
                     sb.append("The balance is changed (your balance now is ").append(acc.getAmount()).append(").");
                     break;
                 case "transfer":
                     System.out.println("Transfer on work");
                     acc2 = Store.getStore().get(params.get("param2"));
                     amount = params.get("param3");
-                    atm.transfer(acc, acc2, Double.valueOf(amount));
+                    atm.transfer(acc, acc2, Double.parseDouble(amount));
                     sb.append(String.format("Transfered %s from %s to %s", amount, acc.getHolder(), acc2.getHolder()));
                     break;
                 default:
@@ -118,13 +118,13 @@ class RequestHandler implements Runnable {
     /**
      * Method for prepare params for request
      * @param cut is params
-     * @return
+     * @return HashMap with params
      */
     private HashMap<String, String> prepareParams(String cut) {
         HashMap<String, String> params = new HashMap<>();
         String[] list = cut.split("&");
-        for (int i = 0; i < list.length; i++) {
-            params.put(list[i].substring(0, list[i].indexOf("=")), list[i].substring(list[i].indexOf("=") + 1));
+        for (String s : list) {
+            params.put(s.substring(0, s.indexOf("=")), s.substring(s.indexOf("=") + 1));
         }
         return params;
     }
@@ -137,8 +137,7 @@ class RequestHandler implements Runnable {
     private String prepare(String forChange) {
         forChange = this.findBackspaces(forChange);
         int tail = forChange.lastIndexOf("hostname: localhost");
-        String prepared = forChange.substring(5, tail - 9);
-        return prepared;
+        return forChange.substring(5, tail - 9);
     }
 
     /**

@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class AtmClient implements AccountService {
     /**
      * Method for form, send request to the server and receive the response
-     * @param args
+     * @param args without parameters
      */
     public static void main(String[] args) {
         try (Socket socket = new Socket("localhost", 40001)){
@@ -26,7 +26,7 @@ public class AtmClient implements AccountService {
                 pw.println(request); // ... в котором и будет лежать наш request (т.е. написанный ранее GET-запрос)
                 pw.flush(); // обязательно закрываем PrintWriter
                 BufferedReader br = new BufferedReader(new InputStreamReader(is)); // считываем response
-                String str = "";
+                String str;
                 while ((str = br.readLine()) != null) {
                     System.out.println(str);
                 }
