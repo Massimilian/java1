@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
 
+// принцип работы - пытаемся взять сразу две вилки, если не получается - бросаем всё и размышляем.
 public class Simposion {
     final int number = 5;
     private final Philosopher[] philosophers;
@@ -45,7 +46,7 @@ public class Simposion {
 
     public void start() {
         for (int i = 0; i < number; i++) {
-            final int fin = i;
+            final int fin = i; // Runnable требует финальную переменную
             threads[i] = new Thread(new Runnable() {
                 public void run() {
                     philosophers[fin].eat();

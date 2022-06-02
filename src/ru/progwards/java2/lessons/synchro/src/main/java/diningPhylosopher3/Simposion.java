@@ -3,7 +3,7 @@ package diningPhylosopher3;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
-
+// принцип работы: философ, который начинакет есть, блокирует двух своих соседей.
 public class Simposion {
     private final int number = 5;
     private Philosopher[] philosophers;

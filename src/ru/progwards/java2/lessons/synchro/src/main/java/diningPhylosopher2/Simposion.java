@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
-
+// Круговая смена виолок у философов - когда мы берём две вилки, поток сдвигается на два философа "по часовой стрелке" и затем повторяет операцию. НЕ РАБОТАЕТ на чётном количестве философов
 public class Simposion {
-    static final int number = 5;
+    static final int number = 4;
     public static int currentPosition = 0;
     private final Philosopher[] philosophers;
     private final Fork[] forks;

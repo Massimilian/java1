@@ -27,10 +27,13 @@
         <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/sort/pom.xml" />
         <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/jarPrepare/jarPrepare/pom.xml" />
         <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/http/http/pom.xml" />
+        <option value="$PROJECT_DIR$/consult/consult/pom.xml" />
+        <option value="$PROJECT_DIR$/src/ru/progwards/java2/lessons/consult/consult/pom.xml" />
+        <option value="$PROJECT_DIR$/lessons/login/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="false" project-jdk-name="15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

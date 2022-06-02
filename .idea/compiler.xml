@@ -16,24 +16,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="http" />
-        <module name="jarPrepare" />
-        <module name="synchro" />
-        <module name="classloaders" />
         <module name="builders" />
-        <module name="SpringOne" />
-        <module name="trees" />
-        <module name="threads" />
-        <module name="sort" />
+        <module name="SystemProfiler" />
         <module name="TestArea" />
         <module name="classloader" />
+        <module name="tree" />
+        <module name="synchro" />
+        <module name="threads" />
+        <module name="sort" />
+        <module name="trees" />
         <module name="graph" />
+        <module name="classloaders" />
+        <module name="jarPrepare" />
         <module name="Calculator" />
         <module name="MailSenderPlugin" />
+        <module name="http" />
         <module name="ClassLoader" />
-        <module name="tree" />
+        <module name="consult" />
+        <module name="SpringOne" />
         <module name="SpringTesterProject" />
-        <module name="SystemProfiler" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="14">
@@ -41,9 +42,11 @@
       <module name="Calculator" target="14" />
       <module name="classLoader" target="11" />
       <module name="classloaders" target="10" />
+      <module name="consult" target="11" />
       <module name="graph" target="9" />
       <module name="http" target="9" />
       <module name="jarPrepare" target="9" />
+      <module name="login" target="8" />
       <module name="MailSenderPlugin" target="1.7" />
       <module name="sort" target="11" />
       <module name="SpringOne" target="14" />

@@ -51,7 +51,7 @@ public class Philosopher {
     void eat() {
         if (!finish) {
             if (waiter.tryLock()) {
-                if (right.take() && left.take()) {
+                if (right.take() && left.take()) { // пытаемся взять две вилки сразу при помощи tryLock()
                     waiter.unlock();
                     Thread thread = new Thread(new Action(name, "is eating.", false));
                     thread.start();
@@ -66,7 +66,7 @@ public class Philosopher {
                     eatSum += eatTime;
                     isHungry = false;
                 } else {
-                    right.putIfBusy();
+                    right.putIfBusy(); // Кладём вилки, если не получилось
                     left.putIfBusy();
                     waiter.unlock();
                 }
