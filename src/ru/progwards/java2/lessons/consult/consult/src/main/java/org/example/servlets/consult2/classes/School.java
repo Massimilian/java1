@@ -2,6 +2,7 @@ package org.example.servlets.consult2.classes;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class School {
     private ArrayList<Professor> professors = new ArrayList<>();
@@ -18,5 +19,9 @@ public class School {
 
     public ArrayList<Professor> getProfessors() {
         return professors;
+    }
+
+    public ArrayList<String> getProfessorsNames() {
+        return (ArrayList<String>) professors.stream().map(professor -> professor.getName()).collect(Collectors.toList());
     }
 }

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Iterator;
 
 public class ConsultationCreateServlet extends HttpServlet {
     @Override
@@ -22,6 +23,17 @@ public class ConsultationCreateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
+        boolean hasData = false;
+        Iterator<String> iterator = req.getParameterNames().asIterator();
+        while (iterator.hasNext()) {
+            hasData = iterator.next().equals("data");
+            if (hasData) {
+                break;
+            }
+        }
+        if (!hasData) {
+            this.doGet(req, resp);
+        }
         if (Consultation.checkDate(req.getParameter("date"), session)) {
             session.setAttribute("consultDate", req.getParameter("date"));
             req.getRequestDispatcher("concreator2page.jsp").forward(req, resp);

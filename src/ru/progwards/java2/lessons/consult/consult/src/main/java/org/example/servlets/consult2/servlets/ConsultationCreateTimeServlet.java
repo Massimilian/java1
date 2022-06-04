@@ -17,6 +17,7 @@ public class ConsultationCreateTimeServlet extends HttpServlet {
         HttpSession session = req.getSession();
         if (Consultation.checkTime(req.getParameter("time"), session)) {
             session.setAttribute("consultTime", req.getParameter("time"));
+            System.out.println();
         } else {
             req.getRequestDispatcher("concreator2page.jsp").forward(req, resp);
         }
