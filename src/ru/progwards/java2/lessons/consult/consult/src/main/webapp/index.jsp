@@ -15,7 +15,7 @@
     <a href="/gserv">Домашнее задание H20 (перенаправление).</a> <br>
     <a href="/hs">Домашнее задание H20 (фильтр).</a> <br>
     <a href="/jstart">Путешествие.</a> <br>
-    <a href="/conswelcome">Консультации</a> <br>
+    <a href="/constart">Консультации</a> <br>
 </form>
 </body>
 </html>

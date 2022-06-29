@@ -2,18 +2,47 @@ package org.example.servlets.consult2.classes;
 
 public class TimeDatePeriod {
     private TimePeriod time;
-    private String NameOfDay;
+    private int numOfDay;
 
-    public TimeDatePeriod(String nameOfDay, TimePeriod time) {
+    public TimeDatePeriod(int nameOfDay, TimePeriod time) {
         this.time = time;
-        NameOfDay = nameOfDay;
+        this.numOfDay = nameOfDay;
     }
 
     public TimePeriod getTime() {
-        return time;
+        return this.time;
+    }
+
+
+    public int getNumOfDay() {
+        return this.numOfDay;
     }
 
     public String getNameOfDay() {
-        return NameOfDay;
+        String result = "";
+        switch (this.numOfDay) {
+            case 1:
+                result = "Понедельник";
+                break;
+            case 2:
+                result = "Вторник";
+                break;
+            case 3:
+                result = "Среда";
+                break;
+            case 4:
+                result = "Четверг";
+                break;
+            case 5:
+                result = "Пятница";
+                break;
+            case 6:
+                result = "Суббота";
+                break;
+            default:
+                result = "Воскресенье";
+        }
+        return result;
     }
+
 }

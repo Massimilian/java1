@@ -26,7 +26,7 @@ public class ConsultationCreateServlet extends HttpServlet {
         boolean hasData = false;
         Iterator<String> iterator = req.getParameterNames().asIterator();
         while (iterator.hasNext()) {
-            hasData = iterator.next().equals("data");
+            hasData = iterator.next().equals("date");
             if (hasData) {
                 break;
             }
@@ -36,6 +36,7 @@ public class ConsultationCreateServlet extends HttpServlet {
         }
         if (Consultation.checkDate(req.getParameter("date"), session)) {
             session.setAttribute("consultDate", req.getParameter("date"));
+            session.setAttribute("thema", req.getParameter("thema"));
             req.getRequestDispatcher("concreator2page.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("concreator.jsp").forward(req, resp);

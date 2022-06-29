@@ -13,9 +13,14 @@
 <body>
 <h2><span style="color: #FF0000"><%=request.getSession().getAttribute("false")%></span></h2>
 <form action="/consultation2create" method="post">
+    <h3>Введите Ваши вопросы для консультации:</h3>
+    <input type="text" name="thema">
     <h3>Выберите дату начала занятий</h3><br>
-    <input type="datetime-local" name="date"><br>
+    <input type="date" name="date"><br>
     <input type="submit" value="Выбрать дату">
+</form>
+<form action="/conswelcome">
+    <input type="submit" value="Изменить выбор преподавателя">
 </form>
 <form action="index.jsp">
     <input type="submit" value="Выйти">
