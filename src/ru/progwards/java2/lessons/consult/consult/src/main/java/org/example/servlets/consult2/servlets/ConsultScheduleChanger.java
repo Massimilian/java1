@@ -17,8 +17,7 @@ public class ConsultScheduleChanger extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ((Professor) req.getSession().getAttribute("professor")).setWorkTimes(new ArrayList<>());
-        req.getSession().setAttribute("timedates", ((Professor) req.getSession().getAttribute("professor")).getWorkTimes());
-        req.getSession().setAttribute("false", "");
+        req.getSession().setAttribute("falsed", "");
         req.getRequestDispatcher("consrealchange.jsp").forward(req, resp);
     }
 
@@ -55,7 +54,13 @@ public class ConsultScheduleChanger extends HttpServlet {
             professor.setWorkTime(numOfDay, start, finish);
             falta = "Новое рабочее время добавлено.";
         }
-        req.getSession().setAttribute("false", falta);
+        ArrayList<TimeDatePeriod> timedates = ((Professor) req.getSession().getAttribute("professor")).getWorkTimes();
+        ArrayList<String> informations = new ArrayList<>();
+        for (int i = 0; i < timedates.size(); i++) {
+            informations.add(String.format("%s, %s.", timedates.get(i).getNameOfDay(), timedates.get(i).getTime().toString()));
+        }
+        req.getSession().setAttribute("information", informations);
+        req.getSession().setAttribute("falsed", falta);
         req.getRequestDispatcher("consrealchange.jsp").forward(req, resp);
     }
 }

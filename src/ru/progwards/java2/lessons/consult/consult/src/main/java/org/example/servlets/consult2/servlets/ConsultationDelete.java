@@ -18,7 +18,7 @@ public class ConsultationDelete extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         School school = (School) req.getSession().getAttribute("school");
         ArrayList<Consultation> consults = school.prepareConsultationListByStudentName((String) req.getSession().getAttribute("name"));
-        req.getSession().setAttribute("consultations", consults);
+        req.getSession().setAttribute("consultations", consults.size() == 0? null : consults);
         req.getRequestDispatcher("consultdelete.jsp").forward(req, resp);
     }
 
@@ -32,7 +32,6 @@ public class ConsultationDelete extends HttpServlet {
             School school = (School) req.getSession().getAttribute("school");
             Consultation current = Consultation.findByString(consults, dateTimeName);
             Professor professor = school.getProfessorByName(Consultation.getProfessorFromString(dateTimeName));
-            System.out.println(professor.deleteConsult(current));
             school.renovateProfessorInfo(professor, current);
             req.getSession().setAttribute("school", School.getSchool());
             req.getSession().setAttribute("consultations", null);

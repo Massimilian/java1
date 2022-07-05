@@ -38,7 +38,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="14">
-      <module name="builders" target="1.8" />
+      <module name="builders" target="8" />
       <module name="Calculator" target="14" />
       <module name="classLoader" target="11" />
       <module name="classloaders" target="10" />
@@ -51,7 +51,7 @@
       <module name="sort" target="11" />
       <module name="SpringOne" target="14" />
       <module name="SpringTesterProject" target="14" />
-      <module name="synchro" target="1.7" />
+      <module name="synchro" target="7" />
       <module name="SystemProfiler" target="11" />
       <module name="TestArea" target="9" />
       <module name="threads" target="9" />

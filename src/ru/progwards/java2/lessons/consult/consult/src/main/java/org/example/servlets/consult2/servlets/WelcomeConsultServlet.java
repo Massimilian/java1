@@ -14,18 +14,20 @@ public class WelcomeConsultServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        req.getSession().setAttribute("false", "");
+        School school = (School) req.getSession().getAttribute("school");
+        req.setAttribute("professors", school.getProfessors());
+        req.getSession().setAttribute("falsed", "");
         req.getRequestDispatcher("conwelcome.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        if (req.getSession().getAttribute("false") == null) {
+        if (req.getSession().getAttribute("falsed") == null) {
             this.doGet(req, resp);
         } else {
-            Enumeration<String> enumeration = req.getParameterNames();
             School school = (School) req.getSession().getAttribute("school");
+            Enumeration<String> enumeration = req.getParameterNames();
             boolean hasProf = false;
             while (enumeration.hasMoreElements()) {
                 String temp = enumeration.nextElement();
@@ -36,10 +38,10 @@ public class WelcomeConsultServlet extends HttpServlet {
                 }
             }
             if (hasProf) {
-                req.getSession().setAttribute("false", "");
+                req.getSession().setAttribute("falsed", "");
                 req.getRequestDispatcher("/consultation2create").forward(req, resp);
             } else {
-                req.getSession().setAttribute("false", "Непредвиденная ошибка: пожалуйста, выберите другого преподавателя.");
+                req.getSession().setAttribute("falsed", "Непредвиденная ошибка: пожалуйста, выберите другого преподавателя.");
                 req.getRequestDispatcher("conwelcome.jsp").forward(req, resp);
             }
         }

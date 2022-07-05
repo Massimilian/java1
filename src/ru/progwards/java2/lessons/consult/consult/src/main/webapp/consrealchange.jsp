@@ -9,19 +9,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Change consultation dates and times</title>
 </head>
 <body>
-<h2><span style="color: #FF0000"><%=request.getSession().getAttribute("false")%></span></h2>
-<%
-    ArrayList<TimeDatePeriod> timedates = (ArrayList<TimeDatePeriod>) session.getAttribute("timedates");
-    for (int i = 0; i < timedates.size(); i++) { %>
-<h1>
-    <li><%=timedates.get(i).getNameOfDay()%>, <%=timedates.get(i).getTime().toString()%>.</li>
-</h1>
-<%}%>
+<h2><span style="color: #FF0000">${sessionScope.falsed}</span></h2>
+<c:forEach var="info" items="${information}">
+    <h1><li>${info}</li></h1>
+</c:forEach>
 <form action="/consschecha" method="post">
     <h1>Выберите день, когда Вы планируете проводить консультации:</h1>
     <h5>Понедельник.<input type="radio" name="dayofweek" value="1"/></h5>

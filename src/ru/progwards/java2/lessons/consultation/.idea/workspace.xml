@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Consultation:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="400f7e43-613f-44a2-b284-6643d79587a1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/libraries/Maven__jstl_jstl_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/libraries/Maven__org_apache_taglibs_taglibs_standard_impl_1_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/libraries/Maven__org_apache_taglibs_taglibs_standard_spec_1_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../out/production/java2/ru/progwards/java1/java1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../out/production/java2/ru/progwards/java1/out/production/java1/java1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../../../../out/production/java2/ru/progwards/java2/.idea/java2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/java/org/example/servlets/lesson22/StartServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/22test.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/Consultation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/Professor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/School.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/TimeDatePeriod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/TimePeriod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultAdminWay.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultChangeData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultChangeSchedule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultFullInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultProfessorChangesServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultScheduleChanger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationCreateServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationCreateTimeServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationDelete.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationForProfessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationStart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlets/WelcomeConsultServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/conchangestatus.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/classes/Consultation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/classes/Professor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/classes/School$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/classes/School.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/classes/Student.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/classes/TimeDatePeriod.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/classes/TimePeriod.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultAdminWay.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultChangeData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultChangeSchedule.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultFullInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultProfessorChangesServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultScheduleChanger.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateTimeServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationDelete.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationForProfessor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationStart.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/servlets/WelcomeConsultServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/classes/Consultation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/classes/Professor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/classes/School$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/classes/School.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/classes/Student.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/classes/TimeDatePeriod.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/classes/TimePeriod.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultAdminWay.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultChangeData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultChangeSchedule.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultFullInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultProfessorChangesServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultScheduleChanger.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultationCreateServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultationCreateTimeServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultationDelete.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultationForProfessor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/ConsultationStart.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/classes/servlets/WelcomeConsultServlet.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/lib/gson-2.8.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/lib/javax.servlet-api-4.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/lib/jstl-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/consult/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/target/Webtest.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/target/Webtest/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/target/Webtest/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../webtest/target/Webtest/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../.idea/artifacts/consult_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../.idea/artifacts/consult_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/consult.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/consult.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/index.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jsp File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BIoE5fr5becq2Yd95oVPuPtSWj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\progwards\java2\src\ru\progwards\java2\lessons\consultation\src\main\webapp" />
+      <recent name="D:\progwards\java2\src\ru\progwards\java2\lessons\consultation\src\main\java" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Tomcat 9.0.62" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.62" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Consultation:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="db3cb4c8-44e8-4781-8d36-58c9258a52b6" />
+        <option name="HTTP_PORT" value="8886" />
+        <option name="JNDI_PORT" value="1097" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="54922" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Consultation:war" />
+        </option>
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="400f7e43-613f-44a2-b284-6643d79587a1" name="Changes" comment="" />
+      <created>1656602850978</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1656602850978</updated>
+      <workItem from="1656602852635" duration="1450000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

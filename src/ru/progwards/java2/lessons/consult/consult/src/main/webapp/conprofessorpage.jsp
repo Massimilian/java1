@@ -8,23 +8,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Professor's page</title>
 </head>
 <body>
-<h1>Добро пожаловать, <%=session.getAttribute("name")%>!</h1>
-<h1>Предстоящие лекции:</h1>
+<h1>Добро пожаловать, ${sessionScope.name}!</h1>
+<h1>Предстоящие консультации:</h1>
 <ul>
-    <%
-        ArrayList<Consultation> consultations = ((Professor)session.getAttribute("professor")).getConsults();
-        for (int i = 0; i < consultations.size(); i++) {
-            %>
-    <li><h1><%=consultations.get(i).getStart().toLocalDate()%>, в <%=consultations.get(i).getStart().toLocalTime()%>;
-        тема консультации - "<%=consultations.get(i).getThema()%>", студент - <%=consultations.get(i).getStudent()%>.</h1></li>
-    <%
-        }
-    %>
+    <c:forEach var="info" items="${sessionScope.information}">
+        <li><h1>${info}</h1></li>
+    </c:forEach>
 </ul>
 <form action="/professorchanges" method="get">
     <input type="submit" value="Изменения в учётную запись.">

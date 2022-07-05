@@ -6,18 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Well done!</title>
 </head>
 <body>
-<h2>Консультация добавлена. Не забудьте про Вашу консультацию, которая произойдёт <%=session.getAttribute("consultDate")%> в <%=session.getAttribute("consultTime")%>.</h2>
-<h2>Ваш преподаватель - <%=session.getAttribute("professor")%>.</h2>
-<%session.setAttribute("professor", null);
-session.setAttribute("school", School.getSchool());
-session.setAttribute("consultDate", null);
-session.setAttribute("thema", null);
-session.setAttribute("consultTime", null);%>
+<h2>Консультация добавлена. Не забудьте про Вашу консультацию, которая произойдёт ${sessionScope.consultDate} в ${sessionScope.consultTime}.</h2>
+<h2>Ваш преподаватель - ${sessionScope.professor}.</h2>
 <form action="/conswelcome" method="get">
     <input type="submit" value="Вернуться">
 </form>

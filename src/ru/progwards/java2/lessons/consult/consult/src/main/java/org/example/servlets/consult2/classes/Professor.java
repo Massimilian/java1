@@ -109,7 +109,9 @@ public class Professor {
             builder.append(workTimes.get(i).getTime().toString());
             builder.append("; ");
         }
-        builder.setCharAt(builder.length() - 2, '.');
+        if (builder.length() >= 2) {
+            builder.setCharAt(builder.length() - 2, '.');
+        }
         return builder.toString();
     }
 

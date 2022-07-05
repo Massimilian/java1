@@ -22,7 +22,7 @@ public class School {
     public static School getSchool() {
         School school = null;
         Path path = Paths.get(placeKeeper);
-        if (Files.exists(path))
+        if (Files.exists(path)) {
             try {
                 String json = Files.readString(path);
                 Type type = new TypeToken<School>() {
@@ -31,7 +31,10 @@ public class School {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        school.deletePassedConsults();
+            school.deletePassedConsults();
+        } else {
+            school = new School();
+        }
         return school;
 //        School school = new School();
 //        Professor valery = new Professor("Valery", "admin");

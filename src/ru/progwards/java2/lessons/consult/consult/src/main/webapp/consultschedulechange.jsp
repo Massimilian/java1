@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Change schedule</title>
@@ -13,14 +14,9 @@
 <body>
 <h1>Ваше текущее расписание:</h1>
 <ul>
-    <% Professor professor = (Professor) session.getAttribute("professor");
-        for (int i = 0; i < professor.getWorkTimes().size(); i++) {
-    %>
-    <li>
-        <h1><%=professor.getWorkTimes().get(i).getNameOfDay()%>
-            , <%=professor.getWorkTimes().get(i).getTime().toString()%>.</h1>
-    </li>
-    <%}%>
+    <c:forEach var="info" items="${sessionScope.information}">
+        <li><h1>${info}</h1></li>
+    </c:forEach>
 </ul>
 <form action="/consschecha" method="get">
     <input type="submit" value="Заменить расписание">

@@ -317,4 +317,12 @@
         <servlet-name>ConsultFullInfo</servlet-name>
         <url-pattern>/consultallschool</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>L22StartServlet</servlet-name>
+        <servlet-class>org.example.servlets.lesson22.StartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>L22StartServlet</servlet-name>
+        <url-pattern>/22start</url-pattern>
+    </servlet-mapping>
 </web-app>

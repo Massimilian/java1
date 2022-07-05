@@ -16,6 +16,7 @@
     <a href="/hs">Домашнее задание H20 (фильтр).</a> <br>
     <a href="/jstart">Путешествие.</a> <br>
     <a href="/constart">Консультации</a> <br>
+    <a href="/22start">Тест для 22 урока</a> <br>
 </form>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package org.example.servlets.consult2.servlets;
 
 import org.example.servlets.consult2.classes.Consultation;
+import org.example.servlets.consult2.classes.School;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +16,7 @@ public class ConsultationCreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
-        session.setAttribute("false", "");
+        session.setAttribute("falsed", "");
         req.getRequestDispatcher("concreator.jsp").forward(req, resp);
     }
 
@@ -37,6 +38,8 @@ public class ConsultationCreateServlet extends HttpServlet {
         if (Consultation.checkDate(req.getParameter("date"), session)) {
             session.setAttribute("consultDate", req.getParameter("date"));
             session.setAttribute("thema", req.getParameter("thema"));
+            req.setAttribute("timeInfo", School.getSchool().getProfessorByName((String) session.getAttribute("professor")).getConsultationsScheduleByDay((String) session.getAttribute("consultDate")));
+            session.setAttribute("falsed", "");
             req.getRequestDispatcher("concreator2page.jsp").forward(req, resp);
         } else {
             req.getRequestDispatcher("concreator.jsp").forward(req, resp);
