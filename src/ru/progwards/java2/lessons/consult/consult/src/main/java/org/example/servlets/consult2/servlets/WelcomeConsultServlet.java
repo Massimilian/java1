@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -17,6 +18,7 @@ public class WelcomeConsultServlet extends HttpServlet {
         School school = (School) req.getSession().getAttribute("school");
         req.setAttribute("professors", school.getProfessors());
         req.getSession().setAttribute("falsed", "");
+        HttpSession s = req.getSession();
         req.getRequestDispatcher("conwelcome.jsp").forward(req, resp);
     }
 

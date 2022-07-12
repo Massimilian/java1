@@ -47,7 +47,7 @@
 <form action="/consultallschool" method="get">
     <input type="submit" value="Полный список">
 </form>
-<form action="index.jsp">
+<form action="/conexit">
     <input type="submit" value="Выход">
 </form>
 </body>

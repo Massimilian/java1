@@ -5,6 +5,10 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+
     <servlet>
         <servlet-name>servlet</servlet-name>
         <servlet-class>org.example.servlets.first.MyHttpServlet</servlet-class>
@@ -119,7 +123,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>LoginServletH20</servlet-name>
-        <servlet-class>org.example.servlets.homeworkH20.requestDispatcher.LoginServlet</servlet-class>
+        <servlet-class>org.example.servlets.lesson20.requestDispatcher.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServletH20</servlet-name>
@@ -127,7 +131,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>SuccessServlet</servlet-name>
-        <servlet-class>org.example.servlets.homeworkH20.requestDispatcher.SuccessServlet</servlet-class>
+        <servlet-class>org.example.servlets.lesson20.requestDispatcher.SuccessServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SuccessServlet</servlet-name>
@@ -135,7 +139,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>FailServlet</servlet-name>
-        <servlet-class>org.example.servlets.homeworkH20.requestDispatcher.FailServlet</servlet-class>
+        <servlet-class>org.example.servlets.lesson20.requestDispatcher.FailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FailServlet</servlet-name>
@@ -143,7 +147,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>NewUserServlet</servlet-name>
-        <servlet-class>org.example.servlets.homeworkH20.requestDispatcher.NewUserServlet</servlet-class>
+        <servlet-class>org.example.servlets.lesson20.requestDispatcher.NewUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewUserServlet</servlet-name>
@@ -151,7 +155,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>GoogleServlet</servlet-name>
-        <servlet-class>org.example.servlets.homeworkH20.sendRedirect.GoogleServlet</servlet-class>
+        <servlet-class>org.example.servlets.lesson20.sendRedirect.GoogleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GoogleServlet</servlet-name>
@@ -159,7 +163,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>org.example.servlets.homeworkH20.interfaceFilter.HelloServlet</servlet-class>
+        <servlet-class>org.example.servlets.lesson20.interfaceFilter.HelloServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloServlet</servlet-name>
@@ -167,7 +171,7 @@
     </servlet-mapping>
     <filter>
         <filter-name>FirstFilter</filter-name>
-        <filter-class>org.example.servlets.homeworkH20.interfaceFilter.FirstFilter</filter-class>
+        <filter-class>org.example.servlets.lesson20.interfaceFilter.FirstFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>FirstFilter</filter-name>
@@ -318,11 +322,112 @@
         <url-pattern>/consultallschool</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ConsExitServlet</servlet-name>
+        <servlet-class>org.example.servlets.consult2.servlets.ConsExitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConsExitServlet</servlet-name>
+        <url-pattern>/conexit</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>InitFilter</filter-name>
+        <filter-class>org.example.servlets.consult2.filters.InitFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>InitFilter</filter-name>
+        <url-pattern>/consultation2create</url-pattern>
+        <url-pattern>/consultation2createtime</url-pattern>
+        <url-pattern>/conswelcome</url-pattern>
+        <url-pattern>/condelete</url-pattern>
+        <url-pattern>/conprofstart</url-pattern>
+        <url-pattern>/professorchanges</url-pattern>
+        <url-pattern>/conschansch</url-pattern>
+        <url-pattern>/conschand</url-pattern>
+        <url-pattern>/consschecha</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>ProfessorInitFilter</filter-name>
+        <filter-class>org.example.servlets.consult2.filters.ProfessorInitFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ProfessorInitFilter</filter-name>
+        <url-pattern>/conprofstart</url-pattern>
+        <url-pattern>/professorchanges</url-pattern>
+        <url-pattern>/conschansch</url-pattern>
+        <url-pattern>/conschand</url-pattern>
+        <url-pattern>/consschecha</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>AdministratorInitFilter</filter-name>
+        <filter-class>org.example.servlets.consult2.filters.AdminInitFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdministratorInitFilter</filter-name>
+        <url-pattern>/consultadmin</url-pattern>
+        <url-pattern>/consultallschool</url-pattern>
+    </filter-mapping>
+    <servlet>
         <servlet-name>L22StartServlet</servlet-name>
         <servlet-class>org.example.servlets.lesson22.StartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>L22StartServlet</servlet-name>
         <url-pattern>/22start</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SetCookieServlet</servlet-name>
+        <servlet-class>org.example.servlets.lesson23.work_with_cookie.SetCookieServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SetCookieServlet</servlet-name>
+        <url-pattern>/setcookie</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CookieOneServlet</servlet-name>
+        <servlet-class>org.example.servlets.lesson23.work_with_cookie.CookieOneServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CookieOneServlet</servlet-name>
+        <url-pattern>/cookie1</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CookieTwoServlet</servlet-name>
+        <servlet-class>org.example.servlets.lesson23.work_with_cookie.CookieTwoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CookieTwoServlet</servlet-name>
+        <url-pattern>/cookie2</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletLogin</servlet-name>
+        <servlet-class>org.example.servlets.lesson23.work_with_httpsession.ServletLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletLogin</servlet-name>
+        <url-pattern>/servletlogin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CheckServlet</servlet-name>
+        <servlet-class>org.example.servlets.lesson23.work_with_httpsession.CheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckServlet</servlet-name>
+        <url-pattern>/check</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SuccessServlet2</servlet-name>
+        <servlet-class>org.example.servlets.lesson23.work_with_httpsession.SuccessServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SuccessServlet2</servlet-name>
+        <url-pattern>/success</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>org.example.servlets.lesson23.work_with_httpsession.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>

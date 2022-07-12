@@ -1,28 +1,19 @@
-import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
-        sum(5, 5);
-
-        text("Программирование на Java - это легко!");
-        text("Java - это ООП язык.");
-        text("Java - это кроссплатформленность!");
-
-        for (int j = 0; j<10; j++) {
-            System.out.println("Я хочу создавать крутые игры, и для этого изучаю Java");
+        int[][] matrix = new int[10][10];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                matrix[i][j] = i*j;
+                String n = Integer.toString(matrix[i][j]);
+                if (n.length()==2) {
+                    System.out.print(" " + matrix[i][j]);
+                } else {
+                    System.out.print(" " + matrix[i][j] + " ");
+                }
+            }
+            System.out.println();
         }
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        System.out.println("С Java я буду зарабатывать " + n + " тысяч рублей в час.");
-    }
-    public static void sum(int a, int b) {
-        int c = a + b;
-        System.out.println(c);
-    }
-    public static void text(String text) {
-        for (int i=0; i<2; i++) {
-            System.out.println(text);
-        }
-        System.out.println("");
     }
 }

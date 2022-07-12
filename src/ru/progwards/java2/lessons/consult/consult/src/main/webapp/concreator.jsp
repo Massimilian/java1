@@ -23,7 +23,7 @@
 <form action="/conswelcome">
     <input type="submit" value="Изменить выбор преподавателя">
 </form>
-<form action="index.jsp">
+<form action="/conexit">
     <input type="submit" value="Выйти">
 </form>
 </body>

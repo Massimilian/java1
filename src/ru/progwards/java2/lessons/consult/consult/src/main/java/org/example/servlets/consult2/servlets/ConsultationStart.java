@@ -20,7 +20,7 @@ public class ConsultationStart extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String forDoGet = (String) req.getSession().getAttribute("isForDoGet");
         if (forDoGet != null) {
@@ -33,6 +33,9 @@ public class ConsultationStart extends HttpServlet {
             String falta;
             if (status == null) {
                 if (name.equals("admin") && password.equals("admin")) {
+                    req.getSession().setAttribute("name", name);
+                    req.getSession().setAttribute("isadmin", "really");
+                    req.getSession().setAttribute("isprofessor", "no");
                     req.getRequestDispatcher("/consultadmin").forward(req, resp);
                 } else {
                     falta = "Вы не указали свой статус. Попробуйте ещё раз.";
@@ -43,6 +46,8 @@ public class ConsultationStart extends HttpServlet {
                 falta = school.isCorrect(name, password, true);
                 if (falta.equals("")) {
                     req.getSession().setAttribute("falsed", null);
+                    req.getSession().setAttribute("isadmin", "no");
+                    req.getSession().setAttribute("isprofessor", "no");
                     req.getSession().setAttribute("name", name);
                     req.getRequestDispatcher("/conswelcome").forward(req, resp);
                 } else {
@@ -54,6 +59,8 @@ public class ConsultationStart extends HttpServlet {
                 if (falta.equals("")) {
                     req.getSession().setAttribute("falsed", null);
                     req.getSession().setAttribute("name", name);
+                    req.getSession().setAttribute("isprofessor", "really");
+                    req.getSession().setAttribute("isadmin", "no");
                     req.getRequestDispatcher("/conprofstart").forward(req, resp);
                 } else {
                     req.getSession().setAttribute("falsed", falta);

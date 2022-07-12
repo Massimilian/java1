@@ -23,7 +23,6 @@ public class ConsultFullInfo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        System.out.println();
         if (req.getSession().getAttribute("finale").equals("Стереть всю информацию")) {
             req.getSession().setAttribute("finale", "Уничтожить школу - нажмите ещё раз.");
             req.getRequestDispatcher("consultFullInfo.jsp").forward(req, resp);

@@ -33,7 +33,7 @@
 <form action = "/condelete" method="get">
     <input type="submit" value="Удалить консультацию">
 </form>
-<form action = "index.jsp">
+<form action = "/conexit">
     <input type="submit" value="Выйти">
 </form>
 </body>

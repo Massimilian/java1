@@ -1,4 +1,4 @@
-<%@ page import="java.util.ArrayList" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: vasal
   Date: 29.06.2022
@@ -14,23 +14,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Демо Bootstrap</title>
-    <!-- Ниже подключаются CSS-настройки.-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <!-- CSS-настройки.-->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <style>
+        [class*="col"] {
+            padding: 1px;
+            background-color: #9ACD32;
+            border: 2px solid #FF99FF;
+            color: #0c4128;
+        }
+    </style>
 </head>
 <body>
-<!-- Контейнер, который будет в себя что-то вмещать-->
-<div class="container">
-    <!--Выстраивает последующие div-ы в строку-->
-    <div class="row">
-        <!-- Создаём колонки -->
-    <div class="col-sm"><h1>Привет мир!</h1></div>
-    <div class="col-sm"><h1>Привет мир!</h1></div>
-    <div class="col-sm"><h1>Привет мир!</h1></div>
+<div class="container my-5" style="border: 2px solid #0d0d0d">
+    <div class="row" style="height: 100px">
+        <div class="col-lg">Текст 1</div>
+        <div class="col-lg">Текст 2</div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Подключаются настройки Popper и JS -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"></script>
+
+
+<!-- Подключаем ajax - библиотеку (будем использовать в дальнейшем) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- JS настройки -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

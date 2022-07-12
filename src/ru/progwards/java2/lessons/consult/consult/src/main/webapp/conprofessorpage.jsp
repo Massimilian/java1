@@ -24,7 +24,7 @@
 <form action="/professorchanges" method="get">
     <input type="submit" value="Изменения в учётную запись.">
 </form>
-<form action="index.jsp">
+<form action="/conexit">
     <input type="submit" value="Выход">
 </form>
 </body>
