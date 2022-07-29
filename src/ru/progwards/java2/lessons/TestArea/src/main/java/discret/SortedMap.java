@@ -19,7 +19,7 @@ public class SortedMap<K extends Comparable<K>, V> {
     public V get(K key) {
         V result = null;
         SortedMap.Entry<K, V> temp = first;
-        while (temp != null && key.compareTo(first.key) > 0) {
+        while (temp != null && key.compareTo(temp.key) > 0) {
             temp = temp.next;
         }
         if (temp != null && temp.key.compareTo(key) == 0) {
@@ -42,9 +42,13 @@ public class SortedMap<K extends Comparable<K>, V> {
         } else {
             SortedMap.Entry<K, V> temp = first;
             SortedMap.Entry<K, V> underTemp = null;
-            while(temp.key.compareTo(key) < 0) {
+            while(temp != null && temp.key.compareTo(key) < 0) {
                 underTemp = temp;
                 temp = temp.next;
+            }
+            if (temp == null) {
+                temp = new SortedMap.Entry<>(key, value);
+                underTemp.next = temp;
             }
             if (temp.key.compareTo(key) == 0) {
                 if (!isAbsent) {
@@ -77,7 +81,8 @@ public class SortedMap<K extends Comparable<K>, V> {
         map.put(1, "One");
         map.put(3, "three");
         map.put(2, "two");
-        System.out.println(map.get(3));
+        map.put(6, "Six");
+        System.out.println(map.get(5));
         System.out.println(map.putIfAbsent(4, "Five!!!"));
     }
 }
