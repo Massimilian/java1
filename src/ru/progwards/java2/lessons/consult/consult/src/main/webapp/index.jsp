@@ -15,7 +15,6 @@
     <a href="/gserv">Домашнее задание H20 (перенаправление).</a> <br>
     <a href="/hs">Домашнее задание H20 (фильтр).</a> <br>
     <a href="/jstart">Путешествие.</a> <br>
-    <a href="/constart">Консультации</a> <br>
     <a href="/22start">Тест для 22 урока</a> <br>
     <a href="/setcookie">Домашнее задание H23 (работа с cookie)</a> <br>
     <a href="/servletlogin">Домашнее задание H23 (работа с сессией)</a> <br>
