@@ -14,8 +14,8 @@ public class ConsultFullInfo extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         School school = School.getSchool();
-        req.getSession().setAttribute("allProfessors", school.getProfessorsNamesInString());
-        req.getSession().setAttribute("allStudents", school.getStudentsNamesInString());
+        req.getSession().setAttribute("allProfessors", school.getNames(true));
+        req.getSession().setAttribute("allStudents", school.getNames(false));
         req.getSession().setAttribute("finale", "Стереть всю информацию");
         req.getRequestDispatcher("consultFullInfo.jsp").forward(req, resp);
     }

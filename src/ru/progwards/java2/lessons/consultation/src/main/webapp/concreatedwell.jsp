@@ -15,7 +15,9 @@
 <h2>Консультация добавлена. Не забудьте про Вашу консультацию, которая произойдёт ${sessionScope.consultDate} в ${sessionScope.consultTime}.</h2>
 <h2>Ваш преподаватель - ${sessionScope.professor}.</h2>
 <form action="/conswelcome" method="get">
-    <input type="submit" value="Вернуться">
+    <input type="submit" value="Вернуться (SPACE)">
 </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/concreatedordeletedwell.js"></script>
 </body>
 </html>

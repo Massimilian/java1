@@ -30,59 +30,35 @@ public class ConsultAdminWay extends HttpServlet {
         while (parameters.hasMoreElements()) {
             elements.add(parameters.nextElement());
         }
-        if (elements.size() == 2 && elements.contains("name") && elements.contains("password")) {
-            this.doGet(req, resp);
-        } else {
-            School school = School.getSchool();
-            if (elements.contains("add")) {
-                name = req.getParameter("name");
-                password = req.getParameter("password");
-                if (name.equals("") || password.equals("")) {
-                    req.getSession().setAttribute("info", "Некорректная информация. Введите ещё раз.");
-                } else {
-                    req.getSession().setAttribute("info", "Новый студент добавлен");
-                    school.addStudent(new Student(name, password));
-                }
-            }
-            if (elements.contains("delete")) {
-                name = req.getParameter("name");
-                if (name.equals("")) {
-                    req.getSession().setAttribute("info", "Некорректная информация. Введите ещё раз.");
-                } else {
-                    req.getSession().setAttribute("info", String.format("Студент %s удалён", name));
-                    school.deleteStudent(name);
-                }
-            }
-            if (elements.contains("addProf")) {
-                name = req.getParameter("name");
-                password = req.getParameter("password");
-                if (name.equals("")|| password.equals("")) {
-                    req.getSession().setAttribute("info", "Некорректная информация. Введите ещё раз.");
-                } else {
-                    req.getSession().setAttribute("info", "Новый преподаватель добавлен");
-                    school.addProfessor(new Professor(name, password));
-                }
-            }
-            if (elements.contains("deleteProf")) {
-                name = req.getParameter("name");
-                if (name.equals("")) {
-                    req.getSession().setAttribute("info", "Некорректная информация. Введите ещё раз.");
-                } else {
-                    req.getSession().setAttribute("info", String.format("Преподаватель %s удалён", name));
-                    school.deleteProfessor(name);
-                }
-            }
-            if (elements.contains("deleteStud")) {
-                name = req.getParameter("name");
-                if (name.equals("")) {
-                    req.getSession().setAttribute("info", "Некорректная информация. Введите ещё раз.");
-                } else {
-                    req.getSession().setAttribute("info", String.format("Студент %s удалён", name));
-                    school.deleteStudent(name);
-                }
-            }
-            School.close(school);
-            req.getRequestDispatcher("consultadminway.jsp").forward(req, resp);
+//        if (elements.size() == 2 && elements.contains("name") && elements.contains("password")) {
+//            this.doGet(req, resp);
+//        } else {
+        System.out.println(req.getParameter("name"));
+        System.out.println(req.getParameter("password"));
+        School school = School.getSchool();
+        if (elements.contains("add")) {
+            name = req.getParameter("name");
+            password = req.getParameter("password");
+            req.getSession().setAttribute("info", school.addPerson(new Student(name, password)) ?
+                    "Новый студент добавлен" : "Студент с такими именем и паролем уже существует.");
         }
+        if (elements.contains("delete")) {
+            name = req.getParameter("nameDel");
+            req.getSession().setAttribute("info", school.deletePerson(name, false) ?
+                    String.format("Студент %s удалён", name) : String.format("Студент %s не найден", name));
+        }
+        if (elements.contains("addProf")) {
+            name = req.getParameter("nameProf");
+            password = req.getParameter("passwordProf");
+            req.getSession().setAttribute("info", school.addPerson(new Professor(name, password)) ?
+                    "Новый преподаватель добавлен" : "Преподаватель с такими именем и паролем уже существует.");
+        }
+        if (elements.contains("deleteProf")) {
+            name = req.getParameter("nameProfDel");
+            req.getSession().setAttribute("info", school.deletePerson(name, true) ?
+                    String.format("Преподаватель %s удалён", name) : String.format("Преподаватель %s не найден", name));
+        }
+        School.close(school);
+        req.getRequestDispatcher("consultadminway.jsp").forward(req, resp);
     }
 }

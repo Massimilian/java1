@@ -30,8 +30,10 @@
 <form action = "/condelete" method="get">
     <input type="submit" value="Удалить консультацию">
 </form>
-<form action = "/conexit">
-    <input type="submit" value="Выйти">
+<form action = "/conexit" class="back">
+    <input type="submit" value="Выйти (SPACE)">
 </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/conwelcome.js"></script>
 </body>
 </html>

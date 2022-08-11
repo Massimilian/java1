@@ -1,24 +1,9 @@
 package classes;
 
-public class Student {
-    private String name;
-    private String password;
+public class Student extends Person{
 
     public Student(String name, String password) {
-        this.name = name;
-        this.password = password;
+        super(name, password);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String toString() {
-        return name + " " + password + ";";
-    }
 }

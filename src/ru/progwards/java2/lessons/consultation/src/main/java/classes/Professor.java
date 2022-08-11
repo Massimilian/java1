@@ -6,23 +6,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class Professor {
-    private String name;
-    private String password;
+public class Professor extends Person{
     ArrayList<Consultation> consults = new ArrayList<>();
     ArrayList<TimeDatePeriod> workTimes = new ArrayList<>();
 
     public Professor(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        super(name, password);
     }
 
     public void setWorkTime(int name, LocalTime start, LocalTime finish) {
@@ -86,14 +75,6 @@ public class Professor {
 
     public ArrayList<TimeDatePeriod> getWorkTimes() {
         return this.workTimes;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public ArrayList<Consultation> getConsults() {
@@ -231,7 +212,9 @@ public class Professor {
 
     public void renovateConsultsProfessorName() {
         for (int i = 0; i < consults.size(); i++) {
-            consults.stream().forEach(c -> c.setProfessor(this.name));
+            consults.stream().forEach(c -> c.setProfessor(this.getName()));
         }
     }
+
+
 }

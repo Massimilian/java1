@@ -38,14 +38,10 @@ public class ConsultationCreateServlet extends HttpServlet {
         if (!hasData) {
             this.doGet(req, resp);
         }
-        if (Consultation.checkDate(req.getParameter("date"), session)) {
-            session.setAttribute("consultDate", req.getParameter("date"));
-            session.setAttribute("thema", req.getParameter("thema"));
-            req.setAttribute("timeInfo", School.getSchool().getProfessorByName((String) session.getAttribute("professor")).getConsultationsScheduleByDay((String) session.getAttribute("consultDate")));
-            session.setAttribute("falsed", "");
-            req.getRequestDispatcher("concreator2page.jsp").forward(req, resp);
-        } else {
-            req.getRequestDispatcher("concreator.jsp").forward(req, resp);
-        }
+        session.setAttribute("consultDate", req.getParameter("date"));
+        session.setAttribute("thema", req.getParameter("thema"));
+        req.setAttribute("timeInfo", School.getSchool().getProfessorByName((String) session.getAttribute("professor")).getConsultationsScheduleByDay((String) session.getAttribute("consultDate")));
+        session.setAttribute("falsed", "");
+        req.getRequestDispatcher("concreator2page.jsp").forward(req, resp);
     }
 }

@@ -72,30 +72,18 @@ public class School {
         return professors;
     }
 
-
-    public String getStudentsNamesInString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Студенты школы: ");
-        for (int i = 0; i < students.size(); i++) {
-            sb.append(students.get(i).getName()).append(", ");
-        }
-        sb.replace(sb.length() - 2, sb.length(), ".");
-        return sb.toString();
-    }
-
-    public String getProfessorsNamesInString() {
-        ArrayList<String> names = this.getProfessorsNames();
-        StringBuilder sb = new StringBuilder();
-        sb.append("Преподаватели школы: ");
-        for (int i = 0; i < names.size(); i++) {
-            sb.append(names.get(i)).append(", ");
-        }
-        sb.replace(sb.length() - 2, sb.length(), ".");
-        return sb.toString();
-    }
-
     public ArrayList<String> getProfessorsNames() {
         return (ArrayList<String>) professors.stream().map(professor -> professor.getName()).collect(Collectors.toList());
+    }
+
+    public String getNames(boolean isProf) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(isProf? "Преподаватели школы: " : "Студенты школы: ");
+        for (int i = 0; i < (isProf? professors : students).size(); i++) {
+            sb.append((isProf? professors : students).get(i).getName()).append(", ");
+        }
+        sb.replace(sb.length() - 2, sb.length(), ".");
+        return sb.toString();
     }
 
     public Professor getProfessorByName(String name) {
@@ -120,20 +108,47 @@ public class School {
         return result;
     }
 
-    public void addStudent(Student student) {
-        students.add(student);
+    private Person getPersonByName(String name, boolean isProf) {
+        Person result = null;
+        for (int i = 0; i < (isProf? professors.size() : students.size()); i++) {
+            if ((isProf? professors : students).get(i).getName().equals(name)) {
+                result = (isProf? professors : students).get(i);
+                break;
+            }
+        }
+        return result;
     }
 
-    public void deleteStudent(String name) {
-        students.remove(getStudentByName(name));
+    public boolean addPerson(Person person) {
+        boolean result = false;
+        System.out.println(person.getClass().getName().contains("Student"));
+        if (person.getClass().getName().contains("Student")) {
+            if (!students.contains(person)) {
+                result = this.students.add((Student) person);
+            }
+        }
+        if (person.getClass().getName().contains("Professor")) {
+            if (!professors.contains(person)) {
+                result = this.professors.add((Professor) person);
+            }
+        }
+        return result;
+    }
+
+    public boolean deleteStudent(String name) {
+        return students.remove(getPersonByName(name, false));
     }
 
     public void addProfessor(Professor professor) {
         professors.add(professor);
     }
 
-    public void deleteProfessor(String name) {
-        professors.remove(getProfessorByName(name));
+    public boolean deleteProfessor(String name) {
+        return professors.remove(getPersonByName(name, true));
+    }
+
+    public boolean deletePerson(String name, boolean isProf) {
+        return isProf? professors.remove(getPersonByName(name, true)) : students.remove(getPersonByName(name, false));
     }
 
     public void renovateProfessorByName(String name, Professor prof) {
@@ -147,7 +162,7 @@ public class School {
             status = "Не существует такого студента";
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).getName().equals(name)) {
-                    status = students.get(i).getPassword().equals(password) ? "" : "Неправильный пароль, попробуйте ещё раз или обратитесь за помощью к преподавателю";
+                    status = students.get(i).getPassword().equals(password) ? "" : "Неправильный пароль, попробуйте ещё раз или обратитесь за помощью к администратору.";
                     break;
                 }
             }

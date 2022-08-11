@@ -15,17 +15,19 @@
 <c:if test="${sessionScope.sayhello != null}">
     <script>alert("Добро пожаловать домой, ${sessionScope.name}!")</script>
 </c:if>
-<h1>Здравствуйте, ${sessionScope.name}! Ваши предстоящие консультации:</h1>
+<h1> Ваши предстоящие консультации:</h1>
 <ul>
     <c:forEach var="info" items="${sessionScope.information}">
         <li><h1>${info}</h1></li>
     </c:forEach>
 </ul>
-<form action="/professorchanges" method="get">
-    <input type="submit" value="Изменения в учётную запись.">
+<form action="/professorchanges" method="get" class="forward">
+    <input type="submit" value="Изменения в учётную запись. (ENTER)">
 </form>
-<form action="/conexit">
-    <input type="submit" value="Выход">
+<form action="/conexit"  class="back">
+    <input type="submit" value="Выход. (SPACE)">
 </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/conprofessorpage.js"></script>
 </body>
 </html>

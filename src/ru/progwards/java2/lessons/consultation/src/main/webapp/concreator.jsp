@@ -13,19 +13,21 @@
 </head>
 <body>
 <h2><span style="color: #FF0000">${sessionScope.falsed}</span></h2>
-<form action="/consultation2create" method="post">
-    <script>alert("Не забудьте, что ${sessionScope.professor} имеет следующее расписание: ${sessionScope.professors_schedule}")</script>
+<form action="/consultation2create" method="post" class="forward">
     <h3>Введите Ваши вопросы для консультации:</h3>
     <input type="text" name="thema">
-    <h3>Выберите дату начала занятий</h3><br>
+    <h3>Не забудьте, что ${sessionScope.professor} имеет расписание. ${sessionScope.professors_schedule}</h3>
+    <h3>Выберите дату начала занятий</h3>
     <input type="date" name="date"><br>
-    <input type="submit" value="Выбрать дату">
+    <input type="submit" value="Выбрать дату (ENTER)">
 </form>
 <form action="/conswelcome">
     <input type="submit" value="Изменить выбор преподавателя">
 </form>
-<form action="/conexit">
-    <input type="submit" value="Выйти">
+<form action="/conexit" class="back">
+    <input type="submit" value="Выйти (SPACE)">
 </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/concreate.js"></script>
 </body>
 </html>

@@ -12,9 +12,10 @@
 </head>
 <body>
 <h2><span style="color: #FF0000"> ${sessionScope.falsed} </span></h2>
-<form action="/constart" method="post">
+<h2 class="open">Нажмите сюда, чтобы заполнить форму входа.</h2>
+<form class="hidden" action="/constart" method="post">
   <h3>Выберите Ваш статус</h3>
-  <h5>Студент<input type="radio" name="status" value="student" />Преподаватель<input type="radio" name="status" value="professor"/></h5>
+  <h5 >Студент<input type="radio" name="status" value="student" />Преподаватель<input type="radio" name="status" value="professor"/></h5>
   <h3>Введите имя:</h3>
   <input type="text" name="name"><br>
   <h3>Введите пароль:</h3>
@@ -24,5 +25,7 @@
 <form action="/conexit">
   <input type="submit" value="выход">
 </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/conchangestatus.js"></script>
 </body>
 </html>

@@ -3,7 +3,6 @@
 <html>
 <head>
 <title>Тестовая страница</title>
-
 </head>
 <body>
 <form>

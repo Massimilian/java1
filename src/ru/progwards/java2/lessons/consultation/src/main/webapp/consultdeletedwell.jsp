@@ -14,7 +14,9 @@
 <body>
 <h4>Консультация успешно удалена!</h4>
 <form action="/conswelcome" method="get">
-    <input type="submit" value="Вернуться">
+    <input type="submit" value="Вернуться (CPACE)">
 </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/concreatedordeletedwell.js"></script>
 </body>
 </html>
