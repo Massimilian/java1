@@ -21,10 +21,10 @@
         <li><h1>${info}</h1></li>
     </c:forEach>
 </ul>
-<form action="/professorchanges" method="get" class="forward">
+<form action="/professorchanges" method="get" id="forward">
     <input type="submit" value="Изменения в учётную запись. (ENTER)">
 </form>
-<form action="/conexit"  class="back">
+<form action="/conexit"  id="back">
     <input type="submit" value="Выход. (SPACE)">
 </form>
 <script src="js/jquery-3.6.0.min.js"></script>

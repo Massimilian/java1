@@ -14,12 +14,12 @@
 <body>
 <span style="color: #FF0000"><h1>${sessionScope.falsed}</h1></span>
 <h1>Вы на странице изменений учётной записи. Что вы хотите сделать?</h1>
-<form action="/professorchanges" method="post" class="forward">
+<form action="/professorchanges" method="post" id="forward">
 <h5>Изменить расписание<input type="radio" name="status" value="schedule" />
     Изменить имя и пароль<input type="radio" name="status" value="datas"/></h5>
-    <input type="submit" value="Принять (ENTER)">
+    <input type="submit" value="Принять (ENTER)" id="enter">
 </form>
-<form action="/conprofstart" method="get" class="back">
+<form action="/conprofstart" method="get" id="back">
     <input type="submit" value="Назад (SPACE)">
 </form>
 <script src="js/jquery-3.6.0.min.js"></script>

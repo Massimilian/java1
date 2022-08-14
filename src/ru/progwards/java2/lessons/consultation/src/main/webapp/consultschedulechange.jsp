@@ -18,10 +18,10 @@
         <li><h1>${info}</h1></li>
     </c:forEach>
 </ul>
-<form action="/consschecha" method="get" class="forward">
+<form action="/consschecha" method="get" id="forward">
     <input type="submit" value="Заменить расписание (ENTER)">
 </form>
-<form action="/conprofstart" method="post" class="back">
+<form action="/conprofstart" method="post" id="back">
     <input type="submit" value="Вернуться (SPACE)">
 </form>
 <script src="js/jquery-3.6.0.min.js"></script>

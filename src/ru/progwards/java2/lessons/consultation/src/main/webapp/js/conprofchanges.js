@@ -4,16 +4,16 @@ $(function () {
             if (!radios()) {
                 alert("Выберите поле для изменений.");
             } else {
-                $('.forward').submit();
+                $('#forward').submit();
             }
         }
         if (e.keyCode == 32) {
-            $('.back').submit();
+            $('#back').submit();
         }
     });
 
     $(':submit').click(function (e) {
-       if ($(this).attr("value") == "Принять (ENTER)" && !radios()) {
+       if ($(this).attr("id") == "enter" && !radios()) {
            alert("Выберите поле для изменений.");
            e.preventDefault();
        }

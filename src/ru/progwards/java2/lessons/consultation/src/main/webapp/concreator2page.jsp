@@ -17,14 +17,14 @@
 <h2>Время, уже занятое другими студентами в выбранный Вами день:</h2>
 <h2>${requestScope.timeInfo}</h2>
 <h2>Менее, чем за два часа до времени начала консультации запись на консультацию не допускаются</h2>
-<form action="/consultation2createtime" method="post" class="forward">
-    <input type="time" name="time"><br>
-    <input type="submit" value="Выбрать время (ENTER)">
+<form action="/consultation2createtime" method="post" id="forward">
+    <input type="time" name="time" id="time"><br>
+    <input type="submit" value="Выбрать время (ENTER)" id="enter">
 </form>
-<form action="/consultation2create" method="get" class="back">
+<form action="/consultation2create" method="get" id="back">
     <input type="submit" value="Вернуться (SPACE)">
 </form>
 <script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/concreator2page.js"></script>
+<script src="js/concreator2pag.js"></script>
 </body>
 </html>

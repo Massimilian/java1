@@ -18,6 +18,7 @@
     <a href="/22start">Тест для 22 урока</a> <br>
     <a href="/setcookie">Домашнее задание H23 (работа с cookie)</a> <br>
     <a href="/servletlogin">Домашнее задание H23 (работа с сессией)</a> <br>
+    <a href="/less24">Домашнее задание H24 (проверка корректности пароля)</a> <br>
 </form>
 </body>
 </html>

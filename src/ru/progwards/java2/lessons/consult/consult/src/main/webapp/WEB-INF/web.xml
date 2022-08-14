@@ -289,4 +289,12 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginPasswordCheckerServlet</servlet-name>
+        <servlet-class>org.example.servlets.lesson24.LoginPasswordCheckerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginPasswordCheckerServlet</servlet-name>
+        <url-pattern>/less24</url-pattern>
+    </servlet-mapping>
 </web-app>

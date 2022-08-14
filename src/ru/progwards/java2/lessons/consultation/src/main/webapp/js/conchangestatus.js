@@ -5,7 +5,7 @@ $(function () {
         $('body .hidden').show(1000);
     });
     $(':submit').click(function (e) {
-        if ($(this).attr('value') == 'Войти') {
+        if ($(this).attr('id') == 'enter') {
             if ($(':text').val() == "") {
                 alert('Имя не может быть пустым');
                 $(':text').attr({

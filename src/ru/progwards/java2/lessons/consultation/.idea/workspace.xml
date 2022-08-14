@@ -9,55 +9,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b66bd417-fa9f-424c-9f9f-562f9b1f7865" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/icons/akito-inu.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/icons/akito-inu2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/icons/akito-inu3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/js/work.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/consultdelete.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/conchangestatus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/concreate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/conprofchanges.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/conprofessorpage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/consultschedulechange.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/consultation/consultdelete.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TestArea/src/main/java/discret/SortedMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestArea/src/main/java/discret/SortedMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/22test.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/22test.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/js/hello.js" beforeDir="false" />
+    <list default="true" id="b66bd417-fa9f-424c-9f9f-562f9b1f7865" name="Changes" comment="Consultations, final project">
+      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/java/org/example/servlets/lesson24/LoginPasswordCheckerServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/consultdelete.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/test.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Professor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/School.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/School.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ConsultAdminWay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultAdminWay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ConsultFullInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultFullInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ConsultProfessorChangesServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultProfessorChangesServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ConsultationCreateServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationCreateServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ConsultationCreateTimeServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationCreateTimeServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ConsultationForProfessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ConsultationForProfessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/WelcomeConsultServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/WelcomeConsultServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/conchangestatus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conchangestatus.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/concreatedwell.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/concreatedwell.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/concreator.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/concreator.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/concreator2page.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/concreator2page.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/conprofchanges.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conprofchanges.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/conprofessorpage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conprofessorpage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/consrealchange.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/consrealchange.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultadminway.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/consultadminway.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultdeletedwell.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/consultdeletedwell.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultFalse.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultdelete.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/consultschedulechange.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/consultschedulechange.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/conwelcome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conwelcome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/Professor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/Professor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/School.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/School.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/classes/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/classes/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/ConsultAdminWay.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultAdminWay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/ConsultFullInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultFullInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/ConsultProfessorChangesServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultProfessorChangesServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/ConsultationForProfessor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationForProfessor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/WelcomeConsultServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/WelcomeConsultServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/conchangestatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/conchangestatus.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/concreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/concreate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/conprofchanges.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/conprofchanges.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/conprofessorpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/conprofessorpage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/consultschedulechange.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/consultschedulechange.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateTimeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateTimeServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/consultation.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/consultation.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/consultation/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/consultation/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/consultation/consultdelete.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,8 +214,18 @@
       <workItem from="1659452698168" duration="25450000" />
       <workItem from="1659619000693" duration="4702000" />
       <workItem from="1659877229388" duration="26832000" />
-      <workItem from="1660231035131" duration="3462000" />
+      <workItem from="1660231035131" duration="4299000" />
+      <workItem from="1660241656999" duration="1723000" />
+      <workItem from="1660413410616" duration="1460000" />
     </task>
+    <task id="LOCAL-00001" summary="Consultations, final project">
+      <created>1660234742875</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1660234742875</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,6 +241,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Consultations, final project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Consultations, final project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

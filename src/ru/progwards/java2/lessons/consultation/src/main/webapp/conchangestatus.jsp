@@ -20,7 +20,7 @@
   <input type="text" name="name"><br>
   <h3>Введите пароль:</h3>
   <input type="password" name="password"><br>
-  <input type="submit" value="Войти">
+  <input type="submit" value="Войти" id="enter">
 </form>
 <form action="/conexit">
   <input type="submit" value="выход">

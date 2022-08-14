@@ -1,4 +1,4 @@
-<%@ page import="org.example.servlets.consult2.classes.Consultation" %>
+<%@ page import="classes.Consultation" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.time.LocalDateTime" %>
 <%--
@@ -35,8 +35,10 @@
         <%}%>
     </c:when>
 </c:choose>
-<form action="/conswelcome" method="get">
-    <input type="submit" value="Вернуться на предыдущую страницу">
+<form action="/conswelcome" method="get" class="back">
+    <input type="submit" value="Вернуться на предыдущую страницу (SPACE)">
 </form>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/consultdelete.js"></script>
 </body>
 </html>
