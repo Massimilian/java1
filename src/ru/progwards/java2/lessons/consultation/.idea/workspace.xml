@@ -9,30 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b66bd417-fa9f-424c-9f9f-562f9b1f7865" name="Changes" comment="Consultations, final project">
-      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/java/org/example/servlets/lesson24/LoginPasswordCheckerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/consultdelete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../consult/consult/src/main/webapp/test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/conchangestatus.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conchangestatus.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/concreator.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/concreator.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/concreator2page.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/concreator2page.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/conprofchanges.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conprofchanges.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/conprofessorpage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conprofessorpage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultFalse.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultdelete.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/consultschedulechange.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/consultschedulechange.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/conwelcome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/conwelcome.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/conchangestatus.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/conchangestatus.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/concreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/concreate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/conprofchanges.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/conprofchanges.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/conprofessorpage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/conprofessorpage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/consultschedulechange.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/consultschedulechange.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateTimeServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/servlets/ConsultationCreateTimeServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/consultation.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/consultation.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/consultation/consultdelete.jsp" beforeDir="false" />
+    <list default="true" id="b66bd417-fa9f-424c-9f9f-562f9b1f7865" name="Changes" comment="Consultations, final project (id corrections)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/classes/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/concreatedordeletedwell.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/concreator2pag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/consrealchange.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/consultadminwa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/conwelcom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/jquery-3.6.0.min.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,6 +201,7 @@
       <workItem from="1660231035131" duration="4299000" />
       <workItem from="1660241656999" duration="1723000" />
       <workItem from="1660413410616" duration="1460000" />
+      <workItem from="1660477103929" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="Consultations, final project">
       <created>1660234742875</created>
@@ -225,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660234742875</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Consultations, final project (id corrections)">
+      <created>1660477139453</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660477139453</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +236,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Consultations, final project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Consultations, final project" />
+    <MESSAGE value="Consultations, final project (id corrections)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Consultations, final project (id corrections)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
