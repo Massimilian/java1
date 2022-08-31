@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="account" name="account" class="classes.Account" scope="prototype">
+        <property name="amount" value="0"/>
+        <property name="holder" value="CardHolder"/>
+    </bean>
+    <bean id="service" name="AccService" class="classes.AccService" init-method="init" destroy-method="destoy">
+        <constructor-arg name="store">
+            <bean name="store" class="classes.InfoStore"/>
+        </constructor-arg>
+    </bean>
+</beans>

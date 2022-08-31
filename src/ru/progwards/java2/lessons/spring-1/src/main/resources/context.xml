@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="sc" class="Calculator.SimpleCalculator" />
+    <bean id="ac" class="Calculator.AdvancedCalculator" />
+    <bean id="task" class="TaskRepository.Task" />
+    <bean id="str" class="TaskRepository.SimpleTaskRepository" init-method="init" destroy-method="destroy"/>
+    <bean id="tra" class="TaskRepository.TaskRepositoryAdmin">
+        <constructor-arg ref="str"/>
+    </bean>
+</beans>
