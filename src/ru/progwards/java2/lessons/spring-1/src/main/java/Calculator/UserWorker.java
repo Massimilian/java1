@@ -12,14 +12,14 @@ public class UserWorker {
     public boolean work() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your number or 'EXIT' for exit.");
-        String first = scanner.nextLine();
+        String first = scanner.nextLine().trim();
         boolean cont = false;
         if (!first.equals("EXIT")) {
             cont = true;
             System.out.println("Enter your type of operation (+, -, *, /).");
-            String signal = scanner.nextLine();
+            String signal = scanner.nextLine().trim();
             System.out.println("Enter your second number");
-            String second = scanner.nextLine();
+            String second = scanner.nextLine().trim();
             int a = Integer.parseInt(first);
             int b = Integer.parseInt(second);
             int result = 0;

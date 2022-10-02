@@ -1,15 +1,25 @@
 package TaskRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class TaskRepositoryAdmin {
+
+    @Autowired
+    @Qualifier("str")
     TaskRepository tr;
+
     Scanner scanner = new Scanner(System.in);
 
     public TaskRepositoryAdmin(TaskRepository tr) {
         this.tr = tr;
+    }
+
+    public TaskRepositoryAdmin() {
     }
 
     public boolean work() {

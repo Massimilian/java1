@@ -2,13 +2,14 @@ package TaskRepository;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+    public static void main(String[] args) {
+//        ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
         TaskRepositoryAdmin tra = context.getBean("tra", TaskRepositoryAdmin.class);
         boolean toCont;
         do {

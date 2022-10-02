@@ -3,6 +3,8 @@ package TaskRepository;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
@@ -11,12 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class SimpleTaskRepository implements TaskRepository {
 
-    long maxId;
+    long maxId = 0;
     String address = "src/main/resources/tasks.txt";
     ArrayList<Task> tasks = new ArrayList<>();
 
+    @PostConstruct
     public void init() throws IOException {
         String json = Files.readString(Path.of(address));
         if (!json.isEmpty()) {
@@ -38,6 +42,7 @@ public class SimpleTaskRepository implements TaskRepository {
         this.maxId = id;
     }
 
+    @PreDestroy
     public void destroy() throws IOException {
         String json = new Gson().toJson(this.tasks);
         Files.writeString(Path.of(address), json);
@@ -45,7 +50,7 @@ public class SimpleTaskRepository implements TaskRepository {
 
     @Override
     public void save(Task task) {
-        if (task.getId().isEmpty()) {
+        if (task.getId() == null || task.getId().isEmpty()) {
             task.setId(String.valueOf(++maxId));
         }
         tasks.add(task);
