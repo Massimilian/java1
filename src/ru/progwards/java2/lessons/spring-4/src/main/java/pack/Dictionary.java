@@ -113,6 +113,7 @@ public class Dictionary {
         Random random = new Random();
         boolean toCont = this.words.size() != 0;
         while(toCont) {
+            boolean isForDelete = false;
             boolean isEdited = false;
             Word word = this.words.get(random.nextInt(this.words.size()));
             System.out.println("Введите перевод слова '" + (fromRu? word.getName() : word.getTranslate()) + "'");
@@ -123,7 +124,8 @@ public class Dictionary {
                 String res = word.getNote().isEmpty() ? "отсутствует" : word.getNote();
                 System.out.println("Примечание - " + res);
                 if (word.getCount() == 0) {
-                    System.out.printf("Слово %s (%s) удалено!%s", word.getName(), word.getTranslate(), System.lineSeparator());
+                    System.out.printf("ВНИМАНИЕ! Слово '%s' (%s) удалено!%s", word.getName(), word.getTranslate(), System.lineSeparator());
+                    isForDelete = true;
                     this.words.remove(word);
                 }
             } else {
@@ -132,11 +134,15 @@ public class Dictionary {
             }
             if (!isEdited) {
                 System.out.println(word.getName() + "  ---  " + word.getTranslate());
-                this.renovateWords(word);
+                if (!isForDelete) {
+                    this.renovateWords(word);
+                }
             }
-            System.out.println("Хотите отредактировать (наберите да, для продолжения - enter)?");
-            if (scanner.nextLine().equals("да")) {
-                this.delAndPut(word);
+            if (!isForDelete) {
+                System.out.println("Хотите отредактировать (наберите да, для продолжения - enter)?");
+                if (scanner.nextLine().equals("да")) {
+                    this.delAndPut(word);
+                }
             }
             System.out.println("Для выхода нажмите 'всё', для продолжения - enter.");
             toCont = !scanner.nextLine().equals("всё");

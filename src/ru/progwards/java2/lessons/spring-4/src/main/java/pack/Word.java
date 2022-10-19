@@ -51,7 +51,7 @@ public class Word {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Word word = (Word) o;
-        return translate.equals(word.translate);
+        return translate.equals(word.translate) || name.equals(word.getName());
     }
 
     @Override
