@@ -10,13 +10,136 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b66bd417-fa9f-424c-9f9f-562f9b1f7865" name="Changes" comment="Consultations, final project (files corrections)">
-      <change afterPath="$PROJECT_DIR$/../consult/consult/src/main/webapp/js/jquery-3.6.0.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Element.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Line.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/MyTestArea/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/MyTestArea/Main2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Action.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Boots.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Closeable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Door.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/FinOfCapital.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Hat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Helmet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/IGowableAndPressable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/IPresser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Material.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Openable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/ReflectionSecurity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/SecurityException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/SetterIntoWears.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/ShortMan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Spacesuit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Olga/Wear.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Renata/AllNumbers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Renata/BinarySearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Renata/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Renata/tasks/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Renata/tasks/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Renata/tasks/TaskKeeper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/StartField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/WorkPlace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/danila/ArrayProgress.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/danila/Task9.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/nikol/SignatureTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/nikol/Task1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/cat/Barkable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/cat/Cat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/cat/CatAlert.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/cat/CatCount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/cat/Catodog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/cat/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/cat/Meowable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/db/Connection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/db/DataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/db/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/lines/Figure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/lines/Lengthable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/lines/Line.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/lines/Polyline.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/lines/PolylineLoop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/lines/Polylineable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/lines/Square.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/names/Fio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/names/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/names/NameGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/names/NullNameException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/points/Point.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/points/Point3D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/points/PointFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/temperatura/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/temperatura/Temperatures.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/traffic/Color.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/traffic/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TestArea/src/main/java/olesya/traffic/TrafficLight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-2/spring-2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-4/src/main/java/andrew/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-4/src/main/java/andrew/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-4/src/main/java/andrew/Shop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-4/src/main/java/nikol/CaesarCript3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-4/src/main/java/nikol/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-4/src/test/java/Owner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5/src/main/java/workdir/AdvancedCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5/src/main/java/workdir/Calculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5/src/main/java/workdir/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5/src/main/java/workdir/SimpleCalculator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5/src/main/resources/META-INF/spring.factories" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5a/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5a/src/main/java/workdir/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/src/main/java/beans/Project.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/src/main/java/beans/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/src/main/java/beans/Task.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/src/main/java/beans/TaskType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/src/main/java/beans/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/src/main/java/beans/WorkFlowStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-5repo/src/main/java/configuration/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-6/src/main/webapp/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../spring-6/src/main/webapp/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArea/TestArea.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArea/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArea/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TestArea/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArea/src/main/java/discret/BinTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArea/src/main/java/discret/SimpleList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArea/src/main/java/discret/SortedMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TestArea/src/main/resources/javassist.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/consultation.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/consultation.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/consultation/js/conwelcom.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/consultation/js/conwelcom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-4/src/main/java/pack/Dictionary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-4/src/main/java/pack/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-4/src/main/java/pack/Word.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/app/AdvancedCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/app/Calculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/app/Config.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/app/SimpleCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/ATM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/Bank.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/Mobile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/SchoolCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/SocialCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/StudentCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/terminal/Terminal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/worker/Firm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/worker/HourWorker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/worker/MonthWorker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5/src/main/java/renata/worker/Worker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5a/src/main/java/pack/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-5a/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-5a/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -199,6 +322,9 @@
       <workItem from="1660477103929" duration="387000" />
       <workItem from="1660477499900" duration="23000" />
       <workItem from="1660477609240" duration="1203000" />
+      <workItem from="1666546816794" duration="219000" />
+      <workItem from="1666631919880" duration="4000" />
+      <workItem from="1673108494005" duration="38000" />
     </task>
     <task id="LOCAL-00001" summary="Consultations, final project">
       <created>1660234742875</created>

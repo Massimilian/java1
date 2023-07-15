@@ -4,8 +4,6 @@ $(function () {
     $(this).keypress(function(e) {
         if (e.keyCode == 32) {
             $('#back').submit();
-        } else {
-            alert(e.keyCode + " " + e.key)
         }
     });
 

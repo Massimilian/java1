@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- до этого были метаданные самого xml-файла. Теперь начинаются конфигурации самого Hibernate -->
+<hibernate-configuration>
+  <!-- фабрика сессий - открытых соединений с БД. Без открытой сессии работать с БД нельзя. -->
+  <session-factory>
+    <!-- Здесь мы прописываем наш URL (1) -->
+    <property name="connection.url">jdbc:postgresql://localhost:5432/mail</property>
+    <!-- Здесь мы прописываем класс, который будет взять из JDBC драйвера (2) -->
+    <property name="connection.driver_class">org.postgresql.Driver</property>
+    <!-- логин доступа (3) -->
+    <property name="connection.username">postgres</property>
+    <!-- пароль доступа (4) -->
+    <property name="connection.password">1357</property>
+    <!-- прямое указание диалекта -->
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
+    <!-- Указание для Hibernate - показывать все выполненные запросы в консоли-->
+    <property name="hibernate.show_sql">true</property>
+    <!-- подключаем кэш второго уровня -->
+    <property name="cache.use_second_level_cache">true</property>
+    <!-- подключаем класс, который будет отвечать за это кэширование -->
+    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>
+    <!-- подключаем статистику -->
+    <property name="hibernate.generate_statistics">true</property>
+    <mapping class="entity.Users"/>
+    <mapping class="entity.UserInfo"/>
+    <mapping class="entity.Mailbox"/>
+    <mapping class="entity.Letter"/>
+    <!-- подключаемые классы-entity -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+  </session-factory>
+</hibernate-configuration>

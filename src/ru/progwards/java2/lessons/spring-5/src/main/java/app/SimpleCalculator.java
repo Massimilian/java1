@@ -1,20 +1,8 @@
 package app;
 
-public class SimpleCalculator implements Calculator {
-    @Override
-    public int mult(int x, int y) {
-        return x * y;
-    }
-
-    @Override
-    public int div(int x, int y) {
-        int result = 0;
-        if (y == 0) {
-            System.out.println("Impossible operation!");
-        } else {
-            result = x / y;
-        }
-        return result;
+public class SimpleCalculator implements Calculator{
+    public SimpleCalculator() {
+        System.out.println("SIMPLE CALCULATOR");
     }
 
     @Override
@@ -23,7 +11,7 @@ public class SimpleCalculator implements Calculator {
     }
 
     @Override
-    public int minus(int x, int y) {
+    public int diff(int x, int y) {
         return x - y;
     }
 }

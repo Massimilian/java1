@@ -1,22 +1,22 @@
 package app;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource(value = "classpath:application.properties")
+@ConditionalOnProperty(prefix = "spring.calculator", name = "type")
 public class Config {
-    @Value("${spring.calculator.type}")
-    public String type;
+    @Value("${spring.user.type}")
+    String type;
 
     @Bean
     public Calculator getCalculator() {
-        if (type.equals("simple")) {
-            return new SimpleCalculator();
-        } else {
+        if (type.equals("advanced")) {
             return new AdvancedCalculator();
+        } else {
+            return new SimpleCalculator();
         }
     }
 }
