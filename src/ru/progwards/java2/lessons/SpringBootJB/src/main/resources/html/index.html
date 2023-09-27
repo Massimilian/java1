@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>JavaScript Validation</h2>
+<p>Введите число от 1 до 10:</p>
+<input id="numb">
+<button type="button" onclick="myFunction()">Submit</button>
+<p id="demo"></p>
+
+<script>
+    function myFunction() {
+        <!-- получаем информацию, которую нам посылает пользователь -->
+        let x = document.getElementById("numb").value;
+        let text;
+        <!-- проверяем, что это число в пределах от 1 до 10 -->
+        if (isNaN(x) || x <= 0 || x >= 11) {
+            text = "Ввод неправильного числа";
+        } else {
+            text = "Ввод правильного числа";
+        }
+        <!-- выводим информацию в тег с id = 'demo' -->
+        document.getElementById("demo").innerHTML = text;
+    }
+</script>
+
+</body>
+</html>

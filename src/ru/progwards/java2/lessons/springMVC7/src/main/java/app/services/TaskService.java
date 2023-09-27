@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+// этот элемент будет Bean-ом
 @Component
 public class TaskService {
+    // собственно хранилище
     private static List<Task> store = new ArrayList<>();
 
+    // изначальные значения по умолчанию
     static {
         store.add(new Task(1L, "Создание обращения", new Date(), PriorityType.CRITICAL, Type.TASK));
         store.add(new Task(2L, "Исправить обращения", new Date(), PriorityType.BLOCKER, Type.BUG));
@@ -23,6 +26,10 @@ public class TaskService {
 
     public void delete(Task task) {
         store.remove(task);
+    }
+
+    public void delete(Long id) {
+        this.delete(this.get(id));
     }
 
     public List<Task> getAll() {

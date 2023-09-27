@@ -54,9 +54,9 @@
                 <td><c:out value="${item.priority}"/></td>
                 <td><c:out value="${item.type}"/></td>
                 <%--Создаём ссылку для перехода на другой адрес для редактирования--%>
-                <td><a href="/task/edit/${task.id}">Редактировать</a></td>
+                <td><a href="/task/edit/${item.id}">Редактировать</a></td>
                 <%--Создаём ссылку для перехода на другой адрес для удаления--%>
-                <td><a href="/task/delete?id=${task.id}">Удалить</a></td>
+                <td><a href="/task/delete?id=${item.id}">Удалить</a></td>
             </tr>
         </c:forEach>
         </tbody>

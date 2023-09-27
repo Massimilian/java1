@@ -3,11 +3,10 @@ package app.controller;
 import app.services.Task;
 import app.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -16,7 +15,7 @@ public class TaskController {
     private TaskService service;
 
     @GetMapping(value = "/index")
-    public String getTask(Model model) {
+    public String getTasks(Model model) {
         model.addAttribute("list", service.getAll());
         return "index";
     }
@@ -24,6 +23,11 @@ public class TaskController {
     @GetMapping(value = "/")
     public String getTest() {
         return "start";
+    }
+
+    @GetMapping(value = "/task/add")
+    public String getAdd() {
+        return "add";
     }
 
     // метод посылки сообщения - "post", поэтому аннотация теперь @PostMapping
@@ -37,8 +41,22 @@ public class TaskController {
         return new RedirectView("/index");
     }
 
-    @GetMapping(value = "/task/add")
-    public String getAdd() {
-        return "add";
+    @GetMapping(value = "/task/delete")
+    public RedirectView delete(@RequestParam("id") Long id) { // получить id как параметр get-запроса
+        service.delete(id);
+        return new RedirectView("/index");
+    }
+
+    @GetMapping(value = "task/edit/{id}")
+    public String edit(Model model, @PathVariable("id") long id) {
+        model.addAttribute("id", id);
+        return "edit";
+    }
+
+    @PostMapping(value="task/edit")
+    public RedirectView setEdit(@ModelAttribute Task task) {
+        System.out.println();
+        service.update(task);
+        return new RedirectView("/index");
     }
 }

@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-Start page<br>
+<h1>Start page<h1/><br>
 <a href="/index">Start work</a>
 </body>
 </html>

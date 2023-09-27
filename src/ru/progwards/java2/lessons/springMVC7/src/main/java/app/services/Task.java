@@ -1,7 +1,12 @@
 package app.services;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
+@Getter
+@Setter
 public class Task {
     private long id;
     private String name;
@@ -18,45 +23,5 @@ public class Task {
     }
 
     public Task() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public PriorityType getPriority() {
-        return priority;
-    }
-
-    public void setPriority(PriorityType priority) {
-        this.priority = priority;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 }
