@@ -53,7 +53,7 @@
       <module name="SpringTesterProject" target="14" />
       <module name="synchro" target="7" />
       <module name="SystemProfiler" target="11" />
-      <module name="TestArea" target="15" />
+      <module name="TestArea" target="8" />
       <module name="threads" target="9" />
       <module name="tree" target="11" />
       <module name="trees" target="14" />
