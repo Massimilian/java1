@@ -5,17 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@AllArgsConstructor
 public class Userdata {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -25,15 +23,9 @@ public class Userdata {
     @Column(name = "login")
     private String login;
     @Basic
-    @Column(name = "create_task")
-    private Boolean createTask;
-    @Basic
-    @Column(name = "read_task")
-    private Boolean readTask;
-    @Basic
-    @Column(name = "update_task")
-    private Boolean updateTask;
-    @Basic
-    @Column(name = "delete_task")
-    private Boolean deleteTask;
+    @Column(name = "rules")
+    private String rules;
+
+    @OneToMany(mappedBy = "userdata", fetch = FetchType.LAZY)
+    private Set<Task> tasks;
 }

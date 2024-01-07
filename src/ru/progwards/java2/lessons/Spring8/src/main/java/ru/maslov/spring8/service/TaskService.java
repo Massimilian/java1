@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import ru.maslov.spring8.entity.Task;
+import ru.maslov.spring8.entity.Userdata;
 import ru.maslov.spring8.repository.TaskRepository;
 
 @Service
@@ -26,4 +28,13 @@ public class TaskService {
     public void create(Task task) {
         repo.save(task);
     }
+
+    public Task findById(Integer id) {
+        return repo.findById(id).get();
+    }
+
+    public Userdata getAuthor(String login) {
+        return repo.getAuthor(login);
+    }
+
 }

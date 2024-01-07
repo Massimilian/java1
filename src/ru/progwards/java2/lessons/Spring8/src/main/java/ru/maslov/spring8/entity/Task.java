@@ -1,21 +1,18 @@
 package ru.maslov.spring8.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -34,6 +31,14 @@ public class Task {
     @Column(name = "isdone")
     private Boolean isdone;
     @Basic
-    @Column(name = "userdata_id")
-    private Integer userdataId;
+    @Column(name = "priority")
+    private String priority;
+    @Basic
+    @Column(name = "userdataid", insertable = false, updatable = false)
+    private Integer userdataid;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @JoinColumn(name = "userdataid", referencedColumnName = "id")
+    Userdata userdata;
 }
